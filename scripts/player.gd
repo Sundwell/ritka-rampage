@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
+signal player_died
+
 @onready var weapon = $Weapon
 
 const RUN_SPEED := 100
 const MOVE_SPEED := 30
 
-var damage_rate := 5.0
+var damage_rate := 10.0
 var can_shoot := true
 var health := 100.0
 
@@ -32,6 +34,9 @@ func _physics_process(delta):
 	var enemy_count_near = %HurtBox.get_overlapping_bodies().size()
 	health -= enemy_count_near * damage_rate * delta
 	%HealthBar.value = health
+	
+	if health <= 0:
+		player_died.emit()
 		
 func flip():
 	if velocity.x < 0:
