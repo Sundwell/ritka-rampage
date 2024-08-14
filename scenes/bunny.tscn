@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwsxcvg8tgsku"]
+
+[ext_resource type="Texture2D" uid="uid://d2064pj05mkxy" path="res://assets/bunny.png" id="1_5rorc"]
+[ext_resource type="Script" path="res://scripts/bunny.gd" id="1_6uvuu"]
+[ext_resource type="Texture2D" uid="uid://51ngtrd3m3x6" path="res://assets/shadow.png" id="1_isboy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6kmy"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_bsfvl"]
+resource_name = "hurt"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.21, 0.21, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nyvf5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_auqdg"]
+_data = {
+"RESET": SubResource("Animation_nyvf5"),
+"hurt": SubResource("Animation_bsfvl")
+}
+
+[node name="Bunny" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_6uvuu")
+
+[node name="GroundShadow" type="Sprite2D" parent="."]
+modulate = Color(0.494118, 0.454902, 0.4, 0.607843)
+position = Vector2(-0.399963, -4)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_isboy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.399963, -8)
+texture = ExtResource("1_5rorc")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.399963, -6)
+shape = SubResource("CircleShape2D_f6kmy")
+
+[node name="VisualAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_auqdg")
+}

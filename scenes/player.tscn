@@ -1,0 +1,143 @@
+[gd_scene load_steps=17 format=3 uid="uid://opwxpmnb8voa"]
+
+[ext_resource type="Texture2D" uid="uid://yr54tlu3thkq" path="res://assets/ritka.png" id="1_aes1j"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_snu1q"]
+[ext_resource type="Texture2D" uid="uid://51ngtrd3m3x6" path="res://assets/shadow.png" id="3_6ka02"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="4_e1yw6"]
+[ext_resource type="Texture2D" uid="uid://cwk4lvfawo8db" path="res://assets/pistol.png" id="5_43h4y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtope"]
+atlas = ExtResource("1_aes1j")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n74r"]
+atlas = ExtResource("1_aes1j")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li5ou"]
+atlas = ExtResource("1_aes1j")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iiqp5"]
+atlas = ExtResource("1_aes1j")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_weogo"]
+atlas = ExtResource("1_aes1j")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7e42"]
+atlas = ExtResource("1_aes1j")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vjnt0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtope")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0n74r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li5ou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iiqp5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_weogo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7e42")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aiujm"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4sibk"]
+radius = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bvr0"]
+bg_color = Color(0.191406, 0.0542068, 0.11048, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8i64c"]
+bg_color = Color(0.841797, 0.30211, 0.157837, 1)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_snu1q")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.494118, 0.454902, 0.4, 0.607843)
+position = Vector2(-1.42109e-14, -4)
+scale = Vector2(0.96875, 0.96875)
+texture = ExtResource("3_6ka02")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_vjnt0")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_aiujm")
+
+[node name="Weapon" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -5)
+script = ExtResource("4_e1yw6")
+
+[node name="Marker2D" type="Marker2D" parent="Weapon"]
+
+[node name="WeaponSprite" type="Sprite2D" parent="Weapon/Marker2D"]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(10, 0)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_43h4y")
+
+[node name="ShootPosition" type="Marker2D" parent="Weapon/Marker2D/WeaponSprite"]
+unique_name_in_owner = true
+position = Vector2(5.33333, -2.66667)
+
+[node name="Reload" type="Timer" parent="Weapon"]
+unique_name_in_owner = true
+wait_time = 0.15
+one_shot = true
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -8)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_4sibk")
+debug_color = Color(0.7, 0.180469, 0, 0.42)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -12.0
+offset_top = -20.0
+offset_right = 84.0
+offset_bottom = -8.0
+scale = Vector2(0.25, 0.25)
+theme_override_styles/background = SubResource("StyleBoxFlat_8bvr0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8i64c")
+value = 100.0
+show_percentage = false
+
+[connection signal="timeout" from="Weapon/Reload" to="Weapon" method="_on_reload_timeout"]
