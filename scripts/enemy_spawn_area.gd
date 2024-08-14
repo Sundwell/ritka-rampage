@@ -15,7 +15,6 @@ func _ready():
 	area_rect = area_collision.shape.get_rect()
 
 func _on_spawn_timer_timeout():
-	var random_point = get_random_point()
 	var enemy = enemy_scene.instantiate()
 	
 	enemy.position = get_random_point()
@@ -37,7 +36,7 @@ func get_random_point():
 	var is_point_near_player = (x_distance + y_distance) <= MIN_SPAWN_DISTANCE_FROM_PLAYER
 	
 	if is_point_near_player:
-		random_point = get_random_point()
+		return get_random_point()
 		
 	
 	return random_point
