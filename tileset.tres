@@ -5,6 +5,7 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r7sqq"]
 texture = ExtResource("1_6c53l")
 0:0/0 = 0
+0:0/0/y_sort_origin = 7
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0

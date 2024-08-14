@@ -20,6 +20,11 @@ func shoot():
 	var bullet = bullet_scene.instantiate()
 	
 	bullet.position = %ShootPosition.global_position
+	
+	if %WeaponSprite.flip_v:
+		# Correction due to sprite flip_v
+		bullet.position.y -= 4
+	
 	bullet.rotation = %ShootPosition.global_rotation
 	
 	get_parent().add_child(bullet)
