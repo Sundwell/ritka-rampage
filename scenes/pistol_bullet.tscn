@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://ck6vo5d385q3c"]
+[gd_scene load_steps=7 format=3 uid="uid://ck6vo5d385q3c"]
 
 [ext_resource type="Script" path="res://scripts/pistol_bullet.gd" id="1_s11xb"]
 [ext_resource type="Texture2D" uid="uid://b88iyoeea0kbc" path="res://assets/bullet.png" id="1_v01kh"]
+[ext_resource type="Script" path="res://scripts/bullet_trail.gd" id="3_hpbgf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fdwcm"]
 radius = 4.0
+
+[sub_resource type="Curve" id="Curve_ctexi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1u0d0"]
+colors = PackedColorArray(1, 1, 1, 0, 0.98, 0.638633, 0.049, 0.694118)
 
 [node name="PistolBullet" type="Area2D"]
 top_level = true
@@ -17,5 +25,13 @@ texture = ExtResource("1_v01kh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_fdwcm")
+
+[node name="Line2D" type="Line2D" parent="."]
+modulate = Color(1.5, 1.5, 1.5, 1)
+top_level = true
+width = 3.0
+width_curve = SubResource("Curve_ctexi")
+gradient = SubResource("Gradient_1u0d0")
+script = ExtResource("3_hpbgf")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
