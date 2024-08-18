@@ -4,30 +4,36 @@ signal player_died
 
 @onready var weapon = $Weapon
 
-const RUN_SPEED := 100
-const MOVE_SPEED := 30
+const RUN_SPEED := 100.0
+const MOVE_SPEED := 30.0
 
+var is_shooting := false
 var damage_rate := 10.0
-var can_shoot := true
 var health := 100.0
 
 func _physics_process(delta):
-	if Input.is_action_pressed('fire') and can_shoot:
+	if Input.is_action_pressed('fire'):
+		is_shooting = true
 		%Weapon.shoot()
+	else:
+		is_shooting = false
 	
 	var direction = Input.get_vector('move_left', 'move_right', 'move_top', 'move_down')
-	velocity = direction * RUN_SPEED
+	velocity = direction.normalized() * (MOVE_SPEED if is_shooting else RUN_SPEED)
 	
 	move_and_slide()
 	
 	flip()
 		
 	if velocity.length() > 0:
-		can_shoot = false
-		weapon.visible = false
-		$AnimatedSprite2D.play("run")
+		if is_shooting:
+			weapon.visible = true
+			$AnimatedSprite2D.play('walk')
+		else:
+			weapon.visible = false
+			$AnimatedSprite2D.play("run")
+		
 	else:
-		can_shoot = true
 		weapon.visible = true
 		$AnimatedSprite2D.play("idle")
 		
