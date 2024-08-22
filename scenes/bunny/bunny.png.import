@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2064pj05mkxy"
-path="res://.godot/imported/bunny.png-2cf54184212d7be0a9472f6149f75c0d.ctex"
+path="res://.godot/imported/bunny.png-636c864e6498eecb672577793d94f59a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bunny.png"
-dest_files=["res://.godot/imported/bunny.png-2cf54184212d7be0a9472f6149f75c0d.ctex"]
+source_file="res://scenes/bunny/bunny.png"
+dest_files=["res://.godot/imported/bunny.png-636c864e6498eecb672577793d94f59a.ctex"]
 
 [params]
 

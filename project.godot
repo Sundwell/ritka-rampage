@@ -11,15 +11,16 @@ config_version=5
 [application]
 
 config/name="R.I.T.K.A. Rampage"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/main/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=2880
+window/size/window_height_override=1620
 window/stretch/mode="canvas_items"
-window/stretch/scale=5.0
 
 [editor]
 

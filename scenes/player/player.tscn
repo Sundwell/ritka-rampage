@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://opwxpmnb8voa"]
 
-[ext_resource type="Texture2D" uid="uid://yr54tlu3thkq" path="res://assets/ritka.png" id="1_aes1j"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_snu1q"]
+[ext_resource type="Texture2D" uid="uid://yr54tlu3thkq" path="res://scenes/player/ritka.png" id="1_aes1j"]
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_snu1q"]
 [ext_resource type="Texture2D" uid="uid://51ngtrd3m3x6" path="res://assets/shadow.png" id="3_6ka02"]
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="4_e1yw6"]
 [ext_resource type="Texture2D" uid="uid://cwk4lvfawo8db" path="res://assets/pistol.png" id="5_43h4y"]
@@ -92,16 +92,17 @@ bg_color = Color(0.191406, 0.0542068, 0.11048, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8i64c"]
 bg_color = Color(0.841797, 0.30211, 0.157837, 1)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_snu1q")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.494118, 0.454902, 0.4, 0.607843)
-position = Vector2(-1.42109e-14, -4)
+position = Vector2(0, -8)
 scale = Vector2(0.96875, 0.96875)
 texture = ExtResource("3_6ka02")
+offset = Vector2(0, 5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)

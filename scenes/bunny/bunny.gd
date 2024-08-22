@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var player
 
-const SPEED := 130.0
+const SPEED := 180.0
 const JUMP_DISTANCE := 60.0
 var jumped_distance := 0.0
 var health := 3
@@ -10,7 +10,7 @@ var is_jumping := false
 var jump_direction : Vector2
 
 func _ready():
-	player = get_tree().get_first_node_in_group('Player')
+	player = get_tree().get_first_node_in_group('player')
 	%ActionsAnimationPlayer.play('jump')
 
 func _physics_process(delta):

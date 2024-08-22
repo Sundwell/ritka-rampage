@@ -4,8 +4,8 @@ signal player_died
 
 @onready var weapon = $Weapon
 
-const RUN_SPEED := 100.0
-const MOVE_SPEED := 30.0
+const RUN_SPEED := 150.0
+const MOVE_SPEED := 50.0
 
 var is_shooting := false
 var damage_rate := 10.0

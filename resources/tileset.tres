@@ -1,16 +1,16 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b5jwrivhevsl6"]
 
-[ext_resource type="Texture2D" uid="uid://qmg7dtrtjgsb" path="res://assets/tileset.png" id="1_6c53l"]
+[ext_resource type="Texture2D" uid="uid://qmg7dtrtjgsb" path="res://assets/environment/tileset.png" id="1_mgndk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r7sqq"]
-texture = ExtResource("1_6c53l")
+texture = ExtResource("1_mgndk")
 0:0/0 = 0
-0:0/0/y_sort_origin = 7
+0:0/0/y_sort_origin = 6
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
 0:1/0 = 0
-0:1/0/y_sort_origin = 7
+0:1/0/y_sort_origin = 6
 2:1/0 = 0
 3:1/0 = 0
 4:1/0 = 0
@@ -21,4 +21,7 @@ texture = ExtResource("1_6c53l")
 2:3/0 = 0
 
 [resource]
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "floor"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_r7sqq")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd1crk4t8r2lv"
-path="res://.godot/imported/ritkas-hand.png-545fa5b2fa54956d0c63aabadbf90f6f.ctex"
+uid="uid://qmg7dtrtjgsb"
+path="res://.godot/imported/tileset.png-3c625a847ece11c15fab5bb17369eade.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ritkas-hand.png"
-dest_files=["res://.godot/imported/ritkas-hand.png-545fa5b2fa54956d0c63aabadbf90f6f.ctex"]
+source_file="res://assets/environment/tileset.png"
+dest_files=["res://.godot/imported/tileset.png-3c625a847ece11c15fab5bb17369eade.ctex"]
 
 [params]
 
