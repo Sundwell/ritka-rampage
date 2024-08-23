@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwsxcvg8tgsku"]
+[gd_scene load_steps=13 format=3 uid="uid://bwsxcvg8tgsku"]
 
 [ext_resource type="Texture2D" uid="uid://d2064pj05mkxy" path="res://scenes/bunny/bunny.png" id="1_5rorc"]
 [ext_resource type="Script" path="res://scenes/bunny/bunny.gd" id="1_6uvuu"]
 [ext_resource type="Texture2D" uid="uid://51ngtrd3m3x6" path="res://assets/shadow.png" id="1_isboy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f6kmy"]
-radius = 8.0
+radius = 4.39996
 
 [sub_resource type="Animation" id="Animation_nyvf5"]
 length = 0.001
@@ -125,6 +125,9 @@ _data = {
 _data = [Vector2(0, 0.995215), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kam8y"]
+radius = 9.0
+
 [node name="Bunny" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 5
@@ -143,7 +146,7 @@ texture = ExtResource("1_5rorc")
 hframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.399963, -6)
+position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_f6kmy")
 
 [node name="VisualAnimationPlayer" type="AnimationPlayer" parent="."]
@@ -174,3 +177,9 @@ scale_amount_min = 0.5
 scale_amount_max = 3.0
 scale_amount_curve = SubResource("Curve_1bama")
 color = Color(0.757812, 0.174652, 0.174652, 0.774)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_kam8y")

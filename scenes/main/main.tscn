@@ -1,16 +1,13 @@
-[gd_scene load_steps=12 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=11 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://bl7iv2g2ogcln" path="res://scenes/game_camera/game_camera.tscn" id="2_ipo2b"]
 [ext_resource type="PackedScene" uid="uid://vixacdyyqg70" path="res://scenes/bush/bush.tscn" id="2_vx0vm"]
-[ext_resource type="Script" path="res://scripts/enemy_spawn_area.gd" id="3_5w01t"]
+[ext_resource type="PackedScene" uid="uid://cmt37s18d81vr" path="res://scenes/manager/enemy_manager.tscn" id="2_y0yni"]
 [ext_resource type="TileSet" uid="uid://b5jwrivhevsl6" path="res://resources/tileset.tres" id="6_a6vb0"]
 [ext_resource type="PackedScene" uid="uid://opwxpmnb8voa" path="res://scenes/player/player.tscn" id="7_nxmj7"]
 [ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/bunny/bunny.tscn" id="8_0au5e"]
 [ext_resource type="Script" path="res://scripts/time_passed.gd" id="8_dmcdc"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sx1b0"]
-size = Vector2(618, 567)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xi2gt"]
 size = Vector2(48, 671)
@@ -22,29 +19,8 @@ size = Vector2(716, 50.5)
 y_sort_enabled = true
 script = ExtResource("1_fqumt")
 
-[node name="GameCamera" parent="." instance=ExtResource("2_ipo2b")]
-
-[node name="Bushes" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="Bush" parent="Bushes" instance=ExtResource("2_vx0vm")]
-position = Vector2(67, -38)
-
-[node name="Bush2" parent="Bushes" instance=ExtResource("2_vx0vm")]
-position = Vector2(-142, 92)
-
-[node name="EnemySpawnArea" type="Area2D" parent="." node_paths=PackedStringArray("area_collision")]
-y_sort_enabled = true
-script = ExtResource("3_5w01t")
-area_collision = NodePath("CollisionShape2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnArea"]
-position = Vector2(-8, 15.5)
-shape = SubResource("RectangleShape2D_sx1b0")
-
-[node name="SpawnTimer" type="Timer" parent="EnemySpawnArea"]
-wait_time = 0.1
-autostart = true
+[node name="EnemyManager" parent="." instance=ExtResource("2_y0yni")]
+enemy_scene = ExtResource("8_0au5e")
 
 [node name="TileMap" type="Node2D" parent="."]
 z_index = -1
@@ -64,10 +40,22 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD7/woAAAAAAAMAAAACAAgAAAAAAAMAAAD4//r/AAAAAAMAAAD4//z/AAAAAAAAAAAIAAwAAAAAAAAAAAD9/wwAAAAAAAEAAAAJAPr/AAAAAAEAAAAAAAMAAAAAAAEAAADw/wQAAAAAAAAAAAD0//b/AAAAAAAAAADw//z/AAAAAAEAAAACAPP/AAAAAAEAAAAOAPX/AAAAAAEAAAD///f/AAAAAAEAAAAPABAAAAAAAAEAAAD1/w8AAAAAAAEAAAAMAAEAAAAAAAEAAAAPAAEAAAAAAAMAAAD3//P/AAAAAAMAAADu//n/AAAAAAMAAAA=")
 tile_set = ExtResource("6_a6vb0")
 
+[node name="GameCamera" parent="." instance=ExtResource("2_ipo2b")]
+
+[node name="Bushes" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Bush" parent="Bushes" instance=ExtResource("2_vx0vm")]
+position = Vector2(67, -38)
+
+[node name="Bush2" parent="Bushes" instance=ExtResource("2_vx0vm")]
+position = Vector2(-142, 92)
+
 [node name="Player" parent="." instance=ExtResource("7_nxmj7")]
-position = Vector2(15, 43)
+position = Vector2(-200, 9)
 
 [node name="HUD" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD"]
 anchors_preset = 15
@@ -133,6 +121,9 @@ layout_mode = 2
 layout_mode = 2
 text = "Restart"
 
+[node name="Bunny" parent="." instance=ExtResource("8_0au5e")]
+position = Vector2(-219, -44)
+
 [node name="GameBoundaries" type="StaticBody2D" parent="."]
 collision_mask = 0
 
@@ -152,11 +143,6 @@ shape = SubResource("RectangleShape2D_j81xu")
 position = Vector2(-9, 326)
 shape = SubResource("RectangleShape2D_j81xu")
 
-[node name="Bunny" parent="." instance=ExtResource("8_0au5e")]
-position = Vector2(-219, -44)
-
-[connection signal="timeout" from="EnemySpawnArea/SpawnTimer" to="EnemySpawnArea" method="_on_spawn_timer_timeout"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
-[connection signal="time_changed" from="HUD/MarginContainer/VBoxContainer/TimePassed" to="EnemySpawnArea" method="_on_time_passed_time_changed"]
 [connection signal="timeout" from="HUD/MarginContainer/VBoxContainer/TimePassed/Timer" to="HUD/MarginContainer/VBoxContainer/TimePassed" method="_on_timer_timeout"]
 [connection signal="pressed" from="GameOverScreen/ColorRect/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

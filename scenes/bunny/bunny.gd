@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-var player
-
 const SPEED := 180.0
 const JUMP_DISTANCE := 60.0
 var jumped_distance := 0.0
@@ -10,7 +8,6 @@ var is_jumping := false
 var jump_direction : Vector2
 
 func _ready():
-	player = get_tree().get_first_node_in_group('player')
 	%ActionsAnimationPlayer.play('jump')
 
 func _physics_process(delta):
@@ -38,5 +35,11 @@ func take_damage():
 		queue_free()
 		
 func jump():
-	jump_direction = global_position.direction_to(player.global_position)
+	var player = get_tree().get_first_node_in_group('player') as Node2D
+	
+	if player == null:
+		jump_direction = (player.global_position - global_position).normalized()
+	else:
+		jump_direction = Vector2.RIGHT.rotated(randf_range(0, TAU))
+
 	is_jumping = true
