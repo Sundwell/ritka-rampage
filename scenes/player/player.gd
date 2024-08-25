@@ -4,8 +4,9 @@ signal player_died
 
 @onready var weapon = $Weapon
 
-const RUN_SPEED := 150.0
+const RUN_SPEED := 125.0
 const MOVE_SPEED := 50.0
+const ACCELERATION_SMOOTHING := 15
 
 var is_shooting := false
 var damage_rate := 10.0
@@ -19,13 +20,15 @@ func _physics_process(delta):
 		is_shooting = false
 	
 	var direction = Input.get_vector('move_left', 'move_right', 'move_top', 'move_down')
-	velocity = direction.normalized() * (MOVE_SPEED if is_shooting else RUN_SPEED)
+	
+	var target_velocity = direction.normalized() * (MOVE_SPEED if is_shooting else RUN_SPEED)
+	velocity = velocity.lerp(target_velocity, 1.0 - exp(-delta * ACCELERATION_SMOOTHING))
 	
 	move_and_slide()
 	
 	flip()
 		
-	if velocity.length() > 0:
+	if direction.length() > 0:
 		if is_shooting:
 			weapon.visible = true
 			$AnimatedSprite2D.play('walk')

@@ -8,12 +8,12 @@ func _ready():
 	
 func _process(delta):
 	acquire_target()
-	global_position = global_position.lerp(target_position, 1.0 - exp(-delta * 10))
+	global_position = global_position.lerp(target_position, 1.0 - exp(-delta * 15))
 	
 	
 func acquire_target():
-	var player_nodes = get_tree().get_nodes_in_group('player')
+	var player = get_tree().get_first_node_in_group('player') as Node2D
 	
-	if player_nodes.size() > 0:
-		var player = player_nodes[0] as Node2D
+	
+	if player != null:
 		target_position = player.global_position

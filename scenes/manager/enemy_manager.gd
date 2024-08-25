@@ -1,6 +1,6 @@
 extends Node
 
-var SPAWN_RADIUS = int(ProjectSettings.get_setting('display/window/size/viewport_width') / 1.5)
+var SPAWN_RADIUS = int(ProjectSettings.get_setting('display/window/size/viewport_width') / 1.8)
 
 @export var enemy_scene: PackedScene
 

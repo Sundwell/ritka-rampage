@@ -8,6 +8,7 @@ var is_jumping := false
 var jump_direction : Vector2
 
 func _ready():
+	$Hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 	%ActionsAnimationPlayer.play('jump')
 
 func _physics_process(delta):
@@ -34,12 +35,16 @@ func take_damage():
 	if health <= 0:
 		queue_free()
 		
+func _on_hurtbox_area_entered(area: Area2D):
+	take_damage()
+		
 func jump():
 	var player = get_tree().get_first_node_in_group('player') as Node2D
 	
 	if player == null:
-		jump_direction = (player.global_position - global_position).normalized()
-	else:
 		jump_direction = Vector2.RIGHT.rotated(randf_range(0, TAU))
+	else:
+		jump_direction = (player.global_position - global_position).normalized()
+		
 
 	is_jumping = true

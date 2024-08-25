@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=12 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
+[ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
 [ext_resource type="PackedScene" uid="uid://bl7iv2g2ogcln" path="res://scenes/game_camera/game_camera.tscn" id="2_ipo2b"]
 [ext_resource type="PackedScene" uid="uid://vixacdyyqg70" path="res://scenes/bush/bush.tscn" id="2_vx0vm"]
 [ext_resource type="PackedScene" uid="uid://cmt37s18d81vr" path="res://scenes/manager/enemy_manager.tscn" id="2_y0yni"]
+[ext_resource type="PackedScene" uid="uid://hrmwpla6w5kt" path="res://scenes/manager/arena_time_manager.tscn" id="3_dwsl6"]
 [ext_resource type="TileSet" uid="uid://b5jwrivhevsl6" path="res://resources/tileset.tres" id="6_a6vb0"]
 [ext_resource type="PackedScene" uid="uid://opwxpmnb8voa" path="res://scenes/player/player.tscn" id="7_nxmj7"]
 [ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/bunny/bunny.tscn" id="8_0au5e"]
-[ext_resource type="Script" path="res://scripts/time_passed.gd" id="8_dmcdc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xi2gt"]
 size = Vector2(48, 671)
@@ -18,6 +19,11 @@ size = Vector2(716, 50.5)
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_fqumt")
+
+[node name="ArenaTimeUI" parent="." node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("2_7sja6")]
+arena_time_manager = NodePath("../ArenaTimeManager")
+
+[node name="ArenaTimeManager" parent="." instance=ExtResource("3_dwsl6")]
 
 [node name="EnemyManager" parent="." instance=ExtResource("2_y0yni")]
 enemy_scene = ExtResource("8_0au5e")
@@ -53,32 +59,6 @@ position = Vector2(-142, 92)
 
 [node name="Player" parent="." instance=ExtResource("7_nxmj7")]
 position = Vector2(-200, 9)
-
-[node name="HUD" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="MarginContainer" type="MarginContainer" parent="HUD"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1280.0
-offset_bottom = 760.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_top = 6
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer"]
-layout_mode = 2
-
-[node name="TimePassed" type="Label" parent="HUD/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "00:00"
-horizontal_alignment = 1
-script = ExtResource("8_dmcdc")
-
-[node name="Timer" type="Timer" parent="HUD/MarginContainer/VBoxContainer/TimePassed"]
-autostart = true
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -121,9 +101,6 @@ layout_mode = 2
 layout_mode = 2
 text = "Restart"
 
-[node name="Bunny" parent="." instance=ExtResource("8_0au5e")]
-position = Vector2(-219, -44)
-
 [node name="GameBoundaries" type="StaticBody2D" parent="."]
 collision_mask = 0
 
@@ -143,6 +120,4 @@ shape = SubResource("RectangleShape2D_j81xu")
 position = Vector2(-9, 326)
 shape = SubResource("RectangleShape2D_j81xu")
 
-[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
-[connection signal="timeout" from="HUD/MarginContainer/VBoxContainer/TimePassed/Timer" to="HUD/MarginContainer/VBoxContainer/TimePassed" method="_on_timer_timeout"]
 [connection signal="pressed" from="GameOverScreen/ColorRect/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

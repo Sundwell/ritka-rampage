@@ -179,6 +179,8 @@ scale_amount_curve = SubResource("Curve_1bama")
 color = Color(0.757812, 0.174652, 0.174652, 0.774)
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, -6)
