@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=14 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://vixacdyyqg70" path="res://scenes/game_object/bush/bush.tscn" id="2_vx0vm"]
 [ext_resource type="PackedScene" uid="uid://cmt37s18d81vr" path="res://scenes/manager/enemy_manager.tscn" id="2_y0yni"]
 [ext_resource type="PackedScene" uid="uid://hrmwpla6w5kt" path="res://scenes/manager/arena_time_manager.tscn" id="3_dwsl6"]
+[ext_resource type="PackedScene" uid="uid://cobi6d0h2keep" path="res://scenes/manager/experience_manager.tscn" id="6_8mjvm"]
 [ext_resource type="TileSet" uid="uid://b5jwrivhevsl6" path="res://resources/tileset.tres" id="6_a6vb0"]
 [ext_resource type="PackedScene" uid="uid://opwxpmnb8voa" path="res://scenes/game_object/player/player.tscn" id="7_nxmj7"]
 [ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/game_object/bunny/bunny.tscn" id="8_0au5e"]
+[ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="8_032v1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xi2gt"]
 size = Vector2(48, 671)
@@ -27,6 +29,11 @@ arena_time_manager = NodePath("../ArenaTimeManager")
 
 [node name="EnemyManager" parent="." instance=ExtResource("2_y0yni")]
 enemy_scene = ExtResource("8_0au5e")
+
+[node name="Timer" parent="EnemyManager" index="0"]
+autostart = false
+
+[node name="ExperienceManager" parent="." instance=ExtResource("6_8mjvm")]
 
 [node name="TileMap" type="Node2D" parent="."]
 z_index = -1
@@ -120,4 +127,9 @@ shape = SubResource("RectangleShape2D_j81xu")
 position = Vector2(-9, 326)
 shape = SubResource("RectangleShape2D_j81xu")
 
+[node name="OrangeEnergy" parent="." instance=ExtResource("8_032v1")]
+position = Vector2(-94, -5)
+
 [connection signal="pressed" from="GameOverScreen/ColorRect/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+
+[editable path="EnemyManager"]

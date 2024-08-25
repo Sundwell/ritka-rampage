@@ -1,6 +1,6 @@
 extends Node2D
 
-var bullet_scene := preload("res://scenes/pistol_bullet/pistol_bullet.tscn")
+var bullet_scene := preload("res://scenes/game_object/pistol_bullet/pistol_bullet.tscn")
 var can_shoot := true
 
 func _physics_process(_delta):

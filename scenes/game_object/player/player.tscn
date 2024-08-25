@@ -1,10 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://opwxpmnb8voa"]
+[gd_scene load_steps=20 format=3 uid="uid://opwxpmnb8voa"]
 
 [ext_resource type="Texture2D" uid="uid://yr54tlu3thkq" path="res://scenes/game_object/player/ritka.png" id="1_aes1j"]
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_snu1q"]
 [ext_resource type="Texture2D" uid="uid://51ngtrd3m3x6" path="res://assets/shadow.png" id="3_6ka02"]
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="4_e1yw6"]
 [ext_resource type="Texture2D" uid="uid://cwk4lvfawo8db" path="res://assets/pistol.png" id="5_43h4y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tjwd4"]
+radius = 32.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dtope"]
 atlas = ExtResource("1_aes1j")
@@ -96,6 +99,14 @@ bg_color = Color(0.841797, 0.30211, 0.157837, 1)
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_snu1q")
+
+[node name="PlayerPickupbox" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPickupbox"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_tjwd4")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.494118, 0.454902, 0.4, 0.607843)
