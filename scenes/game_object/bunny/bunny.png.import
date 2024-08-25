@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yr54tlu3thkq"
-path="res://.godot/imported/ritka.png-2c5bfbb9690b3c62cd4e8e44e3d3a7d1.ctex"
+uid="uid://d2064pj05mkxy"
+path="res://.godot/imported/bunny.png-98ce09dfdad013f4810a8c5bcfd1bf36.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/player/ritka.png"
-dest_files=["res://.godot/imported/ritka.png-2c5bfbb9690b3c62cd4e8e44e3d3a7d1.ctex"]
+source_file="res://scenes/game_object/bunny/bunny.png"
+dest_files=["res://.godot/imported/bunny.png-98ce09dfdad013f4810a8c5bcfd1bf36.ctex"]
 
 [params]
 

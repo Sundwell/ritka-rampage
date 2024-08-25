@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bwsxcvg8tgsku"]
 
-[ext_resource type="Texture2D" uid="uid://d2064pj05mkxy" path="res://scenes/bunny/bunny.png" id="1_5rorc"]
-[ext_resource type="Script" path="res://scenes/bunny/bunny.gd" id="1_6uvuu"]
+[ext_resource type="Texture2D" uid="uid://d2064pj05mkxy" path="res://scenes/game_object/bunny/bunny.png" id="1_5rorc"]
+[ext_resource type="Script" path="res://scenes/game_object/bunny/bunny.gd" id="1_6uvuu"]
 [ext_resource type="Texture2D" uid="uid://51ngtrd3m3x6" path="res://assets/shadow.png" id="1_isboy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f6kmy"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://vixacdyyqg70"]
 
-[ext_resource type="Script" path="res://scenes/bush/bush.gd" id="1_45qhh"]
-[ext_resource type="Texture2D" uid="uid://byo6dgju7o53h" path="res://scenes/bush/bush.png" id="1_ohky7"]
+[ext_resource type="Script" path="res://scenes/game_object/bush/bush.gd" id="1_45qhh"]
+[ext_resource type="Texture2D" uid="uid://byo6dgju7o53h" path="res://scenes/game_object/bush/bush.png" id="1_ohky7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ssh8"]
 atlas = ExtResource("1_ohky7")

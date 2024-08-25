@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
-[ext_resource type="PackedScene" uid="uid://bl7iv2g2ogcln" path="res://scenes/game_camera/game_camera.tscn" id="2_ipo2b"]
-[ext_resource type="PackedScene" uid="uid://vixacdyyqg70" path="res://scenes/bush/bush.tscn" id="2_vx0vm"]
+[ext_resource type="PackedScene" uid="uid://bl7iv2g2ogcln" path="res://scenes/game_object/game_camera/game_camera.tscn" id="2_ipo2b"]
+[ext_resource type="PackedScene" uid="uid://vixacdyyqg70" path="res://scenes/game_object/bush/bush.tscn" id="2_vx0vm"]
 [ext_resource type="PackedScene" uid="uid://cmt37s18d81vr" path="res://scenes/manager/enemy_manager.tscn" id="2_y0yni"]
 [ext_resource type="PackedScene" uid="uid://hrmwpla6w5kt" path="res://scenes/manager/arena_time_manager.tscn" id="3_dwsl6"]
 [ext_resource type="TileSet" uid="uid://b5jwrivhevsl6" path="res://resources/tileset.tres" id="6_a6vb0"]
-[ext_resource type="PackedScene" uid="uid://opwxpmnb8voa" path="res://scenes/player/player.tscn" id="7_nxmj7"]
-[ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/bunny/bunny.tscn" id="8_0au5e"]
+[ext_resource type="PackedScene" uid="uid://opwxpmnb8voa" path="res://scenes/game_object/player/player.tscn" id="7_nxmj7"]
+[ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/game_object/bunny/bunny.tscn" id="8_0au5e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xi2gt"]
 size = Vector2(48, 671)

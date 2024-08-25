@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://opwxpmnb8voa"]
 
-[ext_resource type="Texture2D" uid="uid://yr54tlu3thkq" path="res://scenes/player/ritka.png" id="1_aes1j"]
-[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_snu1q"]
+[ext_resource type="Texture2D" uid="uid://yr54tlu3thkq" path="res://scenes/game_object/player/ritka.png" id="1_aes1j"]
+[ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_snu1q"]
 [ext_resource type="Texture2D" uid="uid://51ngtrd3m3x6" path="res://assets/shadow.png" id="3_6ka02"]
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="4_e1yw6"]
 [ext_resource type="Texture2D" uid="uid://cwk4lvfawo8db" path="res://assets/pistol.png" id="5_43h4y"]
