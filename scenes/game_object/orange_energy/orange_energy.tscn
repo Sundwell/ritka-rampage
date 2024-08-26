@@ -56,10 +56,11 @@ collision_mask = 128
 shape = SubResource("CircleShape2D_7l6fr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_qhtu8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_k546n")
 }
+autoplay = "default"

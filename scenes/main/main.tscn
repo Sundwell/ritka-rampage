@@ -130,6 +130,14 @@ shape = SubResource("RectangleShape2D_j81xu")
 [node name="OrangeEnergy" parent="." instance=ExtResource("8_032v1")]
 position = Vector2(-94, -5)
 
+[node name="Sprite2D" parent="OrangeEnergy" index="1"]
+modulate = Color(1.5, 1.5, 1.5, 1)
+
+[node name="OrangeEnergy2" parent="." instance=ExtResource("8_032v1")]
+position = Vector2(-95, 12)
+
 [connection signal="pressed" from="GameOverScreen/ColorRect/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 
 [editable path="EnemyManager"]
+[editable path="OrangeEnergy"]
+[editable path="OrangeEnergy2"]
