@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://n78ef23nvddy"]
+
+[ext_resource type="Script" path="res://scenes/components/projectile_hurtbox_component.gd" id="1_bduyg"]
+
+[node name="ProjectileHurtboxComponent" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_bduyg")

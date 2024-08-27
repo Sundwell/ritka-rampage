@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 @export_range(0, 1) var drop_chance := 0.5
 @export var orange_scene: PackedScene

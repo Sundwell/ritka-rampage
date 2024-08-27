@@ -1,22 +1,17 @@
-extends Area2D
+class_name PistolBullet
+extends Node2D
 
+var speed = 250
+var max_distance = 100
 var travelled_distance := 0
-const SPEED = 250
-const MAX_DISTANCE = 100
 
-func _ready():
-	area_entered.connect(_on_area_entered)
 
 func _physics_process(delta):
 	var direction = Vector2.RIGHT.rotated(rotation)
 	
-	position += direction * SPEED * delta
+	position += direction * speed * delta
 	
-	travelled_distance += SPEED * delta
+	travelled_distance += speed * delta
 	
-	if travelled_distance >= MAX_DISTANCE:
+	if travelled_distance >= max_distance:
 		queue_free()
-
-
-func _on_area_entered(area: Area2D):
-	queue_free()

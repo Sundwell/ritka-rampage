@@ -5,7 +5,6 @@ _data = [Vector2(0, 0.995215), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="DamageParticle" type="CPUParticles2D"]
-position = Vector2(0, -6)
 emitting = false
 amount = 50
 lifetime = 0.3

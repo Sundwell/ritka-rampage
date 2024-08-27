@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://scenes/components/orange_drop_component.gd" id="1_2wfi4"]
 
-[node name="OrangeDropComponent" type="Node2D"]
+[node name="OrangeDropComponent" type="Node"]
 script = ExtResource("1_2wfi4")

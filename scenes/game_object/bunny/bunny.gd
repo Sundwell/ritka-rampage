@@ -8,11 +8,12 @@ var is_jumping := false
 var jump_direction : Vector2
 
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var sprite: Sprite2D = $Sprite2D
 
 
 func _ready():
-	$Hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+	hurtbox_component.damaged.connect(on_damaged)
 	%ActionsAnimationPlayer.play('jump')
 
 
@@ -34,13 +35,9 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	
-func take_damage(damage_amount: float):
-	health_component.damage(damage_amount)
+func on_damaged(damage_amount: float):
+	print('damaged')
 	%VisualAnimationPlayer.play('hurt')
-
-
-func _on_hurtbox_area_entered(area: Area2D):
-	take_damage(2)
 
 
 func jump():
