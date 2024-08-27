@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 signal player_died
 
-@onready var weapon = $Weapon
-
 const RUN_SPEED := 125.0
 const MOVE_SPEED := 50.0
 const ACCELERATION_SMOOTHING := 15
@@ -11,6 +9,15 @@ const ACCELERATION_SMOOTHING := 15
 var is_shooting := false
 var damage_rate := 10.0
 var health := 100.0
+
+@onready var weapon = $Weapon
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+
+func _ready():
+	health_component.died.connect(on_died)
+
 
 func _physics_process(delta):
 	if Input.is_action_pressed('fire'):
@@ -31,25 +38,27 @@ func _physics_process(delta):
 	if direction.length() > 0:
 		if is_shooting:
 			weapon.visible = true
-			$AnimatedSprite2D.play('walk')
+			sprite.play('walk')
 		else:
 			weapon.visible = false
-			$AnimatedSprite2D.play("run")
+			sprite.play("run")
 		
 	else:
 		weapon.visible = true
-		$AnimatedSprite2D.play("idle")
+		sprite.play("idle")
 		
 	var enemy_count_near = %HurtBox.get_overlapping_bodies().size()
-	health -= enemy_count_near * damage_rate * delta
-	%HealthBar.value = health
-	
-	if health <= 0:
-		player_died.emit()
-		
+	health_component.damage(enemy_count_near * damage_rate * delta)
+	%HealthBar.value = health_component.current_health
+
+
+func on_died():
+	player_died.emit()
+
+
 func flip():
 	if velocity.x < 0:
-		$AnimatedSprite2D.flip_h = true
+		sprite.flip_h = true
 	elif velocity.x > 0:
-		$AnimatedSprite2D.flip_h = false
+		sprite.flip_h = false
 	

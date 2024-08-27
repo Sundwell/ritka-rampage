@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=13 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
@@ -10,7 +10,6 @@
 [ext_resource type="TileSet" uid="uid://b5jwrivhevsl6" path="res://resources/tileset.tres" id="6_a6vb0"]
 [ext_resource type="PackedScene" uid="uid://opwxpmnb8voa" path="res://scenes/game_object/player/player.tscn" id="7_nxmj7"]
 [ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/game_object/bunny/bunny.tscn" id="8_0au5e"]
-[ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="8_032v1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xi2gt"]
 size = Vector2(48, 671)
@@ -29,9 +28,6 @@ arena_time_manager = NodePath("../ArenaTimeManager")
 
 [node name="EnemyManager" parent="." instance=ExtResource("2_y0yni")]
 enemy_scene = ExtResource("8_0au5e")
-
-[node name="Timer" parent="EnemyManager" index="0"]
-autostart = false
 
 [node name="ExperienceManager" parent="." instance=ExtResource("6_8mjvm")]
 
@@ -127,17 +123,6 @@ shape = SubResource("RectangleShape2D_j81xu")
 position = Vector2(-9, 326)
 shape = SubResource("RectangleShape2D_j81xu")
 
-[node name="OrangeEnergy" parent="." instance=ExtResource("8_032v1")]
-position = Vector2(-94, -5)
-
-[node name="Sprite2D" parent="OrangeEnergy" index="1"]
-modulate = Color(1.5, 1.5, 1.5, 1)
-
-[node name="OrangeEnergy2" parent="." instance=ExtResource("8_032v1")]
-position = Vector2(-95, 12)
-
 [connection signal="pressed" from="GameOverScreen/ColorRect/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 
 [editable path="EnemyManager"]
-[editable path="OrangeEnergy"]
-[editable path="OrangeEnergy2"]

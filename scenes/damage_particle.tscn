@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck36lmmyvt0ec"]
+
+[sub_resource type="Curve" id="Curve_1bama"]
+_data = [Vector2(0, 0.995215), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="DamageParticle" type="CPUParticles2D"]
+position = Vector2(0, -6)
+emitting = false
+amount = 50
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 32.0
+initial_velocity_max = 48.0
+scale_amount_min = 0.5
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_1bama")
+color = Color(0.757812, 0.174652, 0.174652, 0.774)
