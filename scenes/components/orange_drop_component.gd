@@ -21,5 +21,7 @@ func on_died():
 	var orange_spawn_position = (owner as Node2D).global_position
 	var orange = orange_scene.instantiate() as Node2D
 	orange.global_position = orange_spawn_position
-	owner.get_parent().add_child(orange)
+	
+	var foreground_layer = get_tree().get_first_node_in_group('foreground_layer')
+	foreground_layer.add_child(orange)
 	

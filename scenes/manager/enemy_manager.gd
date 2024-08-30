@@ -19,7 +19,8 @@ func _on_timer_timeout():
 	
 	enemy.global_position = player.global_position + (enemy_position * SPAWN_RADIUS)
 	
-	get_parent().add_child(enemy)
+	var entities_layer = get_tree().get_first_node_in_group('entities_layer')
+	entities_layer.add_child(enemy)
 		
 	
 		

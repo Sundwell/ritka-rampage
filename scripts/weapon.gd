@@ -17,7 +17,8 @@ func shoot():
 
 	can_shoot = false
 	%Reload.start()
-	var bullet = bullet_scene.instantiate()
+	var bullet = bullet_scene.instantiate() as PistolBullet
+	bullet.hitbox_component.damage = 2.0
 	
 	bullet.position = %ShootPosition.global_position
 	

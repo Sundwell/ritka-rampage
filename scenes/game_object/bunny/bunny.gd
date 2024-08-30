@@ -36,7 +36,6 @@ func _physics_process(delta):
 	
 	
 func on_damaged(damage_amount: float):
-	print('damaged')
 	%VisualAnimationPlayer.play('hurt')
 
 
