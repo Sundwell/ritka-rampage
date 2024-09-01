@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MutationUpgrade" load_steps=2 format=3 uid="uid://deyl22do2he2d"]
+
+[ext_resource type="Script" path="res://resources/upgrades/mutation_upgrade.gd" id="1_5rlw1"]
+
+[resource]
+script = ExtResource("1_5rlw1")
+id = "shoot_rate"
+title = "Shoot Rate"
+description = "Increses shoot rate by 10%"

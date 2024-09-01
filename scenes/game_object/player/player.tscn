@@ -159,9 +159,8 @@ texture = ExtResource("5_43h4y")
 unique_name_in_owner = true
 position = Vector2(5.33333, -2.66667)
 
-[node name="Reload" type="Timer" parent="Weapon"]
-unique_name_in_owner = true
-wait_time = 0.15
+[node name="ReloadTimer" type="Timer" parent="Weapon"]
+wait_time = 0.5
 one_shot = true
 
 [node name="HealthBar" type="ProgressBar" parent="."]
@@ -176,4 +175,4 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_8i64c")
 value = 100.0
 show_percentage = false
 
-[connection signal="timeout" from="Weapon/Reload" to="Weapon" method="_on_reload_timeout"]
+[connection signal="timeout" from="Weapon/ReloadTimer" to="Weapon" method="_on_reload_timeout"]

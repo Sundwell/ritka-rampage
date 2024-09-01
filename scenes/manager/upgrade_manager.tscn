@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmkeplc4w76hm"]
+
+[ext_resource type="Script" path="res://scenes/manager/upgrade_manager.gd" id="1_115ja"]
+[ext_resource type="Script" path="res://resources/upgrades/mutation_upgrade.gd" id="2_tk7aj"]
+[ext_resource type="Resource" uid="uid://deyl22do2he2d" path="res://resources/upgrades/shoot_rate.tres" id="3_xkj54"]
+
+[node name="UpgradeManager" type="Node"]
+script = ExtResource("1_115ja")
+upgrade_pool = Array[ExtResource("2_tk7aj")]([ExtResource("3_xkj54")])

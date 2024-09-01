@@ -1,7 +1,16 @@
 extends Node2D
 
+@onready var reload_timer = $ReloadTimer
+
 var bullet_scene := preload("res://scenes/game_object/pistol_bullet/pistol_bullet.tscn")
 var can_shoot := true
+var base_reload_time: float
+
+
+func _ready():
+	base_reload_time = reload_timer.wait_time
+	GameEvents.mutation_upgrade_selected.connect(on_mutation_upgrade_selected)
+
 
 func _physics_process(_delta):
 	look_at(get_global_mouse_position())
@@ -11,12 +20,13 @@ func _physics_process(_delta):
 	
 	%WeaponSprite.flip_v = should_flip
 	
+	
 func shoot():
 	if not can_shoot:
 		return
 
 	can_shoot = false
-	%Reload.start()
+	reload_timer.start()
 	var bullet = bullet_scene.instantiate() as PistolBullet
 	bullet.hitbox_component.damage = 2.0
 	
@@ -29,6 +39,15 @@ func shoot():
 	bullet.rotation = %ShootPosition.global_rotation
 	
 	get_parent().add_child(bullet)
+
+
+func on_mutation_upgrade_selected(upgrade: MutationUpgrade, current_upgrades: Dictionary):
+	if not upgrade.id == 'shoot_rate':
+		return
+		
+	var reduce_percent = current_upgrades[upgrade.id]["quantity"] * 0.1
+	reload_timer.wait_time = max(base_reload_time * (1 - reduce_percent), 0.05)
+
 
 func _on_reload_timeout():
 	can_shoot = true
