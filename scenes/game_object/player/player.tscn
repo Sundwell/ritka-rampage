@@ -4,17 +4,16 @@
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_snu1q"]
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="2_tfpur"]
 [ext_resource type="Texture2D" uid="uid://51ngtrd3m3x6" path="res://assets/shadow.png" id="3_6ka02"]
+[ext_resource type="PackedScene" uid="uid://cwatwkjukjlvd" path="res://scenes/components/hurtbox_component.tscn" id="3_477au"]
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="4_e1yw6"]
 [ext_resource type="Texture2D" uid="uid://cwk4lvfawo8db" path="res://assets/pistol.png" id="5_43h4y"]
+[ext_resource type="PackedScene" uid="uid://cf5byk2x3b7ae" path="res://scenes/components/health_bar_component.tscn" id="8_cdija"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tjwd4"]
 radius = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4sibk"]
 radius = 5.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_aiujm"]
-radius = 3.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dtope"]
 atlas = ExtResource("1_aes1j")
@@ -90,11 +89,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bvr0"]
-bg_color = Color(0.191406, 0.0542068, 0.11048, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8i64c"]
-bg_color = Color(0.841797, 0.30211, 0.157837, 1)
+[sub_resource type="CircleShape2D" id="CircleShape2D_aiujm"]
+radius = 3.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -112,20 +108,14 @@ collision_mask = 0
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_tjwd4")
 
-[node name="HurtBox" type="Area2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(0, -8)
-collision_layer = 0
-collision_mask = 4
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_477au")]
+collision_mask = 16
+health_component = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_4sibk")
 debug_color = Color(0.7, 0.180469, 0, 0.42)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
-shape = SubResource("CircleShape2D_aiujm")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.494118, 0.454902, 0.4, 0.607843)
@@ -140,6 +130,10 @@ sprite_frames = SubResource("SpriteFrames_vjnt0")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.526355
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_aiujm")
 
 [node name="Weapon" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -163,16 +157,10 @@ position = Vector2(5.33333, -2.66667)
 wait_time = 0.5
 one_shot = true
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="HealthBarComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("8_cdija")]
 unique_name_in_owner = true
-offset_left = -12.0
-offset_top = -20.0
-offset_right = 84.0
-offset_bottom = -8.0
-scale = Vector2(0.25, 0.25)
-theme_override_styles/background = SubResource("StyleBoxFlat_8bvr0")
-theme_override_styles/fill = SubResource("StyleBoxFlat_8i64c")
-value = 100.0
-show_percentage = false
+offset_top = -22.0
+offset_bottom = -16.0
+health_component = NodePath("../HealthComponent")
 
 [connection signal="timeout" from="Weapon/ReloadTimer" to="Weapon" method="_on_reload_timeout"]

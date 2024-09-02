@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
 [ext_resource type="PackedScene" uid="uid://bl7iv2g2ogcln" path="res://scenes/game_object/game_camera/game_camera.tscn" id="2_ipo2b"]
-[ext_resource type="PackedScene" uid="uid://r1vpw62fcrjw" path="res://scenes/ui/game_over_screen.tscn" id="2_jn3hq"]
+[ext_resource type="PackedScene" uid="uid://r1vpw62fcrjw" path="res://scenes/ui/end_screen.tscn" id="2_jn3hq"]
 [ext_resource type="PackedScene" uid="uid://vixacdyyqg70" path="res://scenes/game_object/bush/bush.tscn" id="2_vx0vm"]
 [ext_resource type="PackedScene" uid="uid://cmt37s18d81vr" path="res://scenes/manager/enemy_manager.tscn" id="2_y0yni"]
 [ext_resource type="PackedScene" uid="uid://csopqp6wvh5n" path="res://scenes/ui/experience_bar.tscn" id="3_6rnxb"]
@@ -17,7 +17,7 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_fqumt")
-game_over_screen_scene = ExtResource("2_jn3hq")
+end_screen_scene = ExtResource("2_jn3hq")
 
 [node name="ArenaTimeUI" parent="." node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("2_7sja6")]
 arena_time_manager = NodePath("../ArenaTimeManager")
@@ -26,6 +26,7 @@ arena_time_manager = NodePath("../ArenaTimeManager")
 experience_manager = NodePath("../ExperienceManager")
 
 [node name="ArenaTimeManager" parent="." instance=ExtResource("3_dwsl6")]
+end_screen_scene = ExtResource("2_jn3hq")
 
 [node name="EnemyManager" parent="." instance=ExtResource("2_y0yni")]
 enemy_scene = ExtResource("8_0au5e")
@@ -60,6 +61,7 @@ tile_map_data = PackedByteArray("AAD7/woAAAAAAAMAAAACAAgAAAAAAAMAAAD4//r/AAAAAAM
 tile_set = ExtResource("6_a6vb0")
 
 [node name="Player" parent="Entities" instance=ExtResource("7_nxmj7")]
+unique_name_in_owner = true
 position = Vector2(-51, 1)
 
 [node name="Bushes" type="Node2D" parent="Entities"]

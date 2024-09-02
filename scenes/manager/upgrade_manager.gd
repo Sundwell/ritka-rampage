@@ -1,7 +1,5 @@
 extends Node
 
-signal upgrade_selected
-
 @export var upgrade_pool: Array[MutationUpgrade]
 @export var experience_manager: ExperienceManager
 @export var upgrade_screen_scene: PackedScene

@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://r1vpw62fcrjw"]
 
-[ext_resource type="Script" path="res://scenes/ui/game_over_screen.gd" id="1_6ukal"]
+[ext_resource type="Script" path="res://scenes/ui/end_screen.gd" id="1_6ukal"]
 
-[node name="GameOverScreen" type="CanvasLayer"]
+[node name="EndScreen" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_6ukal")
 
@@ -28,10 +28,11 @@ offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="ColorRect/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="ColorRect/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Game Over"
+text = "You won!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -42,3 +43,8 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "Restart"
+
+[node name="QuitButton" type="Button" parent="ColorRect/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
