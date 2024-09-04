@@ -111,6 +111,7 @@ shape = SubResource("CircleShape2D_tjwd4")
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_477au")]
 collision_mask = 16
 health_component = NodePath("../HealthComponent")
+has_invinsibility_frames = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, 3)

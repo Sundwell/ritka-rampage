@@ -3,20 +3,21 @@ extends CharacterBody2D
 const SPEED := 180.0
 const JUMP_DISTANCE := 60.0
 
-var jumped_distance := 0.0
-var is_jumping := false
-var jump_direction : Vector2
-
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var sprite: Sprite2D = $Sprite2D
 
+@export var damage_particles_scene: PackedScene
+var jumped_distance := 0.0
+var is_jumping := false
+var jump_direction : Vector2
+
 
 func _ready():
 	hurtbox_component.damaged.connect(on_damaged)
 	hitbox_component.damage = 4.0
-	%ActionsAnimationPlayer.play('jump')
+	#%ActionsAnimationPlayer.play('jump')
 
 
 func _physics_process(delta):
@@ -38,6 +39,9 @@ func _physics_process(delta):
 
 
 func on_damaged(damage_amount: float):
+	var damage_particles = damage_particles_scene.instantiate() as Node2D
+	damage_particles.global_position = global_position
+	get_parent().add_child(damage_particles)
 	%VisualAnimationPlayer.play('hurt')
 
 

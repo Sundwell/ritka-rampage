@@ -6,3 +6,6 @@
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_hwgei")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

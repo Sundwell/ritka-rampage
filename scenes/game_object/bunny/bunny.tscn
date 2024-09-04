@@ -33,18 +33,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DamageParticle:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_bsfvl"]
 resource_name = "hurt"
@@ -61,18 +49,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 0.21, 0.21, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DamageParticle:emitting")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0001),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_auqdg"]
@@ -139,6 +115,7 @@ collision_layer = 4
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_6uvuu")
+damage_particles_scene = ExtResource("8_v0rnh")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_3otdp")]
 max_health = 4.0
@@ -160,6 +137,7 @@ shape = SubResource("CircleShape2D_tm7nw")
 [node name="HitboxComponent" parent="." instance=ExtResource("8_5shgc")]
 visible = false
 collision_layer = 16
+reload_time = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, -6)
@@ -193,6 +171,3 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_02i8m")
 }
-
-[node name="DamageParticle" parent="." instance=ExtResource("8_v0rnh")]
-position = Vector2(0, -6)
