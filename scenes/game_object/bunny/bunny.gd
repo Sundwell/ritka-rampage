@@ -17,7 +17,7 @@ var jump_direction : Vector2
 func _ready():
 	hurtbox_component.damaged.connect(on_damaged)
 	hitbox_component.damage = 4.0
-	#%ActionsAnimationPlayer.play('jump')
+	%ActionsAnimationPlayer.play('jump')
 
 
 func _physics_process(delta):
