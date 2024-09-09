@@ -2,7 +2,7 @@ class_name PistolBullet
 extends Node2D
 
 var speed = 250
-var max_distance = 100
+var max_distance = 130
 var travelled_distance := 0
 
 @export var hitbox_component: HitboxComponent

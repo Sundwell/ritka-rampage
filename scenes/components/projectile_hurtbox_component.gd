@@ -12,4 +12,3 @@ func on_area_entered(other_area: Area2D):
 		return
 	
 	health_component.damage(1)
-	

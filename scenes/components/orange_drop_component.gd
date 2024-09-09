@@ -4,6 +4,7 @@ extends Node
 @export var orange_scene: PackedScene
 @export var health_component: HealthComponent
 
+
 func _ready():
 	health_component.died.connect(on_died)
 	

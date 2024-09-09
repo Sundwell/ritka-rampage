@@ -12,9 +12,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_tjwd4"]
 radius = 32.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4sibk"]
-radius = 5.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_dtope"]
 atlas = ExtResource("1_aes1j")
 region = Rect2(0, 0, 16, 16)
@@ -89,6 +86,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4sibk"]
+radius = 5.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_aiujm"]
 radius = 3.0
 
@@ -101,22 +101,13 @@ script = ExtResource("1_snu1q")
 max_health = 100.0
 
 [node name="PlayerPickupbox" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -5)
 collision_layer = 128
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPickupbox"]
-position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_tjwd4")
-
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_477au")]
-collision_mask = 16
-health_component = NodePath("../HealthComponent")
-has_invinsibility_frames = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, 3)
-shape = SubResource("CircleShape2D_4sibk")
-debug_color = Color(0.7, 0.180469, 0, 0.42)
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.494118, 0.454902, 0.4, 0.607843)
@@ -132,7 +123,19 @@ animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.526355
 
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_477au")]
+position = Vector2(0, -5)
+collision_layer = 32
+collision_mask = 16
+health_component = NodePath("../HealthComponent")
+has_invinsibility_frames = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_4sibk")
+debug_color = Color(0.7, 0.180469, 0, 0.42)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_aiujm")
 

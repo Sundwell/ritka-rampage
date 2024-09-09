@@ -1,0 +1,211 @@
+[gd_scene load_steps=19 format=3 uid="uid://p4ofdanvpv5m"]
+
+[ext_resource type="Script" path="res://scenes/game_object/porcupine/porcupine.gd" id="1_mij8t"]
+[ext_resource type="Texture2D" uid="uid://dpch4pfkoleiw" path="res://scenes/game_object/porcupine/porcupine.png" id="1_nid44"]
+[ext_resource type="PackedScene" uid="uid://dg1tpx8up2b4u" path="res://scenes/game_object/porcupine_quill/porcupine_quill.tscn" id="2_p0xme"]
+[ext_resource type="Script" path="res://scenes/components/hurtbox_component.gd" id="3_w4tlv"]
+[ext_resource type="PackedScene" uid="uid://ck36lmmyvt0ec" path="res://scenes/damage_particle.tscn" id="3_wwvb5"]
+[ext_resource type="PackedScene" uid="uid://cdmwpfegixcco" path="res://scenes/components/orange_drop_component.tscn" id="4_u0n8m"]
+[ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="5_f4dlv"]
+[ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="5_nl1d7"]
+
+[sub_resource type="Animation" id="Animation_1gjl7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_75h4t"]
+resource_name = "attack"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3t270"]
+resource_name = "die"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_llqxr"]
+resource_name = "move"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lsdms"]
+_data = {
+"RESET": SubResource("Animation_1gjl7"),
+"attack": SubResource("Animation_75h4t"),
+"die": SubResource("Animation_3t270"),
+"move": SubResource("Animation_llqxr")
+}
+
+[sub_resource type="Animation" id="Animation_0ymwi"]
+resource_name = "hurt"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.21, 0.21, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t2t0p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_evvbx"]
+_data = {
+"RESET": SubResource("Animation_t2t0p"),
+"hurt": SubResource("Animation_0ymwi")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dnmxj"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_16khm"]
+radius = 5.0
+
+[node name="Porcupine" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_mij8t")
+quill_scene = ExtResource("2_p0xme")
+damage_particles_scene = ExtResource("3_wwvb5")
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="WanderDirectionTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="ActionsAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lsdms")
+}
+
+[node name="VisualAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_evvbx")
+}
+
+[node name="OrangeDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_u0n8m")]
+drop_chance = 1.0
+orange_scene = ExtResource("5_f4dlv")
+health_component = NodePath("../HealthComponent")
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_nl1d7")]
+max_health = 8.0
+
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+position = Vector2(-1, -6)
+collision_layer = 64
+collision_mask = 8
+script = ExtResource("3_w4tlv")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_dnmxj")
+debug_color = Color(0.7, 0, 0, 0.42)
+
+[node name="RunParticles" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -3)
+emitting = false
+amount = 24
+lifetime = 0.5
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 12.0
+scale_amount_min = 0.5
+scale_amount_max = 3.0
+color = Color(1, 1, 1, 0.682353)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nid44")
+offset = Vector2(-8, -16)
+hframes = 4
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_16khm")

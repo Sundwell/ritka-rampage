@@ -10,15 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="8_5shgc"]
 [ext_resource type="PackedScene" uid="uid://ck36lmmyvt0ec" path="res://scenes/damage_particle.tscn" id="8_v0rnh"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tm7nw"]
-radius = 9.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dktj0"]
-radius = 6.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_f6kmy"]
-radius = 4.39996
-
 [sub_resource type="Animation" id="Animation_nyvf5"]
 length = 0.001
 tracks/0/type = "value"
@@ -109,8 +100,16 @@ _data = {
 "jump": SubResource("Animation_xkfx1")
 }
 
-[node name="Bunny" type="CharacterBody2D" groups=["Enemy"]]
-y_sort_enabled = true
+[sub_resource type="CircleShape2D" id="CircleShape2D_tm7nw"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dktj0"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6kmy"]
+radius = 4.39996
+
+[node name="Bunny" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 5
 motion_mode = 1
@@ -123,6 +122,18 @@ max_health = 4.0
 [node name="OrangeDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_u7d0e")]
 orange_scene = ExtResource("4_jij05")
 health_component = NodePath("../HealthComponent")
+
+[node name="VisualAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_auqdg")
+}
+
+[node name="ActionsAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_02i8m")
+}
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_q6qwx")]
 visible = false
@@ -144,30 +155,17 @@ position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_dktj0")
 debug_color = Color(0.7, 0, 0, 0.42)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_5rorc")
-offset = Vector2(0, -8)
-hframes = 5
-
 [node name="GroundShadow" type="Sprite2D" parent="."]
 modulate = Color(0.494118, 0.454902, 0.4, 0.607843)
 position = Vector2(0, -3)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("1_isboy")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5rorc")
+offset = Vector2(0, -8)
+hframes = 5
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_f6kmy")
-
-[node name="VisualAnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_auqdg")
-}
-
-[node name="ActionsAnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_02i8m")
-}

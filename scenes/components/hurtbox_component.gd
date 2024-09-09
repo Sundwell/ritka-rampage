@@ -1,8 +1,6 @@
 class_name HurtboxComponent
 extends Area2D
 
-signal damaged(amount: float)
-
 @export var health_component: HealthComponent
 @export var has_invinsibility_frames: bool = false
 var surrounding_hitboxes: Array[HitboxComponent]
@@ -26,7 +24,6 @@ func process_hitboxes():
 func apply_damage(hitbox_component: HitboxComponent):
 	if hitbox_component.is_reloaded():
 		health_component.damage(hitbox_component.damage)
-		damaged.emit(hitbox_component.damage)
 		hitbox_component.start_reloading()
 
 	
