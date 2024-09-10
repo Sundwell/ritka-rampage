@@ -11,7 +11,7 @@ func _ready():
 	area_exited.connect(on_area_exited)
 	
 	
-func _process(delta):
+func _physics_process(delta):
 	if has_invinsibility_frames:
 		process_hitboxes()
 

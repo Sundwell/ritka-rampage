@@ -70,17 +70,9 @@ func shoot():
 	for index in quill_count:
 		var quill = quill_scene.instantiate() as Node2D
 		
-		#var cone_from: Vector2 = direction_to_player.rotated(deg_to_rad(30))
-		#var cone_to: Vector2 = direction_to_player.rotated(deg_to_rad(-30))
-		#var cone_random_point = Vector2(
-			#randf_range(cone_from.x, cone_to.x),
-			#randf_range(cone_from.y, cone_to.y),
-		#)
-		
 		var random_angle = deg_to_rad(randf_range(30, -30))
 		var random_direction = direction_to_player.rotated(random_angle)
 		
-		#quill.rotation = cone_random_point.angle()
 		quill.rotation = random_direction.angle()
 		quill.global_position = global_position
 		get_parent().add_child(quill)

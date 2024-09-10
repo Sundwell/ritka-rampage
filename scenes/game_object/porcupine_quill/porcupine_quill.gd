@@ -1,6 +1,6 @@
 extends Node2D
 
-const DAMAGE: float = 0.0
+const DAMAGE: float = 8.0
 
 var quill_speed: float = 120.0
 var max_distance: float = 140.0
