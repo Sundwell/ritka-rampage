@@ -1,0 +1,152 @@
+[gd_scene load_steps=19 format=3 uid="uid://dwmlg050i08ac"]
+
+[ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="1_u3ehd"]
+[ext_resource type="Script" path="res://scenes/game_object/stubborn_cow/stubborn_cow.gd" id="1_xloy4"]
+[ext_resource type="PackedScene" uid="uid://cdmwpfegixcco" path="res://scenes/components/orange_drop_component.tscn" id="2_cgo28"]
+[ext_resource type="PackedScene" uid="uid://ck36lmmyvt0ec" path="res://scenes/damage_particle.tscn" id="2_pptxj"]
+[ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="3_273m8"]
+[ext_resource type="PackedScene" uid="uid://cwatwkjukjlvd" path="res://scenes/components/hurtbox_component.tscn" id="4_m6qay"]
+[ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="5_imket"]
+[ext_resource type="Texture2D" uid="uid://khxjwnab2jdn" path="res://scenes/game_object/stubborn_cow/stubborn_cow.png" id="6_302fy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n1ol4"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ll1rj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c3wof"]
+
+[sub_resource type="Animation" id="Animation_oejwb"]
+resource_name = "move"
+length = 0.5
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_y3f4j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_4hros"]
+resource_name = "prepare_attack"
+step = 0.125
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nqhs1"]
+_data = {
+"RESET": SubResource("Animation_y3f4j"),
+"move": SubResource("Animation_oejwb"),
+"prepare_attack": SubResource("Animation_4hros")
+}
+
+[sub_resource type="Animation" id="Animation_xu5ya"]
+resource_name = "hurt"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.2, 0.2, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_va3ne"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dflhy"]
+_data = {
+"RESET": SubResource("Animation_va3ne"),
+"hurt": SubResource("Animation_xu5ya")
+}
+
+[node name="StubbornCow" type="CharacterBody2D"]
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("1_xloy4")
+damage_particles_scene = ExtResource("2_pptxj")
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_u3ehd")]
+max_health = 20.0
+
+[node name="OrangeDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_cgo28")]
+drop_chance = 1.0
+orange_scene = ExtResource("3_273m8")
+health_component = NodePath("../HealthComponent")
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_m6qay")]
+visible = false
+collision_layer = 64
+collision_mask = 8
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_n1ol4")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("5_imket")]
+visible = false
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_ll1rj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_c3wof")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("6_302fy")
+offset = Vector2(0, -16)
+hframes = 4
+vframes = 5
+frame = 1
+
+[node name="ActionsAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nqhs1")
+}
+
+[node name="VisualAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dflhy")
+}

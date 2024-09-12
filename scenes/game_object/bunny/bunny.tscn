@@ -148,7 +148,6 @@ shape = SubResource("CircleShape2D_tm7nw")
 [node name="HitboxComponent" parent="." instance=ExtResource("8_5shgc")]
 visible = false
 collision_layer = 16
-reload_time = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, -6)

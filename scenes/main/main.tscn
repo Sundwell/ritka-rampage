@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/game_object/bunny/bunny.tscn" id="8_0au5e"]
 [ext_resource type="PackedScene" uid="uid://bmkeplc4w76hm" path="res://scenes/manager/upgrade_manager.tscn" id="9_0v1sx"]
 [ext_resource type="PackedScene" uid="uid://b4tmea22onhpt" path="res://scenes/ui/upgrade_screen.tscn" id="10_o8f1v"]
-[ext_resource type="PackedScene" uid="uid://p4ofdanvpv5m" path="res://scenes/game_object/porcupine/porcupine.tscn" id="15_juo5r"]
+[ext_resource type="PackedScene" uid="uid://dwmlg050i08ac" path="res://scenes/game_object/stubborn_cow/stubborn_cow.tscn" id="14_m6wd0"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_fqumt")
@@ -66,6 +66,9 @@ tile_set = ExtResource("6_a6vb0")
 unique_name_in_owner = true
 position = Vector2(-51, 1)
 
+[node name="StubbornCow" parent="Entities" instance=ExtResource("14_m6wd0")]
+position = Vector2(59, -121)
+
 [node name="Bushes" type="Node2D" parent="Entities"]
 y_sort_enabled = true
 
@@ -74,15 +77,6 @@ position = Vector2(67, -38)
 
 [node name="Bush2" parent="Entities/Bushes" instance=ExtResource("2_vx0vm")]
 position = Vector2(-142, 92)
-
-[node name="Porcupine" parent="Entities" instance=ExtResource("15_juo5r")]
-position = Vector2(-122, -40)
-
-[node name="Porcupine2" parent="Entities" instance=ExtResource("15_juo5r")]
-position = Vector2(18, -137)
-
-[node name="Porcupine3" parent="Entities" instance=ExtResource("15_juo5r")]
-position = Vector2(165, -62)
 
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]
 

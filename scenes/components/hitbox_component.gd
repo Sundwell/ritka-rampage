@@ -1,7 +1,7 @@
 class_name HitboxComponent
 extends Area2D
 
-@export var reload_time: float = 0.0
+@export var reload_time: float = 0.5
 var damage := 0.0
 
 @onready var timer: Timer = $Timer

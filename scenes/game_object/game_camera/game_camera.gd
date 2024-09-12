@@ -6,7 +6,7 @@ func _ready():
 	make_current()
 	
 	
-func _process(delta):
+func _physics_process(delta):
 	acquire_target()
 	global_position = global_position.lerp(target_position, 1.0 - exp(-delta * 15))
 	
