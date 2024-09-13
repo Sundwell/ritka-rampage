@@ -6,11 +6,12 @@ enum State {
 	DIE
 }
 
-const ATTACK_RANGE: float = 120.0
-const WANDER_DISTANCE: float = 100.0
-const RUN_FROM_PLAYER_DISTANCE: float = 50.0
-const MOVE_SPEED: float = 60.0
-const RUN_SPEED: float = 90.0
+const ATTACK_RANGE := 120.0
+const ATTACK_CONE_DEGREES := 30
+const WANDER_DISTANCE := 100.0
+const RUN_FROM_PLAYER_DISTANCE := 50.0
+const MOVE_SPEED := 60.0
+const RUN_SPEED := 90.0
 
 @export var quill_scene: PackedScene
 @export var damage_particles_scene: PackedScene
@@ -70,7 +71,7 @@ func shoot():
 	for index in quill_count:
 		var quill = quill_scene.instantiate() as Node2D
 		
-		var random_angle = deg_to_rad(randf_range(30, -30))
+		var random_angle = deg_to_rad(randf_range(ATTACK_CONE_DEGREES, -ATTACK_CONE_DEGREES))
 		var random_direction = direction_to_player.rotated(random_angle)
 		
 		quill.rotation = random_direction.angle()
