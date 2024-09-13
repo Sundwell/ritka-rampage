@@ -55,7 +55,7 @@ func _physics_process(delta):
 func move():
 	var player = get_tree().get_first_node_in_group('player') as Node2D
 	
-	if not player:
+	if player == null:
 		return
 		
 	if is_bull_rush_ready and can_start_bull_rush():
@@ -101,7 +101,7 @@ func start_bull_rush():
 	
 	var player = get_tree().get_first_node_in_group('player') as Node2D
 	
-	if not player:
+	if player == null:
 		return
 		
 	actions_animation_player.play('bull_rush')
@@ -128,7 +128,7 @@ func can_start_bull_rush():
 func get_distance_to_player():
 	var player = get_tree().get_first_node_in_group('player') as Node2D
 		
-	if not player:
+	if player == null:
 		return
 		
 	var distance = global_position.distance_to(player.global_position)

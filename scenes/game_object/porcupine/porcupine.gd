@@ -85,7 +85,7 @@ func shoot():
 func update_player_proximity():
 	var player = get_tree().get_first_node_in_group('player') as Node2D
 	
-	if not player:
+	if player == null:
 		return
 
 	var distance_to_player: float = global_position.distance_squared_to(player.global_position)
@@ -98,7 +98,7 @@ func update_player_proximity():
 func move():
 	var player = get_tree().get_first_node_in_group('player') as Node2D
 	
-	if not player:
+	if player == null:
 		return
 		
 	actions_animation_player.play('move')

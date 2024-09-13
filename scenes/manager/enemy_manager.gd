@@ -1,8 +1,8 @@
 extends Node
 
+@export var enemy_scene: PackedScene
 var SPAWN_RADIUS = int(ProjectSettings.get_setting('display/window/size/viewport_width') / 1.8)
 
-@export var enemy_scene: PackedScene
 
 func _ready():
 	$Timer.timeout.connect(_on_timer_timeout)
