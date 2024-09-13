@@ -67,7 +67,7 @@ unique_name_in_owner = true
 position = Vector2(-51, 1)
 
 [node name="StubbornCow" parent="Entities" instance=ExtResource("14_m6wd0")]
-position = Vector2(59, -121)
+position = Vector2(-81, 10)
 
 [node name="Bushes" type="Node2D" parent="Entities"]
 y_sort_enabled = true

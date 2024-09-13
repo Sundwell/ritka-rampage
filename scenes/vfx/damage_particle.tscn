@@ -1,12 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://ck36lmmyvt0ec"]
 
-[ext_resource type="Script" path="res://scenes/damage_particle.gd" id="1_8iana"]
+[ext_resource type="Script" path="res://scenes/vfx/damage_particle.gd" id="1_8iana"]
 
 [sub_resource type="Curve" id="Curve_1bama"]
 _data = [Vector2(0, 0.995215), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="DamageParticle" type="CPUParticles2D"]
+top_level = true
 emitting = false
 amount = 50
 lifetime = 0.3

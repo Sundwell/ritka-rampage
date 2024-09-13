@@ -137,7 +137,7 @@ func on_wander_direction_timer_timeout():
 	can_change_direction = true
 	
 	
-func on_damaged():
+func on_damaged(damage_amount: float):
 	var damage_particles = damage_particles_scene.instantiate() as Node2D
 	damage_particles.global_position = global_position
 	get_parent().add_child(damage_particles)

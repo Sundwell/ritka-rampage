@@ -8,5 +8,5 @@ func _ready():
 	value = health_component.get_health_percent()
 	
 	
-func on_damaged():
+func on_damaged(damage_amount: float):
 	value = health_component.get_health_percent()
