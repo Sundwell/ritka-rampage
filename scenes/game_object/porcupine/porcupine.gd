@@ -43,19 +43,13 @@ func _physics_process(delta: float):
 			update_player_proximity()
 			
 			if is_near_player and can_attack:
-				current_state = State.ATTACK
+				change_state(State.ATTACK)
 			else:
 				move()
 		State.ATTACK:
 			velocity = Vector2.ZERO
 			actions_animation_player.play('attack')
-			
-	if should_run_from_player:
-		run_particles.emitting = true
-	else:
-		run_particles.emitting = false
 		
-	flip()
 	move_and_slide()
 
 
@@ -79,8 +73,11 @@ func shoot():
 		get_parent().add_child(quill)
 	
 	can_attack = false
-	current_state = State.MOVE
 	reload_timer.start()
+	
+	
+func change_state(new_state: State):
+	current_state = new_state
 	
 	
 func update_player_proximity():
@@ -119,15 +116,40 @@ func move():
 
 		can_change_direction = false
 		wander_direction_timer.start()
+		
+	flip_sprite_based_on_velocity()
+	
+	if should_run_from_player:
+		run_particles.emitting = true
+	else:
+		run_particles.emitting = false
 	
 	
-func flip():
-	if velocity.x > 0:
-		sprite.flip_h = false
+func flip(new_flip_h: bool):
+	sprite.flip_h = new_flip_h
+	
+	if not new_flip_h:
 		sprite.offset.x = sprite.offset.x if sprite.offset.x < 0 else -sprite.offset.x
-	elif velocity.x < 0:
-		sprite.flip_h = true
+	else:
 		sprite.offset.x = abs(sprite.offset.x)
+		
+		
+func flip_back_to_player():
+	var player = get_tree().get_first_node_in_group('player') as Node2D
+	
+	if player == null:
+		return
+		
+	var direction: Vector2 = global_position.direction_to(player.global_position)
+	
+	flip(direction.x > 0)
+		
+		
+func flip_sprite_based_on_velocity():
+	if velocity.x > 0:
+		flip(false)
+	elif velocity.x < 0:
+		flip(true)
 	
 	
 func on_realod_timer_timeout():
