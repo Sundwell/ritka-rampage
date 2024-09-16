@@ -56,5 +56,6 @@ func _on_timer_timeout():
 	
 
 func on_difficulty_level_update(new_difficulty: int):
-	var new_spawn_time: float = max(MAX_SPAWN_RATE, base_spawn_time - (new_difficulty / 3.0))
+	var time_off: float = (0.2 / 12) * new_difficulty
+	var new_spawn_time: float = max(MAX_SPAWN_RATE, base_spawn_time - time_off)
 	timer.wait_time = new_spawn_time

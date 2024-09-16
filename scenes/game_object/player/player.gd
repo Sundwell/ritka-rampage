@@ -11,6 +11,11 @@ const ACCELERATION_SMOOTHING := 15
 var is_shooting := false
 var damage_rate := 10.0
 var health := 100.0
+var mutations: Dictionary = {}
+
+
+func _ready():
+	GameEvents.mutation_upgrade_selected.connect(on_mutation_upgrade_selected)
 
 
 func _physics_process(delta):
@@ -22,7 +27,12 @@ func _physics_process(delta):
 	
 	var direction = Input.get_vector('move_left', 'move_right', 'move_top', 'move_down')
 	
-	var target_velocity = direction.normalized() * (MOVE_SPEED if is_shooting else RUN_SPEED)
+	var speed = MOVE_SPEED if is_shooting else RUN_SPEED
+	
+	if mutations.has("run_while_shooting"):
+		speed = RUN_SPEED
+	
+	var target_velocity = direction.normalized() * speed
 	velocity = velocity.lerp(target_velocity, 1.0 - exp(-delta * ACCELERATION_SMOOTHING))
 	
 	move_and_slide()
@@ -30,12 +40,16 @@ func _physics_process(delta):
 	flip()
 		
 	if direction.length() > 0:
-		if is_shooting:
+		if mutations.has("run_while_shooting"):
 			weapon.visible = true
-			sprite.play('walk')
-		else:
-			weapon.visible = false
 			sprite.play("run")
+		else:
+			if is_shooting:
+				weapon.visible = true
+				sprite.play("walk")
+			else:
+				weapon.visible = false
+				sprite.play("run")
 		
 	else:
 		weapon.visible = true
@@ -47,3 +61,8 @@ func flip():
 		sprite.flip_h = true
 	elif velocity.x > 0:
 		sprite.flip_h = false
+		
+		
+func on_mutation_upgrade_selected(upgrade: MutationUpgrade, current_upgrades: Dictionary):
+	if upgrade.id == "run_while_shooting":
+		mutations["run_while_shooting"] = true

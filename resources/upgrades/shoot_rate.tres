@@ -6,4 +6,5 @@
 script = ExtResource("1_5rlw1")
 id = "shoot_rate"
 title = "Shoot Rate"
-description = "Increses shoot rate by 10%"
+max_quantity = 0
+description = "Increases shoot rate by 10%"

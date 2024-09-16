@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=20 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
@@ -15,6 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://dn4ekvcuqpp12" path="res://scenes/manager/difficulty_manager.tscn" id="8_fj7m4"]
 [ext_resource type="PackedScene" uid="uid://bmkeplc4w76hm" path="res://scenes/manager/upgrade_manager.tscn" id="9_0v1sx"]
 [ext_resource type="PackedScene" uid="uid://b4tmea22onhpt" path="res://scenes/ui/upgrade_screen.tscn" id="10_o8f1v"]
+[ext_resource type="Script" path="res://resources/upgrades/mutation_upgrade.gd" id="11_21hr5"]
+[ext_resource type="Resource" uid="uid://deyl22do2he2d" path="res://resources/upgrades/shoot_rate.tres" id="12_ubkgj"]
+[ext_resource type="Resource" uid="uid://be7i0juvpifvk" path="res://resources/upgrades/run_while_shooting.tres" id="13_xw6b4"]
+[ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="18_11p63"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_fqumt")
@@ -38,6 +42,7 @@ enemy_scene = ExtResource("8_0au5e")
 [node name="ExperienceManager" parent="." instance=ExtResource("6_8mjvm")]
 
 [node name="UpgradeManager" parent="." node_paths=PackedStringArray("experience_manager") instance=ExtResource("9_0v1sx")]
+upgrade_pool = Array[ExtResource("11_21hr5")]([ExtResource("12_ubkgj"), ExtResource("13_xw6b4")])
 experience_manager = NodePath("../ExperienceManager")
 upgrade_screen_scene = ExtResource("10_o8f1v")
 
@@ -67,6 +72,15 @@ tile_set = ExtResource("6_a6vb0")
 [node name="Player" parent="Entities" instance=ExtResource("7_nxmj7")]
 unique_name_in_owner = true
 position = Vector2(-51, 1)
+
+[node name="OrangeEnergy" parent="Entities" instance=ExtResource("18_11p63")]
+position = Vector2(21, 14)
+
+[node name="OrangeEnergy2" parent="Entities" instance=ExtResource("18_11p63")]
+position = Vector2(9, 89)
+
+[node name="OrangeEnergy3" parent="Entities" instance=ExtResource("18_11p63")]
+position = Vector2(-7, 102)
 
 [node name="Bushes" type="Node2D" parent="Entities"]
 y_sort_enabled = true
