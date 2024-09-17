@@ -26,7 +26,7 @@ var can_change_direction := true
 @onready var visual_animation_player = $VisualAnimationPlayer
 @onready var reload_timer = $ReloadTimer
 @onready var wander_direction_timer = $WanderDirectionTimer
-@onready var sprite = $Sprite2D
+@onready var visuals = $Visuals
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var run_particles: CPUParticles2D = %RunParticles
 
@@ -125,13 +125,8 @@ func move():
 		run_particles.emitting = false
 	
 	
-func flip(new_flip_h: bool):
-	sprite.flip_h = new_flip_h
-	
-	if not new_flip_h:
-		sprite.offset.x = sprite.offset.x if sprite.offset.x < 0 else -sprite.offset.x
-	else:
-		sprite.offset.x = abs(sprite.offset.x)
+func flip(is_facing_left: bool):
+	visuals.scale.x = -1 if is_facing_left else 1
 		
 		
 func flip_back_to_player():
