@@ -21,6 +21,7 @@ var is_player_in_attack_range := false
 var is_near_player := false
 var should_run_from_player := false
 var can_change_direction := true
+var state_machine := CallableStateMachine.new()
 
 @onready var actions_animation_player = $ActionsAnimationPlayer
 @onready var visual_animation_player = $VisualAnimationPlayer
@@ -35,22 +36,38 @@ func _ready():
 	reload_timer.timeout.connect(on_realod_timer_timeout)
 	wander_direction_timer.timeout.connect(on_wander_direction_timer_timeout)
 	health_component.damaged.connect(on_damaged)
+	
+	state_machine.add_states(state_move)
+	state_machine.add_states(state_attack, enter_state_attack)
+	state_machine.set_initial_state(state_move)
 
 
 func _physics_process(delta: float):
-	match current_state:
-		State.MOVE:
-			update_player_proximity()
-			
-			if is_near_player and can_attack:
-				change_state(State.ATTACK)
-			else:
-				move()
-		State.ATTACK:
-			velocity = Vector2.ZERO
-			actions_animation_player.play('attack')
+	state_machine.update(delta)
 		
 	move_and_slide()
+
+
+func start_moving():
+	state_machine.change_state(state_move)
+	
+	
+func state_move(delta: float):
+	update_player_proximity()
+	
+	if is_near_player and can_attack:
+		state_machine.change_state(state_attack)
+	else:
+		move()
+
+
+func enter_state_attack():
+	velocity = Vector2.ZERO
+	actions_animation_player.play('attack')
+
+
+func state_attack(delta: float):
+	pass
 
 
 func shoot():
@@ -74,10 +91,6 @@ func shoot():
 	
 	can_attack = false
 	reload_timer.start()
-	
-	
-func change_state(new_state: State):
-	current_state = new_state
 	
 	
 func update_player_proximity():

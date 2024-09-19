@@ -21,10 +21,11 @@ var current_state: State = State.MOVE
 var is_bull_rush_ready := false
 var bull_rush_direction: Vector2
 var bull_rush_travelled_distance := 0.0
+var state_machine := CallableStateMachine.new()
 
 @onready var actions_animation_player := $ActionsAnimationPlayer
 @onready var visual_animation_player := $VisualAnimationPlayer
-@onready var sprite := $Sprite2D
+@onready var visuals := $Visuals
 @onready var ground_shadow := %GroundShadow
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
@@ -36,20 +37,38 @@ func _ready():
 	hitbox_component.damage = CONTACT_DAMAGE
 	bull_rush_cooldown_timer.timeout.connect(on_bull_rush_colldown_timer_timeout)
 	bull_rush_cooldown_timer.start()
+	
+	state_machine.add_states(state_move, enter_state_move)
+	state_machine.add_states(state_prepare_attack, enter_state_prepare_attack)
+	state_machine.add_states(state_bull_rush)
+	state_machine.set_initial_state(state_move)
 
 
-func _physics_process(delta):
-	match current_state:
-		State.MOVE:
-			move()
-			flip()
-		State.PREPARE_ATTACK:
-			pass
-		State.BULL_RUSH_ATTACK:
-			bull_rush(delta)
-			flip()
-			
+func _physics_process(delta: float):
+	state_machine.update(delta)
 	move_and_slide()
+
+
+func enter_state_move():
+	hitbox_component.damage = CONTACT_DAMAGE
+
+
+func state_move(delta: float):
+	move()
+	flip()
+	
+	
+func enter_state_prepare_attack():
+	prepare_bull_rush()
+	
+	
+func state_prepare_attack(delta: float):
+	pass
+	
+	
+func state_bull_rush(delta: float):
+	bull_rush(delta)
+	flip()
 
 
 func move():
@@ -59,7 +78,7 @@ func move():
 		return
 		
 	if is_bull_rush_ready and can_start_bull_rush():
-		prepare_bull_rush()
+		state_machine.change_state(state_prepare_attack)
 		return
 		
 	actions_animation_player.play('move')
@@ -74,17 +93,15 @@ func move():
 
 func flip():
 	if velocity.x > 0:
-		sprite.flip_h = false
-		ground_shadow.position.x = -2
+		visuals.scale.x = 1
 	elif velocity.x < 0:
-		sprite.flip_h = true
-		ground_shadow.position.x = 2
+		visuals.scale.x = -1
 
 
 func create_prepare_attack_particles():
 	var particles = prepare_attack_particles.instantiate() as CPUParticles2D
 	particles.global_position = global_position
-	particles.direction.x = 1 if sprite.flip_h else -1
+	particles.direction.x = -visuals.scale.x
 	get_parent().add_child(particles)
 
 
@@ -92,7 +109,6 @@ func prepare_bull_rush():
 	velocity = Vector2.ZERO
 	bull_rush_travelled_distance = 0.0
 	actions_animation_player.play('prepare_attack')
-	current_state = State.PREPARE_ATTACK
 	
 	
 func start_bull_rush():
@@ -102,12 +118,13 @@ func start_bull_rush():
 	var player = get_tree().get_first_node_in_group('player') as Node2D
 	
 	if player == null:
+		state_machine.change_state(state_move)
 		return
 		
 	actions_animation_player.play('bull_rush')
-	current_state = State.BULL_RUSH_ATTACK
 	hitbox_component.damage = BULL_RUSH_DAMAGE
 	bull_rush_direction = global_position.direction_to(player.global_position)
+	state_machine.change_state(state_bull_rush)
 	
 
 func bull_rush(delta: float):
@@ -115,8 +132,7 @@ func bull_rush(delta: float):
 	bull_rush_travelled_distance += delta * BULL_RUSH_SPEED
 	
 	if bull_rush_travelled_distance >= BULL_RUSH_MAX_DISTANCE:
-		current_state = State.MOVE
-		hitbox_component.damage = CONTACT_DAMAGE
+		state_machine.change_state(state_move)
 	
 	
 func can_start_bull_rush():
@@ -134,6 +150,7 @@ func get_distance_to_player():
 	var distance = global_position.distance_to(player.global_position)
 	
 	return distance
+
 
 func on_damaged(damage_amount: float):
 	var damage_particles = damage_particles_scene.instantiate() as Node2D
