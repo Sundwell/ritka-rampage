@@ -11,6 +11,7 @@ var travelled_distance: float = 0.0
 
 func _ready():
 	hitbox_component.damage = DAMAGE
+	$HealthComponent.died.connect(on_died)
 
 
 func _physics_process(delta):
@@ -24,3 +25,7 @@ func _physics_process(delta):
 	
 	if travelled_distance >= max_distance:
 		queue_free()
+		
+		
+func on_died():
+	queue_free()

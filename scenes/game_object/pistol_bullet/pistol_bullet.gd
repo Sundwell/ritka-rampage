@@ -8,6 +8,10 @@ var travelled_distance := 0
 @export var hitbox_component: HitboxComponent
 
 
+func _ready():
+	$HealthComponent.died.connect(on_died)
+
+
 func _physics_process(delta):
 	var direction = Vector2.RIGHT.rotated(rotation)
 	
@@ -17,3 +21,7 @@ func _physics_process(delta):
 	
 	if travelled_distance >= max_distance:
 		queue_free()
+		
+		
+func on_died():
+	queue_free()

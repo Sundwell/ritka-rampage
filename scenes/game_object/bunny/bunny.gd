@@ -11,7 +11,7 @@ var state_machine := CallableStateMachine.new()
 
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var visuals: Node2D = $Visuals
 @onready var actions_animation_player = $ActionsAnimationPlayer
 
 
@@ -20,7 +20,10 @@ func _ready():
 	
 	state_machine.add_states(state_jumping)
 	state_machine.add_states(state_jump_preparation, enter_state_jump_preparation)
+	state_machine.add_states(state_die, enter_state_die)
 	state_machine.set_initial_state(state_jump_preparation)
+	
+	$HealthComponent.died.connect(on_died)
 
 
 func _physics_process(delta: float):
@@ -48,9 +51,20 @@ func state_jumping(delta: float):
 		state_machine.change_state(state_jump_preparation)
 		
 	if velocity.x < 0:
-		sprite.flip_h = true
+		visuals.scale.x = -1
 	elif velocity.x > 0:
-		sprite.flip_h = false
+		visuals.scale.x = 1
+
+
+func enter_state_die():
+	velocity = Vector2.ZERO
+	$HurtboxComponent.queue_free()
+	$HitboxComponent.queue_free()
+	actions_animation_player.play('die')
+
+
+func state_die(delta: float):
+	pass
 
 
 func jump():
@@ -62,3 +76,7 @@ func jump():
 		jump_direction = (player.global_position - global_position).normalized()
 		
 	state_machine.change_state(state_jumping)
+	
+	
+func on_died():
+	state_machine.change_state(state_die)

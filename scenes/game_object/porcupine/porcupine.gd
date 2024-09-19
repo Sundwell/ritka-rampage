@@ -1,11 +1,5 @@
 extends CharacterBody2D
 
-enum State {
-	MOVE,
-	ATTACK,
-	DIE
-}
-
 const ATTACK_RANGE := 120.0
 const ATTACK_CONE_DEGREES := 30
 const WANDER_DISTANCE := 100.0
@@ -15,7 +9,6 @@ const RUN_SPEED := 90.0
 
 @export var quill_scene: PackedScene
 @export var damage_particles_scene: PackedScene
-var current_state: State = State.MOVE
 var can_attack := true
 var is_player_in_attack_range := false
 var is_near_player := false
@@ -37,7 +30,10 @@ func _ready():
 	
 	state_machine.add_states(state_move)
 	state_machine.add_states(state_attack, enter_state_attack)
+	state_machine.add_states(state_die, enter_state_die)
 	state_machine.set_initial_state(state_move)
+	
+	$HealthComponent.died.connect(on_died)
 
 
 func _physics_process(delta: float):
@@ -65,6 +61,16 @@ func enter_state_attack():
 
 
 func state_attack(delta: float):
+	pass
+
+
+func enter_state_die():
+	velocity = Vector2.ZERO
+	$HurtboxComponent.queue_free()
+	actions_animation_player.play('die')
+
+
+func state_die(delta: float):
 	pass
 
 
@@ -164,3 +170,7 @@ func on_realod_timer_timeout():
 	
 func on_wander_direction_timer_timeout():
 	can_change_direction = true
+	
+
+func on_died():
+	state_machine.change_state(state_die)

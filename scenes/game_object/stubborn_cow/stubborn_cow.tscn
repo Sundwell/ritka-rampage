@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwmlg050i08ac"]
+[gd_scene load_steps=24 format=3 uid="uid://dwmlg050i08ac"]
 
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="1_u3ehd"]
 [ext_resource type="Script" path="res://scenes/game_object/stubborn_cow/stubborn_cow.gd" id="1_xloy4"]
@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="5_imket"]
 [ext_resource type="Texture2D" uid="uid://khxjwnab2jdn" path="res://scenes/game_object/stubborn_cow/stubborn_cow.png" id="6_302fy"]
 [ext_resource type="PackedScene" uid="uid://cqlm0b75mtg4k" path="res://scenes/components/damage_component.tscn" id="7_1ikcy"]
+[ext_resource type="PackedScene" uid="uid://ckcj3wwxivfbr" path="res://scenes/components/death_component.tscn" id="8_oiokk"]
 [ext_resource type="PackedScene" uid="uid://c2cwmxwp6x7h6" path="res://scenes/vfx/run_particles.tscn" id="9_2gnq5"]
+[ext_resource type="Texture2D" uid="uid://s5cncdmo5abd" path="res://scenes/game_object/stubborn_cow/soul.png" id="9_5p631"]
 [ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/common/ground_shadow.tscn" id="11_5tcpg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n1ol4"]
@@ -34,6 +36,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_7qg7j"]
 resource_name = "bull_rush"
@@ -51,6 +65,47 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [15, 16, 17, 18]
+}
+
+[sub_resource type="Animation" id="Animation_sugfy"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_oejwb"]
@@ -112,6 +167,7 @@ tracks/1/keys = {
 _data = {
 "RESET": SubResource("Animation_y3f4j"),
 "bull_rush": SubResource("Animation_7qg7j"),
+"die": SubResource("Animation_sugfy"),
 "move": SubResource("Animation_oejwb"),
 "prepare_attack": SubResource("Animation_4hros")
 }
@@ -135,6 +191,10 @@ health_component = NodePath("../HealthComponent")
 position = Vector2(0, -10)
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
+
+[node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("8_oiokk")]
+soul_texture = ExtResource("9_5p631")
+health_component = NodePath("../HealthComponent")
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_m6qay")]
 visible = false

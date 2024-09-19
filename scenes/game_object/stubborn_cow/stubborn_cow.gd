@@ -1,12 +1,5 @@
 extends CharacterBody2D
 
-enum State {
-	MOVE,
-	PREPARE_ATTACK,
-	BULL_RUSH_ATTACK,
-	DIE
-}
-
 const WALK_SPEED = 50.0
 const BULL_RUSH_SPEED = 180.0
 const BULL_RUSH_DAMAGE = 16.0
@@ -17,7 +10,6 @@ const KEEP_DIRECTION_DISTANCE = 10.0
 
 @export var damage_particles_scene: PackedScene
 @export var prepare_attack_particles: PackedScene
-var current_state: State = State.MOVE
 var is_bull_rush_ready := false
 var bull_rush_direction: Vector2
 var bull_rush_travelled_distance := 0.0
@@ -26,7 +18,6 @@ var state_machine := CallableStateMachine.new()
 @onready var actions_animation_player := $ActionsAnimationPlayer
 @onready var visuals := $Visuals
 @onready var ground_shadow := %GroundShadow
-@onready var health_component: HealthComponent = $HealthComponent
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var bull_rush_cooldown_timer := $BullRushCooldownTimer
 
@@ -39,7 +30,10 @@ func _ready():
 	state_machine.add_states(state_move, enter_state_move)
 	state_machine.add_states(state_prepare_attack, enter_state_prepare_attack)
 	state_machine.add_states(state_bull_rush)
+	state_machine.add_states(state_die, enter_state_die)
 	state_machine.set_initial_state(state_move)
+	
+	$HealthComponent.died.connect(on_died)
 
 
 func _physics_process(delta: float):
@@ -67,6 +61,17 @@ func state_prepare_attack(delta: float):
 func state_bull_rush(delta: float):
 	bull_rush(delta)
 	flip()
+	
+	
+func enter_state_die():
+	velocity = Vector2.ZERO
+	$HurtboxComponent.queue_free()
+	$HitboxComponent.queue_free()
+	actions_animation_player.play('die')
+
+
+func state_die(delta: float):
+	pass
 
 
 func move():
@@ -152,3 +157,7 @@ func get_distance_to_player():
 	
 func on_bull_rush_colldown_timer_timeout():
 	is_bull_rush_ready = true
+	
+	
+func on_died():
+	state_machine.change_state(state_die)

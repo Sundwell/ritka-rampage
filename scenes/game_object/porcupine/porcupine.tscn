@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://p4ofdanvpv5m"]
+[gd_scene load_steps=21 format=3 uid="uid://p4ofdanvpv5m"]
 
 [ext_resource type="Script" path="res://scenes/game_object/porcupine/porcupine.gd" id="1_mij8t"]
 [ext_resource type="Texture2D" uid="uid://dpch4pfkoleiw" path="res://scenes/game_object/porcupine/porcupine.png" id="1_nid44"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="5_nl1d7"]
 [ext_resource type="PackedScene" uid="uid://cqlm0b75mtg4k" path="res://scenes/components/damage_component.tscn" id="7_k1kmt"]
 [ext_resource type="PackedScene" uid="uid://c2cwmxwp6x7h6" path="res://scenes/vfx/run_particles.tscn" id="8_2kp64"]
+[ext_resource type="PackedScene" uid="uid://ckcj3wwxivfbr" path="res://scenes/components/death_component.tscn" id="8_83am0"]
+[ext_resource type="Texture2D" uid="uid://baq8lrpqpgsdt" path="res://scenes/game_object/porcupine/soul.png" id="9_6dpom"]
 [ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/common/ground_shadow.tscn" id="10_mh33h"]
 
 [sub_resource type="Animation" id="Animation_1gjl7"]
@@ -26,6 +28,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_75h4t"]
 resource_name = "attack"
@@ -35,7 +49,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Visuals/Sprite2D:frame")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
@@ -101,6 +115,32 @@ tracks/0/keys = {
 "update": 1,
 "values": [10]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_llqxr"]
 resource_name = "move"
@@ -111,7 +151,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Visuals/Sprite2D:frame")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
@@ -167,6 +207,10 @@ max_health = 8.0
 position = Vector2(-1, -5)
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
+
+[node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("8_83am0")]
+soul_texture = ExtResource("9_6dpom")
+health_component = NodePath("../HealthComponent")
 
 [node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 visible = false

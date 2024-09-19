@@ -97,7 +97,9 @@ position = Vector2(-142, 92)
 [node name="Bunny" parent="Entities" instance=ExtResource("8_0au5e")]
 
 [node name="StubbornCow" parent="Entities" instance=ExtResource("20_c0bo5")]
+position = Vector2(98, 78)
 
 [node name="Porcupine" parent="Entities" instance=ExtResource("21_bplbm")]
+position = Vector2(13, -96)
 
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]
