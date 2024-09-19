@@ -24,7 +24,6 @@ var bull_rush_travelled_distance := 0.0
 var state_machine := CallableStateMachine.new()
 
 @onready var actions_animation_player := $ActionsAnimationPlayer
-@onready var visual_animation_player := $VisualAnimationPlayer
 @onready var visuals := $Visuals
 @onready var ground_shadow := %GroundShadow
 @onready var health_component: HealthComponent = $HealthComponent
@@ -33,7 +32,6 @@ var state_machine := CallableStateMachine.new()
 
 
 func _ready():
-	health_component.damaged.connect(on_damaged)
 	hitbox_component.damage = CONTACT_DAMAGE
 	bull_rush_cooldown_timer.timeout.connect(on_bull_rush_colldown_timer_timeout)
 	bull_rush_cooldown_timer.start()
@@ -150,13 +148,6 @@ func get_distance_to_player():
 	var distance = global_position.distance_to(player.global_position)
 	
 	return distance
-
-
-func on_damaged(damage_amount: float):
-	var damage_particles = damage_particles_scene.instantiate() as Node2D
-	damage_particles.global_position = global_position
-	get_parent().add_child(damage_particles)
-	visual_animation_player.play('hurt')
 	
 	
 func on_bull_rush_colldown_timer_timeout():

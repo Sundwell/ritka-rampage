@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=22 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
@@ -19,6 +19,8 @@
 [ext_resource type="Resource" uid="uid://deyl22do2he2d" path="res://resources/upgrades/shoot_rate.tres" id="12_ubkgj"]
 [ext_resource type="Resource" uid="uid://be7i0juvpifvk" path="res://resources/upgrades/run_while_shooting.tres" id="13_xw6b4"]
 [ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="18_11p63"]
+[ext_resource type="PackedScene" uid="uid://dwmlg050i08ac" path="res://scenes/game_object/stubborn_cow/stubborn_cow.tscn" id="20_c0bo5"]
+[ext_resource type="PackedScene" uid="uid://p4ofdanvpv5m" path="res://scenes/game_object/porcupine/porcupine.tscn" id="21_bplbm"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_fqumt")
@@ -91,5 +93,11 @@ position = Vector2(67, -38)
 
 [node name="Bush2" parent="Entities/Bushes" instance=ExtResource("2_vx0vm")]
 position = Vector2(-142, 92)
+
+[node name="Bunny" parent="Entities" instance=ExtResource("8_0au5e")]
+
+[node name="StubbornCow" parent="Entities" instance=ExtResource("20_c0bo5")]
+
+[node name="Porcupine" parent="Entities" instance=ExtResource("21_bplbm")]
 
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]

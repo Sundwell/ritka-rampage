@@ -24,7 +24,6 @@ var can_change_direction := true
 var state_machine := CallableStateMachine.new()
 
 @onready var actions_animation_player = $ActionsAnimationPlayer
-@onready var visual_animation_player = $VisualAnimationPlayer
 @onready var reload_timer = $ReloadTimer
 @onready var wander_direction_timer = $WanderDirectionTimer
 @onready var visuals = $Visuals
@@ -35,7 +34,6 @@ var state_machine := CallableStateMachine.new()
 func _ready():
 	reload_timer.timeout.connect(on_realod_timer_timeout)
 	wander_direction_timer.timeout.connect(on_wander_direction_timer_timeout)
-	health_component.damaged.connect(on_damaged)
 	
 	state_machine.add_states(state_move)
 	state_machine.add_states(state_attack, enter_state_attack)
@@ -166,10 +164,3 @@ func on_realod_timer_timeout():
 	
 func on_wander_direction_timer_timeout():
 	can_change_direction = true
-	
-	
-func on_damaged(damage_amount: float):
-	var damage_particles = damage_particles_scene.instantiate() as Node2D
-	damage_particles.global_position = global_position
-	get_parent().add_child(damage_particles)
-	visual_animation_player.play('hurt')

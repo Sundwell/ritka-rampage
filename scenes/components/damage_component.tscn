@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqlm0b75mtg4k"]
+
+[ext_resource type="Script" path="res://scenes/components/damage_component.gd" id="1_od43c"]
+[ext_resource type="PackedScene" uid="uid://ck36lmmyvt0ec" path="res://scenes/vfx/damage_particles.tscn" id="2_ndghg"]
+
+[node name="DamageComponent" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_od43c")
+sprite = NodePath("")
+damage_particles_scene = ExtResource("2_ndghg")

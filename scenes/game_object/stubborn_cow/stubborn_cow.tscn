@@ -1,14 +1,15 @@
-[gd_scene load_steps=23 format=3 uid="uid://dwmlg050i08ac"]
+[gd_scene load_steps=21 format=3 uid="uid://dwmlg050i08ac"]
 
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="1_u3ehd"]
 [ext_resource type="Script" path="res://scenes/game_object/stubborn_cow/stubborn_cow.gd" id="1_xloy4"]
 [ext_resource type="PackedScene" uid="uid://cdmwpfegixcco" path="res://scenes/components/orange_drop_component.tscn" id="2_cgo28"]
-[ext_resource type="PackedScene" uid="uid://ck36lmmyvt0ec" path="res://scenes/vfx/damage_particle.tscn" id="2_pptxj"]
+[ext_resource type="PackedScene" uid="uid://ck36lmmyvt0ec" path="res://scenes/vfx/damage_particles.tscn" id="2_pptxj"]
 [ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="3_273m8"]
 [ext_resource type="PackedScene" uid="uid://3aqgyhhxiq6e" path="res://scenes/game_object/stubborn_cow/prepare_attack_particles.tscn" id="3_rt6fs"]
 [ext_resource type="PackedScene" uid="uid://cwatwkjukjlvd" path="res://scenes/components/hurtbox_component.tscn" id="4_m6qay"]
 [ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="5_imket"]
 [ext_resource type="Texture2D" uid="uid://khxjwnab2jdn" path="res://scenes/game_object/stubborn_cow/stubborn_cow.png" id="6_302fy"]
+[ext_resource type="PackedScene" uid="uid://cqlm0b75mtg4k" path="res://scenes/components/damage_component.tscn" id="7_1ikcy"]
 [ext_resource type="PackedScene" uid="uid://c2cwmxwp6x7h6" path="res://scenes/vfx/run_particles.tscn" id="9_2gnq5"]
 [ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/common/ground_shadow.tscn" id="11_5tcpg"]
 
@@ -115,44 +116,6 @@ _data = {
 "prepare_attack": SubResource("Animation_4hros")
 }
 
-[sub_resource type="Animation" id="Animation_va3ne"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_xu5ya"]
-resource_name = "hurt"
-length = 0.1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.2, 0.2, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dflhy"]
-_data = {
-"RESET": SubResource("Animation_va3ne"),
-"hurt": SubResource("Animation_xu5ya")
-}
-
 [node name="StubbornCow" type="CharacterBody2D"]
 collision_layer = 4
 motion_mode = 1
@@ -167,6 +130,11 @@ max_health = 20.0
 drop_chance = 1.0
 orange_scene = ExtResource("3_273m8")
 health_component = NodePath("../HealthComponent")
+
+[node name="DamageComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_1ikcy")]
+position = Vector2(0, -10)
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_m6qay")]
 visible = false
@@ -197,11 +165,6 @@ libraries = {
 "": SubResource("AnimationLibrary_nqhs1")
 }
 
-[node name="VisualAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_dflhy")
-}
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="BullRushCooldownTimer" type="Timer" parent="."]
@@ -217,6 +180,6 @@ hframes = 4
 vframes = 5
 frame = 1
 
-[node name="GroundShadow" parent="Visuals/Sprite2D" instance=ExtResource("11_5tcpg")]
+[node name="GroundShadow" parent="Visuals" instance=ExtResource("11_5tcpg")]
 unique_name_in_owner = true
 position = Vector2(-2, -4)

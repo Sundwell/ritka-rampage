@@ -9,16 +9,13 @@ var is_jumping := false
 var jump_direction : Vector2
 var state_machine := CallableStateMachine.new()
 
-@onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var actions_animation_player = $ActionsAnimationPlayer
-@onready var visual_animation_player = $VisualAnimationPlayer
 
 
 func _ready():
-	health_component.damaged.connect(on_damaged)
 	hitbox_component.damage = 4.0
 	
 	state_machine.add_states(state_jumping)
@@ -65,10 +62,3 @@ func jump():
 		jump_direction = (player.global_position - global_position).normalized()
 		
 	state_machine.change_state(state_jumping)
-
-
-func on_damaged(damage_amount: float):
-	var damage_particles = damage_particles_scene.instantiate() as Node2D
-	damage_particles.global_position = global_position
-	get_parent().add_child(damage_particles)
-	visual_animation_player.play('hurt')
