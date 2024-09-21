@@ -21,12 +21,9 @@ func accelerate_to_player():
 	accelerate_in_direction(direction)
 
 
-func accelerate_in_direction(direction: Vector2, use_lerp: bool = true):
+func accelerate_in_direction(direction: Vector2):
 	var desired_velocity = direction * max_speed
-	if use_lerp:
-		velocity = velocity.lerp(desired_velocity, 1.0 - exp(-acceleration * get_physics_process_delta_time()))
-	else:
-		velocity = desired_velocity
+	velocity = velocity.lerp(desired_velocity, 1.0 - exp(-acceleration * get_physics_process_delta_time()))
 	
 	
 func move():

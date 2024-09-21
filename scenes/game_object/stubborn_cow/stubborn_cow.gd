@@ -36,10 +36,10 @@ func _ready():
 
 
 func _physics_process(delta: float):
-	state_machine.update(delta)
+	state_machine.update()
 
 
-func state_move(delta: float):
+func state_move():
 	if is_bull_rush_ready and can_start_bull_rush():
 		state_machine.change_state(state_prepare_attack)
 		return
@@ -56,7 +56,7 @@ func enter_state_prepare_attack():
 	prepare_bull_rush()
 	
 	
-func state_prepare_attack(delta: float):
+func state_prepare_attack():
 	pass
 	
 	
@@ -64,11 +64,11 @@ func enter_state_bull_rush():
 	velocity_component.max_speed = BULL_RUSH_SPEED
 	
 	
-func state_bull_rush(delta: float):
+func state_bull_rush():
 	velocity_component.accelerate_in_direction(bull_rush_direction)
 	velocity_component.move()
 	
-	bull_rush_travelled_distance += delta * BULL_RUSH_SPEED
+	bull_rush_travelled_distance += get_physics_process_delta_time() * BULL_RUSH_SPEED
 	
 	if bull_rush_travelled_distance >= BULL_RUSH_MAX_DISTANCE:
 		state_machine.change_state(state_move)
@@ -88,7 +88,7 @@ func enter_state_die():
 	actions_animation_player.play('die')
 
 
-func state_die(delta: float):
+func state_die():
 	pass
 
 

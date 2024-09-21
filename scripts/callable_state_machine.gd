@@ -24,9 +24,9 @@ func set_initial_state(state_callable: Callable):
 		push_warning("No state with name " + state_name)
 
 
-func update(delta: float):
+func update():
 	if not current_state == null:
-		(state_dictionary[current_state].normal as Callable).call(delta)
+		(state_dictionary[current_state].normal as Callable).call()
 
 
 func change_state(state_callable: Callable):

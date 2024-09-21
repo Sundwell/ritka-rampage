@@ -38,14 +38,14 @@ func _ready():
 
 
 func _physics_process(delta: float):
-	state_machine.update(delta)
+	state_machine.update()
 
 
 func start_moving():
 	state_machine.change_state(state_move)
 	
 	
-func state_move(delta: float):
+func state_move():
 	update_player_proximity()
 	
 	if is_near_player and can_attack:
@@ -63,7 +63,7 @@ func enter_state_attack():
 	actions_animation_player.play('attack')
 
 
-func state_attack(delta: float):
+func state_attack():
 	pass
 
 
@@ -73,7 +73,7 @@ func enter_state_die():
 	actions_animation_player.play('die')
 
 
-func state_die(delta: float):
+func state_die():
 	pass
 
 

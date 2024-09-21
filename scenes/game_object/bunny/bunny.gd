@@ -11,7 +11,7 @@ var state_machine := CallableStateMachine.new()
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var visuals: Node2D = $Visuals
 @onready var actions_animation_player = $ActionsAnimationPlayer
-@onready var velocity_component = $VelocityComponent
+@onready var velocity_component: VelocityComponent = $VelocityComponent
 
 
 func _ready():
@@ -27,21 +27,21 @@ func _ready():
 
 
 func _physics_process(delta: float):
-	state_machine.update(delta)
+	state_machine.update()
 
 
 func enter_state_jump_preparation():
 	actions_animation_player.play('jump')
 
 
-func state_jump_preparation(delta: float):
+func state_jump_preparation():
 	pass
 
 
-func state_jumping(delta: float):
+func state_jumping():
 	velocity_component.move()
 	
-	jumped_distance += SPEED * delta
+	jumped_distance += SPEED * get_physics_process_delta_time()
 	
 	if jumped_distance >= JUMP_DISTANCE:
 		state_machine.change_state(state_jump_preparation)
@@ -63,7 +63,7 @@ func enter_state_die():
 	actions_animation_player.play('die')
 
 
-func state_die(delta: float):
+func state_die():
 	pass
 
 

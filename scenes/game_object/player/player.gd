@@ -25,7 +25,7 @@ func _ready():
 	
 
 func _physics_process(delta: float):
-	state_machine.update(delta)
+	state_machine.update()
 	
 	move_and_slide()
 		
@@ -49,13 +49,13 @@ func get_movement_direction() -> Vector2:
 	return Input.get_vector('move_left', 'move_right', 'move_top', 'move_down')
 		
 		
-func move(delta: float):
+func move():
 	var direction = get_movement_direction()
 	
 	var speed = move_speed if is_shooting else RUN_SPEED
 	
 	var target_velocity = direction.normalized() * speed
-	velocity = velocity.lerp(target_velocity, 1.0 - exp(-delta * ACCELERATION_SMOOTHING))
+	velocity = velocity.lerp(target_velocity, 1.0 - exp(-ACCELERATION_SMOOTHING * get_physics_process_delta_time()))
 		
 		
 func enter_state_idle():
@@ -64,16 +64,16 @@ func enter_state_idle():
 	weapon.visible = true
 		
 		
-func state_idle(delta: float):
+func state_idle():
 	shoot()
 	
 	if get_movement_direction().length() > 0:
 		state_machine.change_state(state_moving)
 	
 	
-func state_moving(delta: float):
+func state_moving():
 	shoot()
-	move(delta)
+	move()
 	flip()
 	
 	if get_movement_direction().length() == 0:
