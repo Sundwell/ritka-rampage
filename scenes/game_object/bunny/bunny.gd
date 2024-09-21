@@ -6,19 +6,19 @@ const JUMP_DISTANCE := 60.0
 @export var damage_particles_scene: PackedScene
 var jumped_distance := 0.0
 var is_jumping := false
-var jump_direction : Vector2
 var state_machine := CallableStateMachine.new()
 
-@onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var visuals: Node2D = $Visuals
 @onready var actions_animation_player = $ActionsAnimationPlayer
+@onready var velocity_component = $VelocityComponent
 
 
 func _ready():
 	hitbox_component.damage = 4.0
+	velocity_component.max_speed = SPEED
 	
-	state_machine.add_states(state_jumping)
+	state_machine.add_states(state_jumping, Callable(), exit_state_jumping)
 	state_machine.add_states(state_jump_preparation, enter_state_jump_preparation)
 	state_machine.add_states(state_die, enter_state_die)
 	state_machine.set_initial_state(state_jump_preparation)
@@ -28,8 +28,6 @@ func _ready():
 
 func _physics_process(delta: float):
 	state_machine.update(delta)
-
-	move_and_slide()
 
 
 func enter_state_jump_preparation():
@@ -41,23 +39,25 @@ func state_jump_preparation(delta: float):
 
 
 func state_jumping(delta: float):
-	velocity = jump_direction * SPEED
+	velocity_component.move()
+	
 	jumped_distance += SPEED * delta
 	
 	if jumped_distance >= JUMP_DISTANCE:
-		velocity = Vector2.ZERO
-		jumped_distance = 0
-		
 		state_machine.change_state(state_jump_preparation)
 		
 	if velocity.x < 0:
 		visuals.scale.x = -1
 	elif velocity.x > 0:
 		visuals.scale.x = 1
+		
+		
+func exit_state_jumping():
+	jumped_distance = 0
+	velocity = Vector2.ZERO
 
 
 func enter_state_die():
-	velocity = Vector2.ZERO
 	$HurtboxComponent.queue_free()
 	$HitboxComponent.queue_free()
 	actions_animation_player.play('die')
@@ -68,12 +68,12 @@ func state_die(delta: float):
 
 
 func jump():
+	velocity_component.accelerate_to_player()
 	var player = get_tree().get_first_node_in_group('player') as Node2D
+	var jump_direction = Vector2.RIGHT.rotated(randf_range(0, TAU))
 
 	if player == null:
-		jump_direction = Vector2.RIGHT.rotated(randf_range(0, TAU))
-	else:
-		jump_direction = (player.global_position - global_position).normalized()
+		velocity_component.accelerate_in_direction(jump_direction)
 		
 	state_machine.change_state(state_jumping)
 	

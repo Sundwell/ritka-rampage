@@ -1,12 +1,11 @@
 extends CharacterBody2D
 
-const WALK_SPEED = 50.0
+const MOVE_SPEED = 50.0
 const BULL_RUSH_SPEED = 180.0
 const BULL_RUSH_DAMAGE = 16.0
 const BULL_RUSH_MAX_DISTANCE = 200.0
 const CONTACT_DAMAGE = 4.0
 const MIN_BULL_RUSH_START_DISTANCE = 120.0
-const KEEP_DIRECTION_DISTANCE = 10.0
 
 @export var damage_particles_scene: PackedScene
 @export var prepare_attack_particles: PackedScene
@@ -17,9 +16,9 @@ var state_machine := CallableStateMachine.new()
 
 @onready var actions_animation_player := $ActionsAnimationPlayer
 @onready var visuals := $Visuals
-@onready var ground_shadow := %GroundShadow
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var bull_rush_cooldown_timer := $BullRushCooldownTimer
+@onready var velocity_component: VelocityComponent = $VelocityComponent
 
 
 func _ready():
@@ -27,9 +26,9 @@ func _ready():
 	bull_rush_cooldown_timer.timeout.connect(on_bull_rush_colldown_timer_timeout)
 	bull_rush_cooldown_timer.start()
 	
-	state_machine.add_states(state_move, enter_state_move)
+	state_machine.add_states(state_move)
 	state_machine.add_states(state_prepare_attack, enter_state_prepare_attack)
-	state_machine.add_states(state_bull_rush)
+	state_machine.add_states(state_bull_rush, enter_state_bull_rush, exit_state_bull_rush)
 	state_machine.add_states(state_die, enter_state_die)
 	state_machine.set_initial_state(state_move)
 	
@@ -38,15 +37,18 @@ func _ready():
 
 func _physics_process(delta: float):
 	state_machine.update(delta)
-	move_and_slide()
-
-
-func enter_state_move():
-	hitbox_component.damage = CONTACT_DAMAGE
 
 
 func state_move(delta: float):
-	move()
+	if is_bull_rush_ready and can_start_bull_rush():
+		state_machine.change_state(state_prepare_attack)
+		return
+
+	actions_animation_player.play('move')
+	
+	velocity_component.accelerate_to_player()
+	velocity_component.move()
+	
 	flip()
 	
 	
@@ -58,9 +60,25 @@ func state_prepare_attack(delta: float):
 	pass
 	
 	
+func enter_state_bull_rush():
+	velocity_component.max_speed = BULL_RUSH_SPEED
+	
+	
 func state_bull_rush(delta: float):
-	bull_rush(delta)
+	velocity_component.accelerate_in_direction(bull_rush_direction)
+	velocity_component.move()
+	
+	bull_rush_travelled_distance += delta * BULL_RUSH_SPEED
+	
+	if bull_rush_travelled_distance >= BULL_RUSH_MAX_DISTANCE:
+		state_machine.change_state(state_move)
+	
 	flip()
+	
+	
+func exit_state_bull_rush():
+	velocity_component.max_speed = MOVE_SPEED
+	hitbox_component.damage = CONTACT_DAMAGE
 	
 	
 func enter_state_die():
@@ -72,26 +90,6 @@ func enter_state_die():
 
 func state_die(delta: float):
 	pass
-
-
-func move():
-	var player = get_tree().get_first_node_in_group('player') as Node2D
-	
-	if player == null:
-		return
-		
-	if is_bull_rush_ready and can_start_bull_rush():
-		state_machine.change_state(state_prepare_attack)
-		return
-		
-	actions_animation_player.play('move')
-	
-	if get_distance_to_player() <= KEEP_DIRECTION_DISTANCE:
-		return
-	
-	var direction: Vector2 = global_position.direction_to(player.global_position)
-	
-	velocity = WALK_SPEED * direction
 
 
 func flip():
@@ -128,14 +126,6 @@ func start_bull_rush():
 	hitbox_component.damage = BULL_RUSH_DAMAGE
 	bull_rush_direction = global_position.direction_to(player.global_position)
 	state_machine.change_state(state_bull_rush)
-	
-
-func bull_rush(delta: float):
-	velocity = bull_rush_direction * BULL_RUSH_SPEED
-	bull_rush_travelled_distance += delta * BULL_RUSH_SPEED
-	
-	if bull_rush_travelled_distance >= BULL_RUSH_MAX_DISTANCE:
-		state_machine.change_state(state_move)
 	
 	
 func can_start_bull_rush():

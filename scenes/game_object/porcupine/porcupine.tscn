@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://p4ofdanvpv5m"]
+[gd_scene load_steps=22 format=3 uid="uid://p4ofdanvpv5m"]
 
 [ext_resource type="Script" path="res://scenes/game_object/porcupine/porcupine.gd" id="1_mij8t"]
 [ext_resource type="Texture2D" uid="uid://dpch4pfkoleiw" path="res://scenes/game_object/porcupine/porcupine.png" id="1_nid44"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cdmwpfegixcco" path="res://scenes/components/orange_drop_component.tscn" id="4_u0n8m"]
 [ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="5_f4dlv"]
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="5_nl1d7"]
+[ext_resource type="PackedScene" uid="uid://ceo6q5oos0dqn" path="res://scenes/components/velocity_component.tscn" id="7_21tlf"]
 [ext_resource type="PackedScene" uid="uid://cqlm0b75mtg4k" path="res://scenes/components/damage_component.tscn" id="7_k1kmt"]
 [ext_resource type="PackedScene" uid="uid://c2cwmxwp6x7h6" path="res://scenes/vfx/run_particles.tscn" id="8_2kp64"]
 [ext_resource type="PackedScene" uid="uid://ckcj3wwxivfbr" path="res://scenes/components/death_component.tscn" id="8_83am0"]
@@ -202,6 +203,11 @@ health_component = NodePath("../HealthComponent")
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_nl1d7")]
 max_health = 8.0
+
+[node name="VelocityComponent" parent="." node_paths=PackedStringArray("character_body") instance=ExtResource("7_21tlf")]
+character_body = NodePath("..")
+max_speed = 60.0
+acceleration = 60.0
 
 [node name="DamageComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_k1kmt")]
 position = Vector2(-1, -5)

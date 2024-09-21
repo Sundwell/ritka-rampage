@@ -15,13 +15,14 @@ var is_near_player := false
 var should_run_from_player := false
 var can_change_direction := true
 var state_machine := CallableStateMachine.new()
+var move_direction := Vector2.ZERO
 
 @onready var actions_animation_player = $ActionsAnimationPlayer
 @onready var reload_timer = $ReloadTimer
 @onready var wander_direction_timer = $WanderDirectionTimer
 @onready var visuals = $Visuals
-@onready var health_component: HealthComponent = $HealthComponent
 @onready var run_particles: CPUParticles2D = %RunParticles
+@onready var velocity_component: VelocityComponent = $VelocityComponent
 
 
 func _ready():
@@ -38,8 +39,6 @@ func _ready():
 
 func _physics_process(delta: float):
 	state_machine.update(delta)
-		
-	move_and_slide()
 
 
 func start_moving():
@@ -53,6 +52,10 @@ func state_move(delta: float):
 		state_machine.change_state(state_attack)
 	else:
 		move()
+		
+		
+func exit_state_move():
+	velocity = Vector2.ZERO
 
 
 func enter_state_attack():
@@ -110,29 +113,32 @@ func update_player_proximity():
 	should_run_from_player = distance_to_player <= pow(RUN_FROM_PLAYER_DISTANCE, 2)
 
 
+func change_direction(new_direction: Vector2):
+	move_direction = new_direction
+	can_change_direction = false
+	wander_direction_timer.start()
+
+
 func move():
-	var player = get_tree().get_first_node_in_group('player') as Node2D
-	
-	if player == null:
-		return
-		
 	actions_animation_player.play('move')
 		
 	if not is_near_player:
-		var direction: Vector2 = global_position.direction_to(player.global_position)
-		
-		velocity = direction * MOVE_SPEED
-	elif can_change_direction:
-		var direction := Vector2.RIGHT.rotated(randf_range(0, TAU))
-		
+		velocity_component.max_speed = MOVE_SPEED
+		velocity_component.accelerate_to_player()
+	else:
 		if should_run_from_player:
-			direction = -global_position.direction_to(player.global_position)
-			velocity = direction * RUN_SPEED
+			var player = get_tree().get_first_node_in_group('player') as Node2D
+			velocity_component.max_speed = RUN_SPEED
+			if can_change_direction:
+				change_direction(-global_position.direction_to(player.global_position))
 		else:
-			velocity = direction * MOVE_SPEED
-
-		can_change_direction = false
-		wander_direction_timer.start()
+			velocity_component.max_speed = MOVE_SPEED
+			if can_change_direction:
+				change_direction(Vector2.RIGHT.rotated(randf_range(0, TAU)))
+		
+		velocity_component.accelerate_in_direction(move_direction)
+		
+	velocity_component.move()
 		
 	flip_sprite_based_on_velocity()
 	

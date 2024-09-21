@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dwmlg050i08ac"]
+[gd_scene load_steps=25 format=3 uid="uid://dwmlg050i08ac"]
 
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="1_u3ehd"]
 [ext_resource type="Script" path="res://scenes/game_object/stubborn_cow/stubborn_cow.gd" id="1_xloy4"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="5_imket"]
 [ext_resource type="Texture2D" uid="uid://khxjwnab2jdn" path="res://scenes/game_object/stubborn_cow/stubborn_cow.png" id="6_302fy"]
 [ext_resource type="PackedScene" uid="uid://cqlm0b75mtg4k" path="res://scenes/components/damage_component.tscn" id="7_1ikcy"]
+[ext_resource type="PackedScene" uid="uid://ceo6q5oos0dqn" path="res://scenes/components/velocity_component.tscn" id="7_7b4p8"]
 [ext_resource type="PackedScene" uid="uid://ckcj3wwxivfbr" path="res://scenes/components/death_component.tscn" id="8_oiokk"]
 [ext_resource type="PackedScene" uid="uid://c2cwmxwp6x7h6" path="res://scenes/vfx/run_particles.tscn" id="9_2gnq5"]
 [ext_resource type="Texture2D" uid="uid://s5cncdmo5abd" path="res://scenes/game_object/stubborn_cow/soul.png" id="9_5p631"]
@@ -187,6 +188,10 @@ drop_chance = 1.0
 orange_scene = ExtResource("3_273m8")
 health_component = NodePath("../HealthComponent")
 
+[node name="VelocityComponent" parent="." node_paths=PackedStringArray("character_body") instance=ExtResource("7_7b4p8")]
+keep_distance = 10.0
+character_body = NodePath("..")
+
 [node name="DamageComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_1ikcy")]
 position = Vector2(0, -10)
 health_component = NodePath("../HealthComponent")
@@ -224,8 +229,6 @@ shape = SubResource("CircleShape2D_c3wof")
 libraries = {
 "": SubResource("AnimationLibrary_nqhs1")
 }
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="BullRushCooldownTimer" type="Timer" parent="."]
 wait_time = 2.0
