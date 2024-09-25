@@ -1,18 +1,19 @@
 extends Node
 
-const MAX_SPAWN_RATE := 0.3
-
+@export var difficulty_stages: Array[DifficultyStage] = []
 @export var difficulty_manager: DifficultyManager
-@export var enemy_scene: PackedScene
 var spawn_radius = int(ProjectSettings.get_setting('display/window/size/viewport_width') / 1.8)
-var base_spawn_time: float
+var current_stage_index := 0
+var current_stage: DifficultyStage:
+	get:
+		return difficulty_stages[current_stage_index]
 
 @onready var timer = $Timer
 
 
 func _ready():
-	timer.timeout.connect(_on_timer_timeout)
-	base_spawn_time = timer.wait_time
+	update_difficulty_stage(0)
+	timer.timeout.connect(on_timer_timeout)
 	
 	if not difficulty_manager == null:
 		difficulty_manager.difficulty_level_update.connect(on_difficulty_level_update)
@@ -39,16 +40,44 @@ func get_spawn_position() -> Vector2:
 			random_direction = random_direction.rotated(deg_to_rad(90))
 	
 	return spawn_position
+	
+	
+func pick_enemy_to_spawn():
+	var total_weight: int = current_stage.get_total_weight()
+	var random_weight: int = randi_range(0, total_weight)
+	
+	var weight := 0
+	
+	for enemy_spawn_config in current_stage.enemy_spawn_configs:
+		weight += enemy_spawn_config.weight
+		
+		if weight >= random_weight:
+			return enemy_spawn_config
 
 
-func _on_timer_timeout():
+func update_difficulty_stage(current_difficulty: int):
+	var next_stage_index := current_stage_index + 1
+	if difficulty_stages.size() < (next_stage_index + 1):
+		return
+		
+	var next_stage: DifficultyStage = difficulty_stages[next_stage_index]
+
+	if current_difficulty < next_stage.difficulty_level:
+		return
+	
+	current_stage_index = current_stage_index + 1
+	timer.wait_time = current_stage.time_to_spawn
+
+
+func on_timer_timeout():
 	var player = get_tree().get_first_node_in_group('player') as Node2D
 	
 	if player == null:
 		return
 		
-	var enemy = enemy_scene.instantiate() as Node2D
+	var enemy_spawn_config: EnemySpawnConfig = pick_enemy_to_spawn()
 	
+	var enemy = enemy_spawn_config.enemy_scene.instantiate()
 	enemy.global_position = get_spawn_position()
 	
 	var entities_layer = get_tree().get_first_node_in_group('entities_layer')
@@ -56,6 +85,4 @@ func _on_timer_timeout():
 	
 
 func on_difficulty_level_update(new_difficulty: int):
-	var time_off: float = (0.2 / 12) * new_difficulty
-	var new_spawn_time: float = max(MAX_SPAWN_RATE, base_spawn_time - time_off)
-	timer.wait_time = new_spawn_time
+	update_difficulty_stage(new_difficulty)

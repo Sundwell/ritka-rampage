@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=29 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
@@ -10,15 +10,59 @@
 [ext_resource type="PackedScene" uid="uid://hrmwpla6w5kt" path="res://scenes/manager/arena_time_manager.tscn" id="3_dwsl6"]
 [ext_resource type="PackedScene" uid="uid://cobi6d0h2keep" path="res://scenes/manager/experience_manager.tscn" id="6_8mjvm"]
 [ext_resource type="TileSet" uid="uid://b5jwrivhevsl6" path="res://resources/tileset.tres" id="6_a6vb0"]
+[ext_resource type="Script" path="res://resources/difficulty/difficulty_stage.gd" id="7_0n4ps"]
 [ext_resource type="PackedScene" uid="uid://opwxpmnb8voa" path="res://scenes/game_object/player/player.tscn" id="7_nxmj7"]
 [ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/game_object/bunny/bunny.tscn" id="8_0au5e"]
 [ext_resource type="PackedScene" uid="uid://dn4ekvcuqpp12" path="res://scenes/manager/difficulty_manager.tscn" id="8_fj7m4"]
+[ext_resource type="Script" path="res://resources/difficulty/enemy_spawn_config.gd" id="8_rp34t"]
 [ext_resource type="PackedScene" uid="uid://bmkeplc4w76hm" path="res://scenes/manager/upgrade_manager.tscn" id="9_0v1sx"]
 [ext_resource type="PackedScene" uid="uid://b4tmea22onhpt" path="res://scenes/ui/upgrade_screen.tscn" id="10_o8f1v"]
 [ext_resource type="Script" path="res://resources/upgrades/mutation_upgrade.gd" id="11_21hr5"]
 [ext_resource type="Resource" uid="uid://deyl22do2he2d" path="res://resources/upgrades/shoot_rate.tres" id="12_ubkgj"]
 [ext_resource type="Resource" uid="uid://be7i0juvpifvk" path="res://resources/upgrades/run_while_shooting.tres" id="13_xw6b4"]
-[ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="18_11p63"]
+[ext_resource type="PackedScene" uid="uid://p4ofdanvpv5m" path="res://scenes/game_object/porcupine/porcupine.tscn" id="19_nj50n"]
+
+[sub_resource type="Resource" id="Resource_si3j4"]
+script = ExtResource("8_rp34t")
+enemy_scene = ExtResource("8_0au5e")
+weight = 1
+spawn_count = 1
+
+[sub_resource type="Resource" id="Resource_olwkn"]
+script = ExtResource("7_0n4ps")
+enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_si3j4")])
+difficulty_level = 0
+time_to_spawn = 3.0
+
+[sub_resource type="Resource" id="Resource_sd787"]
+script = ExtResource("8_rp34t")
+enemy_scene = ExtResource("8_0au5e")
+weight = 1
+spawn_count = 1
+
+[sub_resource type="Resource" id="Resource_achuj"]
+script = ExtResource("7_0n4ps")
+enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_sd787")])
+difficulty_level = 3
+time_to_spawn = 0.5
+
+[sub_resource type="Resource" id="Resource_5v34o"]
+script = ExtResource("8_rp34t")
+enemy_scene = ExtResource("8_0au5e")
+weight = 5
+spawn_count = 1
+
+[sub_resource type="Resource" id="Resource_wueii"]
+script = ExtResource("8_rp34t")
+enemy_scene = ExtResource("19_nj50n")
+weight = 2
+spawn_count = 1
+
+[sub_resource type="Resource" id="Resource_dfnmr"]
+script = ExtResource("7_0n4ps")
+enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_5v34o"), SubResource("Resource_wueii")])
+difficulty_level = 5
+time_to_spawn = 1.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_fqumt")
@@ -32,11 +76,11 @@ experience_manager = NodePath("../ExperienceManager")
 
 [node name="ArenaTimeManager" parent="." instance=ExtResource("3_dwsl6")]
 end_screen_scene = ExtResource("2_jn3hq")
+arena_duration = 600.0
 
 [node name="EnemyManager" parent="." node_paths=PackedStringArray("difficulty_manager") instance=ExtResource("2_y0yni")]
-process_mode = 4
+difficulty_stages = Array[ExtResource("7_0n4ps")]([SubResource("Resource_olwkn"), SubResource("Resource_achuj"), SubResource("Resource_dfnmr")])
 difficulty_manager = NodePath("../DifficultyManager")
-enemy_scene = ExtResource("8_0au5e")
 
 [node name="DifficultyManager" parent="." instance=ExtResource("8_fj7m4")]
 
@@ -73,15 +117,6 @@ tile_set = ExtResource("6_a6vb0")
 [node name="Player" parent="Entities" instance=ExtResource("7_nxmj7")]
 unique_name_in_owner = true
 position = Vector2(-51, 1)
-
-[node name="OrangeEnergy" parent="Entities" instance=ExtResource("18_11p63")]
-position = Vector2(21, 14)
-
-[node name="OrangeEnergy2" parent="Entities" instance=ExtResource("18_11p63")]
-position = Vector2(9, 89)
-
-[node name="OrangeEnergy3" parent="Entities" instance=ExtResource("18_11p63")]
-position = Vector2(-7, 102)
 
 [node name="Bushes" type="Node2D" parent="Entities"]
 y_sort_enabled = true

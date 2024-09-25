@@ -3,10 +3,13 @@ extends Node
 @onready var timer: Timer = $Timer
 
 @export var end_screen_scene: PackedScene
+@export var arena_duration: float = 60
 
 
 func _ready():
 	timer.timeout.connect(on_timer_timeout)
+	timer.wait_time = arena_duration
+	timer.start()
 
 
 func get_time_elapsed():
