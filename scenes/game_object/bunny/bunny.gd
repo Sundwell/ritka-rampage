@@ -3,7 +3,6 @@ extends CharacterBody2D
 const SPEED := 180.0
 const JUMP_DISTANCE := 60.0
 
-@export var damage_particles_scene: PackedScene
 var jumped_distance := 0.0
 var is_jumping := false
 var state_machine := CallableStateMachine.new()

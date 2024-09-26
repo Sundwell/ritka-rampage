@@ -8,7 +8,6 @@ const MOVE_SPEED := 60.0
 const RUN_SPEED := 90.0
 
 @export var quill_scene: PackedScene
-@export var damage_particles_scene: PackedScene
 var can_attack := true
 var is_player_in_attack_range := false
 var is_near_player := false

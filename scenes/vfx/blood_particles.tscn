@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ck36lmmyvt0ec"]
 
-[ext_resource type="Script" path="res://scenes/vfx/damage_particle.gd" id="1_mqbql"]
+[ext_resource type="Script" path="res://scenes/vfx/blood_particles.gd" id="1_mqbql"]
 
 [sub_resource type="Curve" id="Curve_1bama"]
 _data = [Vector2(0, 0.995215), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

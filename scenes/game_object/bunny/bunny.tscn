@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bwsxcvg8tgsku"]
+[gd_scene load_steps=20 format=3 uid="uid://bwsxcvg8tgsku"]
 
 [ext_resource type="Texture2D" uid="uid://d2064pj05mkxy" path="res://scenes/game_object/bunny/bunny.png" id="1_5rorc"]
 [ext_resource type="Script" path="res://scenes/game_object/bunny/bunny.gd" id="1_6uvuu"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://ckcj3wwxivfbr" path="res://scenes/components/death_component.tscn" id="7_ycsh0"]
 [ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="8_5shgc"]
 [ext_resource type="Texture2D" uid="uid://dw6tqbe2ry1kk" path="res://scenes/game_object/bunny/soul.png" id="8_ifdj7"]
-[ext_resource type="PackedScene" uid="uid://ck36lmmyvt0ec" path="res://scenes/vfx/damage_particles.tscn" id="8_v0rnh"]
 [ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/common/ground_shadow.tscn" id="9_dgoci"]
 
 [sub_resource type="Animation" id="Animation_ehbuc"]
@@ -110,12 +109,12 @@ collision_layer = 4
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_6uvuu")
-damage_particles_scene = ExtResource("8_v0rnh")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_3otdp")]
 max_health = 4.0
 
 [node name="OrangeDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_u7d0e")]
+drop_chance = 1.0
 orange_scene = ExtResource("4_jij05")
 health_component = NodePath("../HealthComponent")
 

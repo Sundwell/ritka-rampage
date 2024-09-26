@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqlswblbvmvfk"]
+
+[ext_resource type="Texture2D" uid="uid://ba4kgp2lmt86e" path="res://scenes/game_object/orange_energy/orange_energy.png" id="1_y6122"]
+
+[sub_resource type="Curve" id="Curve_ky4dk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_ht2cj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_i61t4"]
+resource_name = "default"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_68fre"]
+_data = {
+"RESET": SubResource("Animation_ht2cj"),
+"default": SubResource("Animation_i61t4")
+}
+
+[node name="OrangeCollectedParticles" type="CPUParticles2D"]
+emitting = false
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("1_y6122")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 48.0
+initial_velocity_max = 96.0
+damping_min = 50.0
+damping_max = 100.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_ky4dk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_68fre")
+}
+autoplay = "default"

@@ -7,7 +7,6 @@ const BULL_RUSH_MAX_DISTANCE = 200.0
 const CONTACT_DAMAGE = 4.0
 const MIN_BULL_RUSH_START_DISTANCE = 120.0
 
-@export var damage_particles_scene: PackedScene
 @export var prepare_attack_particles: PackedScene
 var is_bull_rush_ready := false
 var bull_rush_direction: Vector2

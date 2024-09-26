@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dpch4pfkoleiw" path="res://scenes/game_object/porcupine/porcupine.png" id="1_nid44"]
 [ext_resource type="PackedScene" uid="uid://dg1tpx8up2b4u" path="res://scenes/game_object/porcupine_quill/porcupine_quill.tscn" id="2_p0xme"]
 [ext_resource type="Script" path="res://scenes/components/hurtbox_component.gd" id="3_w4tlv"]
-[ext_resource type="PackedScene" uid="uid://ck36lmmyvt0ec" path="res://scenes/vfx/damage_particles.tscn" id="3_wwvb5"]
+[ext_resource type="PackedScene" uid="uid://ck36lmmyvt0ec" path="res://scenes/vfx/blood_particles.tscn" id="3_wwvb5"]
 [ext_resource type="PackedScene" uid="uid://cdmwpfegixcco" path="res://scenes/components/orange_drop_component.tscn" id="4_u0n8m"]
 [ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="5_f4dlv"]
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="5_nl1d7"]
