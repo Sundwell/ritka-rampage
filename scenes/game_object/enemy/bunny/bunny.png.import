@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw6tqbe2ry1kk"
-path="res://.godot/imported/soul.png-0e1a1964bc749fdbbf72a58a30874657.ctex"
+uid="uid://d2064pj05mkxy"
+path="res://.godot/imported/bunny.png-69de02914e0ef02ff683d006aad0497c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/bunny/soul.png"
-dest_files=["res://.godot/imported/soul.png-0e1a1964bc749fdbbf72a58a30874657.ctex"]
+source_file="res://scenes/game_object/enemy/bunny/bunny.png"
+dest_files=["res://.godot/imported/bunny.png-69de02914e0ef02ff683d006aad0497c.ctex"]
 
 [params]
 

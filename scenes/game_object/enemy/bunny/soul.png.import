@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpch4pfkoleiw"
-path="res://.godot/imported/porcupine.png-71e78005b8cec54651ab52f52f70e166.ctex"
+uid="uid://dw6tqbe2ry1kk"
+path="res://.godot/imported/soul.png-547e5eb91d3a9f97e01b81dc800c3439.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/porcupine/porcupine.png"
-dest_files=["res://.godot/imported/porcupine.png-71e78005b8cec54651ab52f52f70e166.ctex"]
+source_file="res://scenes/game_object/enemy/bunny/soul.png"
+dest_files=["res://.godot/imported/soul.png-547e5eb91d3a9f97e01b81dc800c3439.ctex"]
 
 [params]
 

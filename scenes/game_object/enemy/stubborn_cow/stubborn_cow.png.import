@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://khxjwnab2jdn"
-path="res://.godot/imported/stubborn_cow.png-fea9f07a42a86910c93ce5bc72b979f3.ctex"
+path="res://.godot/imported/stubborn_cow.png-f9ad2b2213c6d84218b92399454bce53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/stubborn_cow/stubborn_cow.png"
-dest_files=["res://.godot/imported/stubborn_cow.png-fea9f07a42a86910c93ce5bc72b979f3.ctex"]
+source_file="res://scenes/game_object/enemy/stubborn_cow/stubborn_cow.png"
+dest_files=["res://.godot/imported/stubborn_cow.png-f9ad2b2213c6d84218b92399454bce53.ctex"]
 
 [params]
 

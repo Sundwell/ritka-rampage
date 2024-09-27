@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://0fecexi8j7gb"]
+[gd_scene load_steps=9 format=3 uid="uid://0fecexi8j7gb"]
 
 [ext_resource type="Script" path="res://scenes/game_object/orange_energy/orange_energy.gd" id="1_buvoc"]
 [ext_resource type="Texture2D" uid="uid://ba4kgp2lmt86e" path="res://scenes/game_object/orange_energy/orange_energy.png" id="1_qhtu8"]
 [ext_resource type="PackedScene" uid="uid://dqlswblbvmvfk" path="res://scenes/vfx/orange_collected_particles.tscn" id="2_sbomo"]
+[ext_resource type="PackedScene" uid="uid://byo6o7fua67bc" path="res://scenes/components/floating_text/floating_text_spawner_component.tscn" id="3_e22k4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7l6fr"]
 radius = 8.0
@@ -49,6 +50,8 @@ _data = {
 [node name="OrangeEnergy" type="Node2D"]
 script = ExtResource("1_buvoc")
 collected_particles = ExtResource("2_sbomo")
+
+[node name="FloatingTextSpawnerComponent" parent="." instance=ExtResource("3_e22k4")]
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

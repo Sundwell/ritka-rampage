@@ -1,17 +1,18 @@
-[gd_scene load_steps=20 format=3 uid="uid://bwsxcvg8tgsku"]
+[gd_scene load_steps=21 format=3 uid="uid://bwsxcvg8tgsku"]
 
-[ext_resource type="Texture2D" uid="uid://d2064pj05mkxy" path="res://scenes/game_object/bunny/bunny.png" id="1_5rorc"]
-[ext_resource type="Script" path="res://scenes/game_object/bunny/bunny.gd" id="1_6uvuu"]
+[ext_resource type="Texture2D" uid="uid://d2064pj05mkxy" path="res://scenes/game_object/enemy/bunny/bunny.png" id="1_5rorc"]
+[ext_resource type="Script" path="res://scenes/game_object/enemy/bunny/bunny.gd" id="1_6uvuu"]
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="2_3otdp"]
 [ext_resource type="PackedScene" uid="uid://cdmwpfegixcco" path="res://scenes/components/orange_drop_component.tscn" id="3_u7d0e"]
 [ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="4_jij05"]
 [ext_resource type="PackedScene" uid="uid://cwatwkjukjlvd" path="res://scenes/components/hurtbox_component.tscn" id="5_q6qwx"]
-[ext_resource type="PackedScene" uid="uid://cqlm0b75mtg4k" path="res://scenes/components/damage_component.tscn" id="6_kh6v0"]
+[ext_resource type="PackedScene" uid="uid://cqlm0b75mtg4k" path="res://scenes/components/blood_particles_spawner_component.tscn" id="6_kh6v0"]
 [ext_resource type="PackedScene" uid="uid://ceo6q5oos0dqn" path="res://scenes/components/velocity_component.tscn" id="6_mfqyy"]
 [ext_resource type="PackedScene" uid="uid://ckcj3wwxivfbr" path="res://scenes/components/death_component.tscn" id="7_ycsh0"]
 [ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="8_5shgc"]
-[ext_resource type="Texture2D" uid="uid://dw6tqbe2ry1kk" path="res://scenes/game_object/bunny/soul.png" id="8_ifdj7"]
-[ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/common/ground_shadow.tscn" id="9_dgoci"]
+[ext_resource type="Texture2D" uid="uid://dw6tqbe2ry1kk" path="res://scenes/game_object/enemy/bunny/soul.png" id="8_ifdj7"]
+[ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/components/ground_shadow_component.tscn" id="9_dgoci"]
+[ext_resource type="PackedScene" uid="uid://bgs3jisn4rlps" path="res://scenes/components/floating_text/health_changed_text_spawner_component.tscn" id="9_fuwje"]
 
 [sub_resource type="Animation" id="Animation_ehbuc"]
 length = 0.001
@@ -123,13 +124,16 @@ character_body = NodePath("..")
 max_speed = 180.0
 acceleration = 180.0
 
-[node name="DamageComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("6_kh6v0")]
+[node name="BloodParticlesSpawnerComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("6_kh6v0")]
 position = Vector2(0, -4)
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_ycsh0")]
 soul_texture = ExtResource("8_ifdj7")
+health_component = NodePath("../HealthComponent")
+
+[node name="HealthChangedTextSpawnerComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("9_fuwje")]
 health_component = NodePath("../HealthComponent")
 
 [node name="ActionsAnimationPlayer" type="AnimationPlayer" parent="."]

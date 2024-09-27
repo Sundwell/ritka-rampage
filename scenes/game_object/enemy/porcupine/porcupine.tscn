@@ -1,19 +1,19 @@
 [gd_scene load_steps=22 format=3 uid="uid://p4ofdanvpv5m"]
 
-[ext_resource type="Script" path="res://scenes/game_object/porcupine/porcupine.gd" id="1_mij8t"]
-[ext_resource type="Texture2D" uid="uid://dpch4pfkoleiw" path="res://scenes/game_object/porcupine/porcupine.png" id="1_nid44"]
-[ext_resource type="PackedScene" uid="uid://dg1tpx8up2b4u" path="res://scenes/game_object/porcupine_quill/porcupine_quill.tscn" id="2_p0xme"]
+[ext_resource type="Script" path="res://scenes/game_object/enemy/porcupine/porcupine.gd" id="1_mij8t"]
+[ext_resource type="Texture2D" uid="uid://dpch4pfkoleiw" path="res://scenes/game_object/enemy/porcupine/porcupine.png" id="1_nid44"]
+[ext_resource type="PackedScene" uid="uid://dg1tpx8up2b4u" path="res://scenes/game_object/enemy/porcupine/porcupine_quill.tscn" id="2_p0xme"]
 [ext_resource type="Script" path="res://scenes/components/hurtbox_component.gd" id="3_w4tlv"]
-[ext_resource type="PackedScene" uid="uid://ck36lmmyvt0ec" path="res://scenes/vfx/blood_particles.tscn" id="3_wwvb5"]
 [ext_resource type="PackedScene" uid="uid://cdmwpfegixcco" path="res://scenes/components/orange_drop_component.tscn" id="4_u0n8m"]
 [ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="5_f4dlv"]
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="5_nl1d7"]
 [ext_resource type="PackedScene" uid="uid://ceo6q5oos0dqn" path="res://scenes/components/velocity_component.tscn" id="7_21tlf"]
-[ext_resource type="PackedScene" uid="uid://cqlm0b75mtg4k" path="res://scenes/components/damage_component.tscn" id="7_k1kmt"]
+[ext_resource type="PackedScene" uid="uid://cqlm0b75mtg4k" path="res://scenes/components/blood_particles_spawner_component.tscn" id="7_k1kmt"]
+[ext_resource type="PackedScene" uid="uid://bgs3jisn4rlps" path="res://scenes/components/floating_text/health_changed_text_spawner_component.tscn" id="7_kp5up"]
 [ext_resource type="PackedScene" uid="uid://c2cwmxwp6x7h6" path="res://scenes/vfx/run_particles.tscn" id="8_2kp64"]
 [ext_resource type="PackedScene" uid="uid://ckcj3wwxivfbr" path="res://scenes/components/death_component.tscn" id="8_83am0"]
-[ext_resource type="Texture2D" uid="uid://baq8lrpqpgsdt" path="res://scenes/game_object/porcupine/soul.png" id="9_6dpom"]
-[ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/common/ground_shadow.tscn" id="10_mh33h"]
+[ext_resource type="Texture2D" uid="uid://baq8lrpqpgsdt" path="res://scenes/game_object/enemy/porcupine/soul.png" id="9_6dpom"]
+[ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/components/ground_shadow_component.tscn" id="10_mh33h"]
 
 [sub_resource type="Animation" id="Animation_1gjl7"]
 length = 0.001
@@ -181,7 +181,6 @@ collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_mij8t")
 quill_scene = ExtResource("2_p0xme")
-damage_particles_scene = ExtResource("3_wwvb5")
 
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -209,7 +208,10 @@ character_body = NodePath("..")
 max_speed = 60.0
 acceleration = 60.0
 
-[node name="DamageComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_k1kmt")]
+[node name="HealthChangedTextSpawnerComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_kp5up")]
+health_component = NodePath("../HealthComponent")
+
+[node name="BloodParticlesSpawnerComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_k1kmt")]
 position = Vector2(-1, -5)
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")

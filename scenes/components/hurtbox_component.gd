@@ -23,6 +23,8 @@ func process_hitboxes():
 			
 func apply_damage(hitbox_component: HitboxComponent):
 	if hitbox_component.is_reloaded():
+		
+		
 		health_component.damage(hitbox_component.damage)
 		hitbox_component.start_reloading()
 

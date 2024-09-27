@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ckcj3wwxivfbr"]
 
 [ext_resource type="Script" path="res://scenes/components/death_component.gd" id="1_gsv3v"]
-[ext_resource type="Texture2D" uid="uid://dw6tqbe2ry1kk" path="res://scenes/game_object/bunny/soul.png" id="2_06tyd"]
+[ext_resource type="Texture2D" uid="uid://dw6tqbe2ry1kk" path="res://scenes/game_object/enemy/bunny/soul.png" id="2_06tyd"]
 
 [sub_resource type="Curve" id="Curve_geq4y"]
 min_value = -0.2

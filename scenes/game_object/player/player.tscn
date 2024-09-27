@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://opwxpmnb8voa"]
+[gd_scene load_steps=22 format=3 uid="uid://opwxpmnb8voa"]
 
 [ext_resource type="Texture2D" uid="uid://yr54tlu3thkq" path="res://scenes/game_object/player/ritka.png" id="1_aes1j"]
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_snu1q"]
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="2_tfpur"]
 [ext_resource type="Texture2D" uid="uid://51ngtrd3m3x6" path="res://assets/shadow.png" id="3_6ka02"]
 [ext_resource type="PackedScene" uid="uid://cwatwkjukjlvd" path="res://scenes/components/hurtbox_component.tscn" id="3_477au"]
+[ext_resource type="PackedScene" uid="uid://bgs3jisn4rlps" path="res://scenes/components/floating_text/health_changed_text_spawner_component.tscn" id="3_utin2"]
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="4_e1yw6"]
 [ext_resource type="Texture2D" uid="uid://cwk4lvfawo8db" path="res://assets/pistol.png" id="5_43h4y"]
 [ext_resource type="PackedScene" uid="uid://cf5byk2x3b7ae" path="res://scenes/components/health_bar_component.tscn" id="8_cdija"]
@@ -99,6 +100,9 @@ script = ExtResource("1_snu1q")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_tfpur")]
 max_health = 100.0
+
+[node name="HealthChangedTextSpawnerComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_utin2")]
+health_component = NodePath("../HealthComponent")
 
 [node name="PlayerPickupbox" type="Area2D" parent="."]
 visible = false

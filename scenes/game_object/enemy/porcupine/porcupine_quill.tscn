@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dg1tpx8up2b4u"]
 
-[ext_resource type="Texture2D" uid="uid://dg85ra3y0fmul" path="res://scenes/game_object/porcupine_quill/porcupine_quill.png" id="1_4kuvp"]
-[ext_resource type="Script" path="res://scenes/game_object/porcupine_quill/porcupine_quill.gd" id="1_b4lcj"]
+[ext_resource type="Texture2D" uid="uid://dg85ra3y0fmul" path="res://scenes/game_object/enemy/porcupine/porcupine_quill.png" id="1_4kuvp"]
+[ext_resource type="Script" path="res://scenes/game_object/enemy/porcupine/porcupine_quill.gd" id="1_b4lcj"]
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="2_aanuy"]
 [ext_resource type="PackedScene" uid="uid://n78ef23nvddy" path="res://scenes/components/projectile_hurtbox_component.tscn" id="3_ggtl8"]
 [ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="4_tixn8"]

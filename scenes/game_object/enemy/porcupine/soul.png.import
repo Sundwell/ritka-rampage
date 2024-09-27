@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s5cncdmo5abd"
-path="res://.godot/imported/soul.png-93f8bd7494023cd664242f1adef49ad6.ctex"
+uid="uid://baq8lrpqpgsdt"
+path="res://.godot/imported/soul.png-1aaadfc3df4e0402e15aa91159a4eb24.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/stubborn_cow/soul.png"
-dest_files=["res://.godot/imported/soul.png-93f8bd7494023cd664242f1adef49ad6.ctex"]
+source_file="res://scenes/game_object/enemy/porcupine/soul.png"
+dest_files=["res://.godot/imported/soul.png-1aaadfc3df4e0402e15aa91159a4eb24.ctex"]
 
 [params]
 

@@ -1,19 +1,17 @@
 extends CharacterBody2D
 
-@onready var weapon = $Weapon
-@onready var health_component: HealthComponent = $HealthComponent
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-
 const RUN_SPEED := 125.0
 const BASE_MOVE_SPEED := 50.0
 const ACCELERATION_SMOOTHING := 15
 
 var is_shooting := false
-var damage_rate := 10.0
-var health := 100.0
 var mutations: Dictionary = {}
-var move_speed := 50.0
+var move_speed := BASE_MOVE_SPEED
 var state_machine := CallableStateMachine.new()
+
+@onready var health_component = $HealthComponent
+@onready var weapon = $Weapon
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func _ready():

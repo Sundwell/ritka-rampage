@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2064pj05mkxy"
-path="res://.godot/imported/bunny.png-98ce09dfdad013f4810a8c5bcfd1bf36.ctex"
+uid="uid://dg85ra3y0fmul"
+path="res://.godot/imported/porcupine_quill.png-120581768726d45fbca5bbeae685c7a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/bunny/bunny.png"
-dest_files=["res://.godot/imported/bunny.png-98ce09dfdad013f4810a8c5bcfd1bf36.ctex"]
+source_file="res://scenes/game_object/enemy/porcupine/porcupine_quill.png"
+dest_files=["res://.godot/imported/porcupine_quill.png-120581768726d45fbca5bbeae685c7a5.ctex"]
 
 [params]
 

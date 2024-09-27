@@ -1,19 +1,20 @@
-[gd_scene load_steps=24 format=3 uid="uid://dwmlg050i08ac"]
+[gd_scene load_steps=25 format=3 uid="uid://dwmlg050i08ac"]
 
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="1_u3ehd"]
-[ext_resource type="Script" path="res://scenes/game_object/stubborn_cow/stubborn_cow.gd" id="1_xloy4"]
+[ext_resource type="Script" path="res://scenes/game_object/enemy/stubborn_cow/stubborn_cow.gd" id="1_xloy4"]
 [ext_resource type="PackedScene" uid="uid://cdmwpfegixcco" path="res://scenes/components/orange_drop_component.tscn" id="2_cgo28"]
 [ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="3_273m8"]
-[ext_resource type="PackedScene" uid="uid://3aqgyhhxiq6e" path="res://scenes/game_object/stubborn_cow/prepare_attack_particles.tscn" id="3_rt6fs"]
+[ext_resource type="PackedScene" uid="uid://3aqgyhhxiq6e" path="res://scenes/game_object/enemy/stubborn_cow/prepare_attack_particles.tscn" id="3_rt6fs"]
 [ext_resource type="PackedScene" uid="uid://cwatwkjukjlvd" path="res://scenes/components/hurtbox_component.tscn" id="4_m6qay"]
 [ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="5_imket"]
-[ext_resource type="Texture2D" uid="uid://khxjwnab2jdn" path="res://scenes/game_object/stubborn_cow/stubborn_cow.png" id="6_302fy"]
-[ext_resource type="PackedScene" uid="uid://cqlm0b75mtg4k" path="res://scenes/components/damage_component.tscn" id="7_1ikcy"]
+[ext_resource type="Texture2D" uid="uid://khxjwnab2jdn" path="res://scenes/game_object/enemy/stubborn_cow/stubborn_cow.png" id="6_302fy"]
+[ext_resource type="PackedScene" uid="uid://cqlm0b75mtg4k" path="res://scenes/components/blood_particles_spawner_component.tscn" id="7_1ikcy"]
 [ext_resource type="PackedScene" uid="uid://ceo6q5oos0dqn" path="res://scenes/components/velocity_component.tscn" id="7_7b4p8"]
 [ext_resource type="PackedScene" uid="uid://ckcj3wwxivfbr" path="res://scenes/components/death_component.tscn" id="8_oiokk"]
 [ext_resource type="PackedScene" uid="uid://c2cwmxwp6x7h6" path="res://scenes/vfx/run_particles.tscn" id="9_2gnq5"]
-[ext_resource type="Texture2D" uid="uid://s5cncdmo5abd" path="res://scenes/game_object/stubborn_cow/soul.png" id="9_5p631"]
-[ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/common/ground_shadow.tscn" id="11_5tcpg"]
+[ext_resource type="Texture2D" uid="uid://s5cncdmo5abd" path="res://scenes/game_object/enemy/stubborn_cow/soul.png" id="9_5p631"]
+[ext_resource type="PackedScene" uid="uid://bgs3jisn4rlps" path="res://scenes/components/floating_text/health_changed_text_spawner_component.tscn" id="10_b2jvy"]
+[ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/components/ground_shadow_component.tscn" id="11_5tcpg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n1ol4"]
 radius = 13.0
@@ -190,13 +191,16 @@ health_component = NodePath("../HealthComponent")
 keep_distance = 10.0
 character_body = NodePath("..")
 
-[node name="DamageComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_1ikcy")]
+[node name="BloodParticlesSpawnerComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_1ikcy")]
 position = Vector2(0, -10)
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("8_oiokk")]
 soul_texture = ExtResource("9_5p631")
+health_component = NodePath("../HealthComponent")
+
+[node name="HealthChangedTextSpawnerComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("10_b2jvy")]
 health_component = NodePath("../HealthComponent")
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_m6qay")]

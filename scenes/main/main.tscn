@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=25 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
@@ -12,7 +12,7 @@
 [ext_resource type="TileSet" uid="uid://b5jwrivhevsl6" path="res://resources/tileset.tres" id="6_a6vb0"]
 [ext_resource type="Script" path="res://resources/difficulty/difficulty_stage.gd" id="7_0n4ps"]
 [ext_resource type="PackedScene" uid="uid://opwxpmnb8voa" path="res://scenes/game_object/player/player.tscn" id="7_nxmj7"]
-[ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/game_object/bunny/bunny.tscn" id="8_0au5e"]
+[ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/game_object/enemy/bunny/bunny.tscn" id="8_0au5e"]
 [ext_resource type="PackedScene" uid="uid://dn4ekvcuqpp12" path="res://scenes/manager/difficulty_manager.tscn" id="8_fj7m4"]
 [ext_resource type="Script" path="res://resources/difficulty/enemy_spawn_config.gd" id="8_rp34t"]
 [ext_resource type="PackedScene" uid="uid://bmkeplc4w76hm" path="res://scenes/manager/upgrade_manager.tscn" id="9_0v1sx"]
@@ -20,7 +20,6 @@
 [ext_resource type="Script" path="res://resources/upgrades/mutation_upgrade.gd" id="11_21hr5"]
 [ext_resource type="Resource" uid="uid://deyl22do2he2d" path="res://resources/upgrades/shoot_rate.tres" id="12_ubkgj"]
 [ext_resource type="Resource" uid="uid://be7i0juvpifvk" path="res://resources/upgrades/run_while_shooting.tres" id="13_xw6b4"]
-[ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="21_74ntp"]
 
 [sub_resource type="Resource" id="Resource_si3j4"]
 script = ExtResource("8_rp34t")

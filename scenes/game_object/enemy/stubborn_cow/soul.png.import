@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg85ra3y0fmul"
-path="res://.godot/imported/porcupine_quill.png-6a8dcd5d41f5bd365ab35a04582eadf9.ctex"
+uid="uid://s5cncdmo5abd"
+path="res://.godot/imported/soul.png-e76854fcdc43af5661b383c1bce50f34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/porcupine_quill/porcupine_quill.png"
-dest_files=["res://.godot/imported/porcupine_quill.png-6a8dcd5d41f5bd365ab35a04582eadf9.ctex"]
+source_file="res://scenes/game_object/enemy/stubborn_cow/soul.png"
+dest_files=["res://.godot/imported/soul.png-e76854fcdc43af5661b383c1bce50f34.ctex"]
 
 [params]
 
