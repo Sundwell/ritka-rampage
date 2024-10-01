@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MutationUpgrade" load_steps=2 format=3 uid="uid://deyl22do2he2d"]
+
+[ext_resource type="Script" path="res://resources/upgrades/mutation_upgrade/mutation_upgrade.gd" id="1_vstht"]
+
+[resource]
+script = ExtResource("1_vstht")
+id = 1
+title = "Fast Fingers"
+max_quantity = 0
+description = "Yo! Shoot faster by 10%"

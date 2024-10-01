@@ -24,7 +24,6 @@ func _ready():
 
 func _physics_process(delta: float):
 	state_machine.update()
-	
 	move_and_slide()
 		
 		
@@ -78,7 +77,7 @@ func state_moving():
 		state_machine.change_state(state_idle)
 		return
 		
-	if mutations.has("run_while_shooting"):
+	if mutations.has(MutationUpgrade.Type.RUN_WHILE_SHOOTING):
 		weapon.visible = true
 		sprite.play("run")
 	else:
@@ -91,6 +90,6 @@ func state_moving():
 		
 		
 func on_mutation_upgrade_selected(upgrade: MutationUpgrade, current_upgrades: Dictionary):
-	if upgrade.id == "run_while_shooting":
-		mutations["run_while_shooting"] = true
+	if upgrade.id == MutationUpgrade.Type.RUN_WHILE_SHOOTING:
+		mutations[MutationUpgrade.Type.RUN_WHILE_SHOOTING] = true
 		move_speed = RUN_SPEED

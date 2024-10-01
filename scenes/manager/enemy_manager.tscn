@@ -6,4 +6,3 @@
 script = ExtResource("1_v2gq6")
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true

@@ -115,7 +115,7 @@ script = ExtResource("1_6uvuu")
 max_health = 4.0
 
 [node name="OrangeDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_u7d0e")]
-drop_chance = 1.0
+drop_chance = 0.35
 orange_scene = ExtResource("4_jij05")
 health_component = NodePath("../HealthComponent")
 

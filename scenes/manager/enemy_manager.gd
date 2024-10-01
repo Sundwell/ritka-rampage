@@ -7,12 +7,15 @@ var current_stage_index := 0
 var current_stage: DifficultyStage:
 	get:
 		return difficulty_stages[current_stage_index]
+var current_enemies_table: WeightedTable = WeightedTable.new()
 
 @onready var timer = $Timer
 
 
 func _ready():
 	update_difficulty_stage(0)
+	update_difficulty_stage_settings()
+	timer.start()
 	timer.timeout.connect(on_timer_timeout)
 	
 	if not difficulty_manager == null:
@@ -42,17 +45,16 @@ func get_spawn_position() -> Vector2:
 	return spawn_position
 	
 	
-func pick_enemy_to_spawn():
-	var total_weight: int = current_stage.get_total_weight()
-	var random_weight: int = randi_range(0, total_weight)
-	
-	var weight := 0
+func update_enemies_table():
+	current_enemies_table.clear()
 	
 	for enemy_spawn_config in current_stage.enemy_spawn_configs:
-		weight += enemy_spawn_config.weight
-		
-		if weight >= random_weight:
-			return enemy_spawn_config
+		current_enemies_table.add_item(enemy_spawn_config, enemy_spawn_config.weight) 
+
+
+func update_difficulty_stage_settings():
+	timer.wait_time = current_stage.time_to_spawn
+	update_enemies_table()
 
 
 func update_difficulty_stage(current_difficulty: int):
@@ -66,7 +68,7 @@ func update_difficulty_stage(current_difficulty: int):
 		return
 	
 	current_stage_index = current_stage_index + 1
-	timer.wait_time = current_stage.time_to_spawn
+	update_difficulty_stage_settings()
 
 
 func on_timer_timeout():
@@ -75,7 +77,7 @@ func on_timer_timeout():
 	if player == null:
 		return
 		
-	var enemy_spawn_config: EnemySpawnConfig = pick_enemy_to_spawn()
+	var enemy_spawn_config: EnemySpawnConfig = current_enemies_table.pick_random_item()
 	
 	var enemy = enemy_spawn_config.enemy_scene.instantiate()
 	enemy.global_position = get_spawn_position()

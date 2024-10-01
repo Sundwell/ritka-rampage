@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://opwxpmnb8voa"]
+[gd_scene load_steps=23 format=3 uid="uid://opwxpmnb8voa"]
 
 [ext_resource type="Texture2D" uid="uid://yr54tlu3thkq" path="res://scenes/game_object/player/ritka.png" id="1_aes1j"]
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_snu1q"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="4_e1yw6"]
 [ext_resource type="Texture2D" uid="uid://cwk4lvfawo8db" path="res://assets/pistol.png" id="5_43h4y"]
 [ext_resource type="PackedScene" uid="uid://cf5byk2x3b7ae" path="res://scenes/components/health_bar_component.tscn" id="8_cdija"]
+[ext_resource type="PackedScene" uid="uid://ck6vo5d385q3c" path="res://scenes/game_object/pistol_bullet/pistol_bullet.tscn" id="8_cs8ha"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tjwd4"]
 radius = 32.0
@@ -147,6 +148,7 @@ shape = SubResource("CircleShape2D_aiujm")
 unique_name_in_owner = true
 position = Vector2(0, -5)
 script = ExtResource("4_e1yw6")
+bullet_scene = ExtResource("8_cs8ha")
 
 [node name="Marker2D" type="Marker2D" parent="Weapon"]
 

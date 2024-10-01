@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var reload_timer = $ReloadTimer
 
-var bullet_scene := preload("res://scenes/game_object/pistol_bullet/pistol_bullet.tscn")
+@export var bullet_scene: PackedScene
 var can_shoot := true
 var base_reload_time: float
 
@@ -42,7 +42,7 @@ func shoot():
 
 
 func on_mutation_upgrade_selected(upgrade: MutationUpgrade, current_upgrades: Dictionary):
-	if not upgrade.id == 'shoot_rate':
+	if not upgrade.id == MutationUpgrade.Type.SHOOT_RATE:
 		return
 		
 	var reduce_percent = current_upgrades[upgrade.id]["quantity"] * 0.1
