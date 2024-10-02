@@ -17,6 +17,8 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 [autoload]
 
 GameEvents="*res://scenes/autoload/game_events.tscn"
+Constants="*res://scripts/constants.gd"
+Utils="*res://scripts/utils.gd"
 
 [debug]
 

@@ -13,7 +13,7 @@ func _ready():
 	
 	
 func tween_collect(percent: float, start_position: Vector2):
-	var player = get_tree().get_first_node_in_group('player')
+	var player = Utils.get_player()
 	
 	if player == null:
 		return
@@ -22,7 +22,7 @@ func tween_collect(percent: float, start_position: Vector2):
 	
 	
 func throw_particles():
-	var foreground_layer = get_tree().get_first_node_in_group('foreground_layer')
+	var foreground_layer = get_tree().get_first_node_in_group(Constants.GROUPS.FOREGROUND_LAYER)
 	
 	var particles_spawn_position = global_position
 	var particles = collected_particles.instantiate() as CPUParticles2D

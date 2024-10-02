@@ -9,7 +9,7 @@ var velocity: Vector2 = Vector2.ZERO
 
 
 func accelerate_to_player():
-	var player = get_tree().get_first_node_in_group('player') as Node2D
+	var player = Utils.get_player()
 	if player == null:
 		return
 		

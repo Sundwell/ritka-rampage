@@ -23,7 +23,7 @@ func _ready():
 		
 
 func get_spawn_position() -> Vector2:
-	var player = get_tree().get_first_node_in_group('player') as Node2D
+	var player = Utils.get_player()
 	
 	if player == null:
 		return Vector2.ZERO
@@ -72,7 +72,7 @@ func update_difficulty_stage(current_difficulty: int):
 
 
 func on_timer_timeout():
-	var player = get_tree().get_first_node_in_group('player') as Node2D
+	var player = Utils.get_player()
 	
 	if player == null:
 		return
@@ -82,7 +82,7 @@ func on_timer_timeout():
 	var enemy = enemy_spawn_config.enemy_scene.instantiate()
 	enemy.global_position = get_spawn_position()
 	
-	var entities_layer = get_tree().get_first_node_in_group('entities_layer')
+	var entities_layer = get_tree().get_first_node_in_group(Constants.GROUPS.ENTITIES_LAYER)
 	entities_layer.add_child(enemy)
 	
 

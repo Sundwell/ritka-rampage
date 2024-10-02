@@ -13,7 +13,7 @@ func _physics_process(delta):
 	
 	
 func acquire_target():
-	var player = get_tree().get_first_node_in_group('player') as Node2D
+	var player = Utils.get_player()
 	
 	if player != null:
 		target_position = player.global_position

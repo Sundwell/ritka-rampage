@@ -16,7 +16,7 @@ func on_damaged(amount: float):
 	tween.tween_property(sprite, 'modulate', Color('#ff3636'), 0.05)
 	tween.tween_property(sprite, 'modulate', initial_modulate, 0.05)
 	
-	var foreground_layer = get_tree().get_first_node_in_group('foreground_layer')
+	var foreground_layer = get_tree().get_first_node_in_group(Constants.GROUPS.FOREGROUND_LAYER)
 	
 	var particles_spawn_position = global_position
 	var damage_particles = damage_particles_scene.instantiate() as Node2D

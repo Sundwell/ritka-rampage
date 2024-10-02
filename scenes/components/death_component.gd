@@ -13,7 +13,7 @@ func _ready():
 
 
 func on_died():
-	var entities_layer = get_tree().get_first_node_in_group('entities_layer')
+	var entities_layer = get_tree().get_first_node_in_group(Constants.GROUPS.ENTITIES_LAYER)
 	var spawn_position = owner.global_position
 	
 	get_parent().remove_child(self)

@@ -115,7 +115,7 @@ func start_bull_rush():
 	is_bull_rush_ready = false
 	bull_rush_cooldown_timer.start()
 	
-	var player = get_tree().get_first_node_in_group('player') as Node2D
+	var player = Utils.get_player()
 	
 	if player == null:
 		state_machine.change_state(state_move)
@@ -134,7 +134,7 @@ func can_start_bull_rush():
 	
 	
 func get_distance_to_player():
-	var player = get_tree().get_first_node_in_group('player') as Node2D
+	var player = Utils.get_player()
 		
 	if player == null:
 		return

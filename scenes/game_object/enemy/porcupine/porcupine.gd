@@ -77,7 +77,7 @@ func state_die():
 
 
 func shoot():
-	var player = get_tree().get_first_node_in_group('player') as Node2D
+	var player = Utils.get_player()
 	
 	if player == null:
 		return
@@ -100,7 +100,7 @@ func shoot():
 	
 	
 func update_player_proximity():
-	var player = get_tree().get_first_node_in_group('player') as Node2D
+	var player = Utils.get_player()
 	
 	if player == null:
 		return
@@ -126,7 +126,7 @@ func move():
 		velocity_component.accelerate_to_player()
 	else:
 		if should_run_from_player:
-			var player = get_tree().get_first_node_in_group('player') as Node2D
+			var player = Utils.get_player()
 			velocity_component.max_speed = RUN_SPEED
 			if can_change_direction:
 				change_direction(-global_position.direction_to(player.global_position))
@@ -152,7 +152,7 @@ func flip(is_facing_left: bool):
 		
 		
 func flip_back_to_player():
-	var player = get_tree().get_first_node_in_group('player') as Node2D
+	var player = Utils.get_player()
 	
 	if player == null:
 		return
