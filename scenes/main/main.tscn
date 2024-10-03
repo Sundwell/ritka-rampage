@@ -18,11 +18,11 @@
 [ext_resource type="PackedScene" uid="uid://bmkeplc4w76hm" path="res://scenes/manager/upgrade_manager.tscn" id="9_0v1sx"]
 [ext_resource type="PackedScene" uid="uid://p4ofdanvpv5m" path="res://scenes/game_object/enemy/porcupine/porcupine.tscn" id="10_gmbgn"]
 [ext_resource type="PackedScene" uid="uid://b4tmea22onhpt" path="res://scenes/ui/upgrade_screen.tscn" id="10_o8f1v"]
-[ext_resource type="Script" path="res://resources/upgrades/mutation_upgrade/mutation_upgrade.gd" id="11_21hr5"]
+[ext_resource type="Script" path="res://resources/upgrades/mutation_upgrades/mutation_upgrade.gd" id="11_21hr5"]
 [ext_resource type="PackedScene" uid="uid://dwmlg050i08ac" path="res://scenes/game_object/enemy/stubborn_cow/stubborn_cow.tscn" id="11_kh17f"]
-[ext_resource type="Resource" uid="uid://deyl22do2he2d" path="res://resources/upgrades/mutation_upgrade/shoot_rate.tres" id="12_ubkgj"]
-[ext_resource type="Resource" uid="uid://be7i0juvpifvk" path="res://resources/upgrades/mutation_upgrade/run_while_shooting.tres" id="13_xw6b4"]
-[ext_resource type="Resource" uid="uid://d4hgr8i178vm" path="res://resources/upgrades/mutation_upgrade/damage_up.tres" id="18_b5mj2"]
+[ext_resource type="Resource" uid="uid://deyl22do2he2d" path="res://resources/upgrades/mutation_upgrades/shoot_rate.tres" id="12_ubkgj"]
+[ext_resource type="Resource" uid="uid://be7i0juvpifvk" path="res://resources/upgrades/mutation_upgrades/run_while_shooting.tres" id="13_xw6b4"]
+[ext_resource type="Resource" uid="uid://d4hgr8i178vm" path="res://resources/upgrades/mutation_upgrades/damage_up.tres" id="18_b5mj2"]
 
 [sub_resource type="Resource" id="Resource_si3j4"]
 script = ExtResource("8_rp34t")
