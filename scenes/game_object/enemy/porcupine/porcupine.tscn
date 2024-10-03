@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c2cwmxwp6x7h6" path="res://scenes/vfx/run_particles.tscn" id="8_2kp64"]
 [ext_resource type="PackedScene" uid="uid://ckcj3wwxivfbr" path="res://scenes/components/death_component.tscn" id="8_83am0"]
 [ext_resource type="Texture2D" uid="uid://baq8lrpqpgsdt" path="res://scenes/game_object/enemy/porcupine/soul.png" id="9_6dpom"]
-[ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/components/ground_shadow_component.tscn" id="10_mh33h"]
+[ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/components/ground_shadow/ground_shadow_component.tscn" id="10_mh33h"]
 
 [sub_resource type="Animation" id="Animation_1gjl7"]
 length = 0.001

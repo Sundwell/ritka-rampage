@@ -3,7 +3,8 @@ extends Resource
 
 enum Type {
 	RUN_WHILE_SHOOTING,
-	SHOOT_RATE
+	SHOOT_RATE,
+	DAMAGE_UP,
 }
 
 @export var id: Type

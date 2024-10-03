@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgti0dc327rmr"]
+
+[ext_resource type="Script" path="res://scenes/weapons/weapon_controller/weapon_controller.gd" id="1_68whk"]
+[ext_resource type="PackedScene" uid="uid://vpugf0fbno2e" path="res://scenes/weapons/pistol/pistol.tscn" id="2_apong"]
+
+[node name="WeaponController" type="Node2D"]
+script = ExtResource("1_68whk")
+weapon_scene = ExtResource("2_apong")
+
+[node name="WeaponPosition" type="Node2D" parent="."]
+position = Vector2(10, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]

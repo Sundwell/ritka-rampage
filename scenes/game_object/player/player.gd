@@ -10,7 +10,7 @@ var move_speed := BASE_MOVE_SPEED
 var state_machine := CallableStateMachine.new()
 
 @onready var health_component = $HealthComponent
-@onready var weapon = $Weapon
+@onready var weapon_controller = $WeaponController
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
@@ -25,12 +25,13 @@ func _ready():
 func _physics_process(delta: float):
 	state_machine.update()
 	move_and_slide()
+	shoot()
 		
 		
 func shoot():
 	if Input.is_action_pressed('fire'):
 		is_shooting = true
-		weapon.shoot()
+		weapon_controller.shoot()
 	else:
 		is_shooting = false
 		
@@ -54,11 +55,12 @@ func move():
 	var target_velocity = direction.normalized() * speed
 	velocity = velocity.lerp(target_velocity, 1.0 - exp(-ACCELERATION_SMOOTHING * get_physics_process_delta_time()))
 		
-		
+
+#region States
 func enter_state_idle():
 	sprite.play('idle')
 	velocity = Vector2.ZERO
-	weapon.visible = true
+	weapon_controller.visible = true
 		
 		
 func state_idle():
@@ -78,16 +80,17 @@ func state_moving():
 		return
 		
 	if mutations.has(MutationUpgrade.Type.RUN_WHILE_SHOOTING):
-		weapon.visible = true
+		weapon_controller.visible = true
 		sprite.play("run")
 	else:
 		if is_shooting:
-			weapon.visible = true
+			weapon_controller.visible = true
 			sprite.play("walk")
 		else:
-			weapon.visible = false
+			weapon_controller.visible = false
 			sprite.play("run")
-		
+#endregion
+
 		
 func on_mutation_upgrade_selected(upgrade: MutationUpgrade, current_upgrades: Dictionary):
 	if upgrade.id == MutationUpgrade.Type.RUN_WHILE_SHOOTING:

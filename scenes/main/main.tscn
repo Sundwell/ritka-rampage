@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=32 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dwmlg050i08ac" path="res://scenes/game_object/enemy/stubborn_cow/stubborn_cow.tscn" id="11_kh17f"]
 [ext_resource type="Resource" uid="uid://deyl22do2he2d" path="res://resources/upgrades/mutation_upgrade/shoot_rate.tres" id="12_ubkgj"]
 [ext_resource type="Resource" uid="uid://be7i0juvpifvk" path="res://resources/upgrades/mutation_upgrade/run_while_shooting.tres" id="13_xw6b4"]
+[ext_resource type="Resource" uid="uid://d4hgr8i178vm" path="res://resources/upgrades/mutation_upgrade/damage_up.tres" id="18_b5mj2"]
 
 [sub_resource type="Resource" id="Resource_si3j4"]
 script = ExtResource("8_rp34t")
@@ -94,7 +95,7 @@ difficulty_manager = NodePath("../DifficultyManager")
 [node name="ExperienceManager" parent="." instance=ExtResource("6_8mjvm")]
 
 [node name="UpgradeManager" parent="." node_paths=PackedStringArray("experience_manager") instance=ExtResource("9_0v1sx")]
-upgrade_pool = Array[ExtResource("11_21hr5")]([ExtResource("12_ubkgj"), ExtResource("13_xw6b4")])
+upgrade_pool = Array[ExtResource("11_21hr5")]([ExtResource("12_ubkgj"), ExtResource("13_xw6b4"), ExtResource("18_b5mj2")])
 experience_manager = NodePath("../ExperienceManager")
 upgrade_screen_scene = ExtResource("10_o8f1v")
 
@@ -123,7 +124,7 @@ tile_set = ExtResource("6_a6vb0")
 
 [node name="Player" parent="Entities" instance=ExtResource("7_nxmj7")]
 unique_name_in_owner = true
-position = Vector2(-51, 1)
+position = Vector2(-57, -17)
 
 [node name="Bushes" type="Node2D" parent="Entities"]
 y_sort_enabled = true

@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://ck6vo5d385q3c"]
 
-[ext_resource type="Script" path="res://scenes/game_object/pistol_bullet/pistol_bullet.gd" id="1_haia6"]
-[ext_resource type="Texture2D" uid="uid://b88iyoeea0kbc" path="res://scenes/game_object/pistol_bullet/bullet.png" id="2_6pqw6"]
+[ext_resource type="Script" path="res://scenes/weapons/pistol/pistol_bullet/pistol_bullet.gd" id="1_haia6"]
+[ext_resource type="Texture2D" uid="uid://b88iyoeea0kbc" path="res://scenes/weapons/pistol/pistol_bullet/bullet.png" id="2_6pqw6"]
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="2_i4pkq"]
-[ext_resource type="Script" path="res://scenes/game_object/pistol_bullet/bullet_trail.gd" id="3_38db2"]
+[ext_resource type="Script" path="res://scenes/weapons/pistol/pistol_bullet/bullet_trail.gd" id="3_38db2"]
 [ext_resource type="PackedScene" uid="uid://n78ef23nvddy" path="res://scenes/components/projectile_hurtbox_component.tscn" id="3_lbxri"]
 [ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="4_p18sw"]
 

@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ckcj3wwxivfbr" path="res://scenes/components/death_component.tscn" id="7_ycsh0"]
 [ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="8_5shgc"]
 [ext_resource type="Texture2D" uid="uid://dw6tqbe2ry1kk" path="res://scenes/game_object/enemy/bunny/soul.png" id="8_ifdj7"]
-[ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/components/ground_shadow_component.tscn" id="9_dgoci"]
+[ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/components/ground_shadow/ground_shadow_component.tscn" id="9_dgoci"]
 [ext_resource type="PackedScene" uid="uid://bgs3jisn4rlps" path="res://scenes/components/floating_text/health_changed_text_spawner_component.tscn" id="9_fuwje"]
 
 [sub_resource type="Animation" id="Animation_ehbuc"]
