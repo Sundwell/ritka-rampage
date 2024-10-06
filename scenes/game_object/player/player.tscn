@@ -28,13 +28,13 @@ region = Rect2(32, 0, 16, 16)
 atlas = ExtResource("1_aes1j")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_weogo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3x3as"]
 atlas = ExtResource("1_aes1j")
-region = Rect2(0, 32, 16, 16)
+region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r7e42"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4xka"]
 atlas = ExtResource("1_aes1j")
-region = Rect2(16, 32, 16, 16)
+region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eun0i"]
 atlas = ExtResource("1_aes1j")
@@ -65,10 +65,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_weogo")
+"texture": SubResource("AtlasTexture_3x3as")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r7e42")
+"texture": SubResource("AtlasTexture_d4xka")
 }],
 "loop": true,
 "name": &"run",
@@ -127,7 +127,6 @@ position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_vjnt0")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.526355
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_477au")]
 position = Vector2(0, -5)

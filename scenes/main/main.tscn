@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=33 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
@@ -34,7 +34,7 @@ spawn_count = 1
 script = ExtResource("7_0n4ps")
 enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_si3j4")])
 difficulty_level = 0
-time_to_spawn = 0.2
+time_to_spawn = 1.0
 
 [sub_resource type="Resource" id="Resource_sd787"]
 script = ExtResource("8_rp34t")
@@ -66,11 +66,17 @@ enemy_scene = ExtResource("11_kh17f")
 weight = 1
 spawn_count = 1
 
+[sub_resource type="Resource" id="Resource_f3iik"]
+script = ExtResource("8_rp34t")
+enemy_scene = ExtResource("8_0au5e")
+weight = 5
+spawn_count = 1
+
 [sub_resource type="Resource" id="Resource_y4vhx"]
 script = ExtResource("7_0n4ps")
-enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_k0tyg"), SubResource("Resource_v2cr1")])
+enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_k0tyg"), SubResource("Resource_v2cr1"), SubResource("Resource_f3iik")])
 difficulty_level = 12
-time_to_spawn = 3.0
+time_to_spawn = 1.5
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_fqumt")
@@ -128,6 +134,8 @@ position = Vector2(-57, -17)
 
 [node name="Porcupine" parent="Entities" instance=ExtResource("10_gmbgn")]
 position = Vector2(-148, -129)
+
+[node name="StubbornCow" parent="Entities" instance=ExtResource("11_kh17f")]
 
 [node name="Bushes" type="Node2D" parent="Entities"]
 y_sort_enabled = true
