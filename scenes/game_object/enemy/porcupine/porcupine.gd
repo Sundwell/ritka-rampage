@@ -121,7 +121,7 @@ func change_direction(new_direction: Vector2):
 func move():
 	actions_animation_player.play('move')
 		
-	if not is_near_player:
+	if not is_near_player and can_change_direction:
 		velocity_component.max_speed = MOVE_SPEED
 		velocity_component.accelerate_to_player()
 	else:

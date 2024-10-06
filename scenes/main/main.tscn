@@ -126,6 +126,9 @@ tile_set = ExtResource("6_a6vb0")
 unique_name_in_owner = true
 position = Vector2(-57, -17)
 
+[node name="Porcupine" parent="Entities" instance=ExtResource("10_gmbgn")]
+position = Vector2(-148, -129)
+
 [node name="Bushes" type="Node2D" parent="Entities"]
 y_sort_enabled = true
 
