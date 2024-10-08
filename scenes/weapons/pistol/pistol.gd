@@ -8,6 +8,7 @@ var damage := 2.0
 
 @onready var shoot_position = $ShootPosition
 @onready var reload_timer: Timer = $ReloadTimer
+@onready var shoot_sound: AudioStreamPlayer = $SFX/Shoot
 
 
 func _ready():
@@ -30,8 +31,9 @@ func shoot():
 	bullet.rotation = global_rotation
 	
 	var entities = get_tree().get_first_node_in_group(Constants.GROUPS.ENTITIES_LAYER)
-	
 	entities.add_child(bullet)
+	
+	shoot_sound.play()
 
 
 func on_reload_timer_timeout():

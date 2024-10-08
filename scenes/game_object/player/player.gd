@@ -11,7 +11,9 @@ var state_machine := CallableStateMachine.new()
 
 @onready var health_component = $HealthComponent
 @onready var weapon_controller = $WeaponController
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var step_sound: AudioStreamPlayer = $SFX/Step
+@onready var animation_player = $AnimationPlayer
+@onready var visuals = $Visuals
 
 
 func _ready():
@@ -38,9 +40,9 @@ func shoot():
 		
 func flip():
 	if velocity.x < 0:
-		sprite.flip_h = true
+		visuals.scale.x = -1
 	elif velocity.x > 0:
-		sprite.flip_h = false
+		visuals.scale.x = 1
 		
 		
 func get_movement_direction() -> Vector2:
@@ -54,11 +56,14 @@ func move():
 	
 	var target_velocity = direction.normalized() * speed
 	velocity = velocity.lerp(target_velocity, 1.0 - exp(-ACCELERATION_SMOOTHING * get_physics_process_delta_time()))
+	
+	#step_sound.playing = true
 		
 
 #region States
 func enter_state_idle():
-	sprite.play('idle')
+	animation_player.play("idle")
+	step_sound.stop()
 	velocity = Vector2.ZERO
 	weapon_controller.visible = true
 		
@@ -81,14 +86,14 @@ func state_moving():
 		
 	if mutations.has(MutationUpgrade.Type.RUN_WHILE_SHOOTING):
 		weapon_controller.visible = true
-		sprite.play("run")
+		animation_player.play("run")
 	else:
 		if is_shooting:
 			weapon_controller.visible = true
-			sprite.play("walk")
+			animation_player.play("walk")
 		else:
 			weapon_controller.visible = false
-			sprite.play("run")
+			animation_player.play("run")
 #endregion
 
 		
