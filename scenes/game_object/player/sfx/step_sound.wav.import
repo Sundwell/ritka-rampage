@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cjujexkrkwpfb"
-path="res://.godot/imported/step.wav-e35dc3da60f0364be5c3deb04e7cfaba.sample"
+path="res://.godot/imported/step_sound.wav-3388e20fad1fa3d9038ffb1b4712a0a6.sample"
 
 [deps]
 
-source_file="res://scenes/game_object/player/sfx/step.wav"
-dest_files=["res://.godot/imported/step.wav-e35dc3da60f0364be5c3deb04e7cfaba.sample"]
+source_file="res://scenes/game_object/player/sfx/step_sound.wav"
+dest_files=["res://.godot/imported/step_sound.wav-3388e20fad1fa3d9038ffb1b4712a0a6.sample"]
 
 [params]
 

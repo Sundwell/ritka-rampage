@@ -11,7 +11,6 @@ var state_machine := CallableStateMachine.new()
 
 @onready var health_component = $HealthComponent
 @onready var weapon_controller = $WeaponController
-@onready var step_sound: AudioStreamPlayer = $SFX/Step
 @onready var animation_player = $AnimationPlayer
 @onready var visuals = $Visuals
 
@@ -63,7 +62,6 @@ func move():
 #region States
 func enter_state_idle():
 	animation_player.play("idle")
-	step_sound.stop()
 	velocity = Vector2.ZERO
 	weapon_controller.visible = true
 		

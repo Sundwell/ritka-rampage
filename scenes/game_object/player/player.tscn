@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://opwxpmnb8voa"]
+[gd_scene load_steps=19 format=3 uid="uid://opwxpmnb8voa"]
 
 [ext_resource type="Texture2D" uid="uid://yr54tlu3thkq" path="res://scenes/game_object/player/ritka.png" id="1_aes1j"]
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_snu1q"]
@@ -7,8 +7,90 @@
 [ext_resource type="PackedScene" uid="uid://cwatwkjukjlvd" path="res://scenes/components/hurtbox_component.tscn" id="3_477au"]
 [ext_resource type="PackedScene" uid="uid://bgs3jisn4rlps" path="res://scenes/components/floating_text/health_changed_text_spawner_component.tscn" id="3_utin2"]
 [ext_resource type="PackedScene" uid="uid://cgti0dc327rmr" path="res://scenes/weapons/weapon_controller/weapon_controller.tscn" id="4_erw3t"]
-[ext_resource type="AudioStream" uid="uid://cjujexkrkwpfb" path="res://scenes/game_object/player/sfx/step.wav" id="5_7v2s2"]
+[ext_resource type="AudioStream" uid="uid://cjujexkrkwpfb" path="res://scenes/game_object/player/sfx/step_sound.wav" id="5_7v2s2"]
+[ext_resource type="AudioStream" uid="uid://cpm34au6tecby" path="res://scenes/game_object/player/sfx/run_sound.wav" id="6_xrv24"]
 [ext_resource type="PackedScene" uid="uid://cf5byk2x3b7ae" path="res://scenes/components/health_bar_component.tscn" id="8_cdija"]
+
+[sub_resource type="Animation" id="Animation_xh0by"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SFX/StepSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX/RunSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ua7qg"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SFX/RunSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX/StepSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_h1ibp"]
 resource_name = "run"
@@ -30,7 +112,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SFX/Step:playing")
+tracks/1/path = NodePath("SFX/RunSound:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -38,51 +120,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_ua7qg"]
-resource_name = "idle"
-length = 0.8
-loop_mode = 1
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_xh0by"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SFX/Step:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_p8w2y"]
@@ -105,7 +142,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SFX/Step:playing")
+tracks/1/path = NodePath("SFX/StepSound:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -148,8 +185,12 @@ position = Vector2(0, -5)
 
 [node name="SFX" type="Node" parent="."]
 
-[node name="Step" type="AudioStreamPlayer" parent="SFX"]
+[node name="StepSound" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("5_7v2s2")
+volume_db = -24.0
+
+[node name="RunSound" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_xrv24")
 volume_db = -24.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
