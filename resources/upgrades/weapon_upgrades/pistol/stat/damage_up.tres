@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PistolUpgrade" load_steps=2 format=3 uid="uid://cwr74oatpjrcx"]
+
+[ext_resource type="Script" path="res://resources/upgrades/weapon_upgrades/pistol/pistol_upgrade.gd" id="1_p4e4h"]
+
+[resource]
+script = ExtResource("1_p4e4h")
+id = 1
+title = "Damage Up"
+weapon = 0
+max_quantity = 5
+type = 0
+description = "+1 damage"

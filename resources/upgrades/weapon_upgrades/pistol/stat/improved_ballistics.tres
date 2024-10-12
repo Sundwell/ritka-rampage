@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PistolUpgrade" load_steps=2 format=3 uid="uid://djamg450tr134"]
+
+[ext_resource type="Script" path="res://resources/upgrades/weapon_upgrades/pistol/pistol_upgrade.gd" id="1_hctyc"]
+
+[resource]
+script = ExtResource("1_hctyc")
+id = 2
+title = "Improved Ballistics"
+weapon = 0
+max_quantity = 5
+type = 0
+description = "+10% speed and distance travelled for bullet"
