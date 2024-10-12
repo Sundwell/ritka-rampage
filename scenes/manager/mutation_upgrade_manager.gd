@@ -30,7 +30,7 @@ func pick_upgrades() -> Array[MutationUpgrade]:
 	var available_upgrades: Array[MutationUpgrade] = upgrade_pool.duplicate()
 	var selected_upgrades: Array[MutationUpgrade] = []
 	
-	for i in 2:
+	for i in 3:
 		if available_upgrades.size() == 0:
 			break
 			

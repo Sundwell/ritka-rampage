@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/game_object/enemy/bunny/bunny.tscn" id="8_0au5e"]
 [ext_resource type="PackedScene" uid="uid://dn4ekvcuqpp12" path="res://scenes/manager/difficulty_manager.tscn" id="8_fj7m4"]
 [ext_resource type="Script" path="res://resources/difficulty/enemy_spawn_config.gd" id="8_rp34t"]
-[ext_resource type="PackedScene" uid="uid://bmkeplc4w76hm" path="res://scenes/manager/upgrade_manager.tscn" id="9_0v1sx"]
+[ext_resource type="PackedScene" uid="uid://bmkeplc4w76hm" path="res://scenes/manager/mutation_upgrade_manager.tscn" id="9_0v1sx"]
 [ext_resource type="PackedScene" uid="uid://p4ofdanvpv5m" path="res://scenes/game_object/enemy/porcupine/porcupine.tscn" id="10_gmbgn"]
 [ext_resource type="PackedScene" uid="uid://b4tmea22onhpt" path="res://scenes/ui/upgrade_screen.tscn" id="10_o8f1v"]
 [ext_resource type="Script" path="res://resources/upgrades/mutation_upgrades/mutation_upgrade.gd" id="11_21hr5"]
@@ -100,7 +100,7 @@ difficulty_manager = NodePath("../DifficultyManager")
 
 [node name="ExperienceManager" parent="." instance=ExtResource("6_8mjvm")]
 
-[node name="UpgradeManager" parent="." node_paths=PackedStringArray("experience_manager") instance=ExtResource("9_0v1sx")]
+[node name="MutationUpgradeManager" parent="." node_paths=PackedStringArray("experience_manager") instance=ExtResource("9_0v1sx")]
 upgrade_pool = Array[ExtResource("11_21hr5")]([ExtResource("12_ubkgj"), ExtResource("13_xw6b4"), ExtResource("18_b5mj2")])
 experience_manager = NodePath("../ExperienceManager")
 upgrade_screen_scene = ExtResource("10_o8f1v")
