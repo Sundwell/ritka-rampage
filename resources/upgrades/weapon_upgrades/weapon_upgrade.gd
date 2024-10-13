@@ -1,10 +1,6 @@
 class_name WeaponUpgrade
 extends Resource
 
-enum Weapon {
-	PISTOL
-}
-
 enum Type {
 	STAT,
 	MECHANIC,
@@ -18,7 +14,7 @@ const WEIGHT_BY_TYPE = {
 }
 
 @export var title: String
-@export var weapon: Weapon
+@export var weapon: Constants.Weapon
 @export var max_quantity: int
 @export var type: Type
 @export_multiline var description: String
