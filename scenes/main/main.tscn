@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=34 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
@@ -23,6 +23,7 @@
 [ext_resource type="Resource" uid="uid://deyl22do2he2d" path="res://resources/upgrades/mutation_upgrades/shoot_rate.tres" id="12_ubkgj"]
 [ext_resource type="Resource" uid="uid://be7i0juvpifvk" path="res://resources/upgrades/mutation_upgrades/run_while_shooting.tres" id="13_xw6b4"]
 [ext_resource type="Resource" uid="uid://d4hgr8i178vm" path="res://resources/upgrades/mutation_upgrades/damage_up.tres" id="18_b5mj2"]
+[ext_resource type="PackedScene" uid="uid://wxjex0i2dwww" path="res://scenes/manager/anvil_manager.tscn" id="20_f3wcp"]
 
 [sub_resource type="Resource" id="Resource_si3j4"]
 script = ExtResource("8_rp34t")
@@ -83,27 +84,33 @@ script = ExtResource("1_fqumt")
 end_screen_scene = ExtResource("2_jn3hq")
 
 [node name="ArenaTimeUI" parent="." node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("2_7sja6")]
-arena_time_manager = NodePath("../ArenaTimeManager")
+arena_time_manager = NodePath("../Managers/ArenaTimeManager")
 
 [node name="ExperienceBar" parent="." node_paths=PackedStringArray("experience_manager") instance=ExtResource("3_6rnxb")]
-experience_manager = NodePath("../ExperienceManager")
+experience_manager = NodePath("../Managers/ExperienceManager")
 
-[node name="ArenaTimeManager" parent="." instance=ExtResource("3_dwsl6")]
+[node name="Managers" type="Node" parent="."]
+
+[node name="ArenaTimeManager" parent="Managers" instance=ExtResource("3_dwsl6")]
 end_screen_scene = ExtResource("2_jn3hq")
 arena_duration = 600.0
 
-[node name="EnemyManager" parent="." node_paths=PackedStringArray("difficulty_manager") instance=ExtResource("2_y0yni")]
+[node name="EnemyManager" parent="Managers" node_paths=PackedStringArray("difficulty_manager") instance=ExtResource("2_y0yni")]
 difficulty_stages = Array[ExtResource("7_0n4ps")]([SubResource("Resource_olwkn"), SubResource("Resource_achuj"), SubResource("Resource_y4vhx")])
 difficulty_manager = NodePath("../DifficultyManager")
 
-[node name="DifficultyManager" parent="." instance=ExtResource("8_fj7m4")]
+[node name="DifficultyManager" parent="Managers" instance=ExtResource("8_fj7m4")]
 
-[node name="ExperienceManager" parent="." instance=ExtResource("6_8mjvm")]
+[node name="ExperienceManager" parent="Managers" instance=ExtResource("6_8mjvm")]
 
-[node name="MutationUpgradeManager" parent="." node_paths=PackedStringArray("experience_manager") instance=ExtResource("9_0v1sx")]
+[node name="MutationUpgradeManager" parent="Managers" node_paths=PackedStringArray("experience_manager") instance=ExtResource("9_0v1sx")]
 upgrade_pool = Array[ExtResource("11_21hr5")]([ExtResource("12_ubkgj"), ExtResource("13_xw6b4"), ExtResource("18_b5mj2")])
 experience_manager = NodePath("../ExperienceManager")
 upgrade_screen_scene = ExtResource("10_o8f1v")
+
+[node name="AnvilManager" parent="Managers" instance=ExtResource("20_f3wcp")]
+first_spawn_time = 60.0
+spawn_time = 120.0
 
 [node name="GameCamera" parent="." instance=ExtResource("2_ipo2b")]
 
@@ -131,11 +138,6 @@ tile_set = ExtResource("6_a6vb0")
 [node name="Player" parent="Entities" instance=ExtResource("7_nxmj7")]
 unique_name_in_owner = true
 position = Vector2(-57, -17)
-
-[node name="Porcupine" parent="Entities" instance=ExtResource("10_gmbgn")]
-position = Vector2(-148, -129)
-
-[node name="StubbornCow" parent="Entities" instance=ExtResource("11_kh17f")]
 
 [node name="Bushes" type="Node2D" parent="Entities"]
 y_sort_enabled = true

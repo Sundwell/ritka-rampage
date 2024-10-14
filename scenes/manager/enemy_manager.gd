@@ -2,7 +2,7 @@ extends Node
 
 @export var difficulty_stages: Array[DifficultyStage] = []
 @export var difficulty_manager: DifficultyManager
-var spawn_radius = int(ProjectSettings.get_setting('display/window/size/viewport_width') / 1.8)
+
 var current_stage_index := 0
 var current_stage: DifficultyStage:
 	get:
@@ -32,7 +32,7 @@ func get_spawn_position() -> Vector2:
 	var random_direction := Vector2.RIGHT.rotated(randf_range(0, TAU))
 	
 	for i in 4:
-		spawn_position = player.global_position + (random_direction * spawn_radius)
+		spawn_position = player.global_position + (random_direction * Constants.PLAYER_VIEW_RADIUS)
 		
 		var query_params := PhysicsRayQueryParameters2D.create(player.global_position, spawn_position, 1)
 		var result: Dictionary = get_tree().root.world_2d.direct_space_state.intersect_ray(query_params)

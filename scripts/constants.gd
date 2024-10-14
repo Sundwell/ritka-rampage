@@ -10,3 +10,5 @@ const GROUPS = {
 enum Weapon {
 	PISTOL,
 }
+
+const PLAYER_VIEW_RADIUS := 180.0

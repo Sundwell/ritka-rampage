@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://wxjex0i2dwww"]
+
+[ext_resource type="Script" path="res://scenes/manager/anvil_manager.gd" id="1_v7ug4"]
+[ext_resource type="PackedScene" uid="uid://biyftkstxyn66" path="res://scenes/game_object/anvil/anvil.tscn" id="2_g352g"]
+
+[node name="AnvilManager" type="Node"]
+script = ExtResource("1_v7ug4")
+first_spawn_time = 5.0
+spawn_time = 15.0
+anvil_scene = ExtResource("2_g352g")
+
+[node name="Timer" type="Timer" parent="."]
