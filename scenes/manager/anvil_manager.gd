@@ -1,3 +1,4 @@
+class_name AnvilManager
 extends Node
 
 @export var first_spawn_time := 60.0

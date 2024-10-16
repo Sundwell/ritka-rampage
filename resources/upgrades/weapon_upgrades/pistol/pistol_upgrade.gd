@@ -11,3 +11,7 @@ enum Id {
 }
 
 @export var id: Id
+
+
+func get_id() -> int:
+	return id

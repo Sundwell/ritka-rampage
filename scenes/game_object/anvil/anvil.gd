@@ -6,4 +6,5 @@ func _ready() -> void:
 
 
 func on_body_entered(body: CharacterBody2D):
+	GameEvents.emit_anvil_collected()
 	queue_free()

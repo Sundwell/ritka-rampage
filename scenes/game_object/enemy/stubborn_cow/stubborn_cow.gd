@@ -84,6 +84,7 @@ func enter_state_die():
 	velocity = Vector2.ZERO
 	$HurtboxComponent.queue_free()
 	$HitboxComponent.queue_free()
+	$CollisionShape2D.queue_free()
 	actions_animation_player.play('die')
 
 

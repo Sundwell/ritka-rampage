@@ -52,7 +52,7 @@ func on_level_up(current_level: int):
 	if upgrades_to_show.size() == 0:
 		return
 	
-	var upgrade_screen = upgrade_screen_scene.instantiate() as UpgradeScreen
+	var upgrade_screen = upgrade_screen_scene.instantiate() as MutationUpgradeScreen
 	add_child(upgrade_screen)
 
 	upgrade_screen.set_mutation_upgrades(upgrades_to_show)

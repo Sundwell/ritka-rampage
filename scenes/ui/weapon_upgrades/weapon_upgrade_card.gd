@@ -1,4 +1,4 @@
-class_name UpgradeCard
+class_name WeaponUpgradeCard
 extends Panel
 
 signal selected
@@ -16,6 +16,6 @@ func on_gui_input(event: InputEvent):
 		selected.emit()
 	
 
-func set_mutation_upgrade(upgrade: MutationUpgrade):
+func set_weapon_upgrade(upgrade: WeaponUpgrade):
 	title_label.text = upgrade.title
 	description_label.text = upgrade.description

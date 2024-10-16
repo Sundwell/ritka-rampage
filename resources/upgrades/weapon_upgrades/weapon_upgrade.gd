@@ -22,3 +22,8 @@ const WEIGHT_BY_TYPE = {
 var weight:
 	get():
 		return WEIGHT_BY_TYPE[type]
+
+
+func get_id() -> int:
+	push_error("get_id() must be overriden in subclass")
+	return -1

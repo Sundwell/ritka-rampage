@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2a52b2apau0v"]
+
+[ext_resource type="Script" path="res://scenes/manager/upgrades/weapon_upgrade_manager.gd" id="1_vm7ky"]
+[ext_resource type="PackedScene" uid="uid://oe5r7n7ofof4" path="res://scenes/ui/weapon_upgrades/weapon_upgrade_screen.tscn" id="2_d6gew"]
+
+[node name="WeaponUpgradeManager" type="Node"]
+script = ExtResource("1_vm7ky")
+upgrade_screen_scene = ExtResource("2_d6gew")

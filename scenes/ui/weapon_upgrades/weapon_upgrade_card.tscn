@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://02wtk3gkbpmn"]
+[gd_scene load_steps=3 format=3 uid="uid://d07jabc63stmh"]
 
-[ext_resource type="Script" path="res://scenes/ui/upgrade_card.gd" id="1_cqhwk"]
+[ext_resource type="Script" path="res://scenes/ui/weapon_upgrades/weapon_upgrade_card.gd" id="1_4c2uk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_582wi"]
 bg_color = Color(0.210497, 0.141483, 0.228516, 1)
@@ -9,10 +9,10 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="UpgradeCard" type="Panel"]
+[node name="WeaponUpgradeCard" type="Panel"]
 custom_minimum_size = Vector2(100, 150)
 theme_override_styles/panel = SubResource("StyleBoxFlat_582wi")
-script = ExtResource("1_cqhwk")
+script = ExtResource("1_4c2uk")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
