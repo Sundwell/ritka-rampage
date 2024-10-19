@@ -82,20 +82,15 @@ func state_moving():
 		state_machine.change_state(state_idle)
 		return
 		
-	if mutations.has(MutationUpgrade.Type.RUN_WHILE_SHOOTING):
+	if is_shooting:
 		weapon_controller.visible = true
-		animation_player.play("run")
+		animation_player.play("walk")
 	else:
-		if is_shooting:
-			weapon_controller.visible = true
-			animation_player.play("walk")
-		else:
-			weapon_controller.visible = false
-			animation_player.play("run")
+		weapon_controller.visible = false
+		animation_player.play("run")
 #endregion
 
 		
 func on_mutation_upgrade_selected(upgrade: MutationUpgrade, current_upgrades: Dictionary):
-	if upgrade.id == MutationUpgrade.Type.RUN_WHILE_SHOOTING:
-		mutations[MutationUpgrade.Type.RUN_WHILE_SHOOTING] = true
-		move_speed = RUN_SPEED
+	if upgrade.id == MutationUpgrade.Type.FASTER_MOVEMENT:
+		move_speed = BASE_MOVE_SPEED + (0.1 * current_upgrades[MutationUpgrade.Type.FASTER_MOVEMENT].quantity)

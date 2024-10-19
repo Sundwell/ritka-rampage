@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MutationUpgrade" load_steps=2 format=3 uid="uid://caj3bfqyoyy37"]
+
+[ext_resource type="Script" path="res://resources/upgrades/mutation_upgrades/mutation_upgrade.gd" id="1_3irnh"]
+
+[resource]
+script = ExtResource("1_3irnh")
+id = 0
+title = "Faster movement"
+max_quantity = 5
+description = "Fasten movement by 10% per level"

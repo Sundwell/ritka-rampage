@@ -1,7 +1,7 @@
 class_name WeaponUpgradeScreen
 extends CanvasLayer
 
-signal upgrade_selected(upgrade: MutationUpgrade)
+signal upgrade_selected(upgrade: WeaponUpgrade)
 
 @onready var upgrade_card_container: HBoxContainer = %UpgradeCardContainer
 

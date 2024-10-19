@@ -2,9 +2,8 @@ class_name MutationUpgrade
 extends Resource
 
 enum Type {
-	RUN_WHILE_SHOOTING,
-	SHOOT_RATE,
-	DAMAGE_UP,
+	FASTER_MOVEMENT,
+	HEALTH_REGENERATION,
 }
 
 @export var id: Type
