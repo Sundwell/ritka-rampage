@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dg1tpx8up2b4u" path="res://scenes/game_object/enemy/porcupine/porcupine_quill.tscn" id="2_p0xme"]
 [ext_resource type="Script" path="res://scenes/components/hurtbox_component.gd" id="3_w4tlv"]
 [ext_resource type="PackedScene" uid="uid://cdmwpfegixcco" path="res://scenes/components/orange_drop_component.tscn" id="4_u0n8m"]
-[ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange_energy/orange_energy.tscn" id="5_f4dlv"]
+[ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange/orange.tscn" id="5_f4dlv"]
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="5_nl1d7"]
 [ext_resource type="PackedScene" uid="uid://ceo6q5oos0dqn" path="res://scenes/components/velocity_component.tscn" id="7_21tlf"]
 [ext_resource type="PackedScene" uid="uid://cqlm0b75mtg4k" path="res://scenes/components/blood_particles_spawner_component.tscn" id="7_k1kmt"]

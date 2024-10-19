@@ -7,13 +7,13 @@ const BASE_RELOAD_TIME = 0.3
 var can_shoot := true
 var reload_time := BASE_RELOAD_TIME
 var damage := 2.0
-var bullet_speed = ''
 var bullet_count := 1
 var upgrades := {}
 
 @onready var shoot_position = $ShootPosition
 @onready var reload_timer: Timer = $ReloadTimer
-@onready var shoot_sound: AudioStreamPlayer = $SFX/Shoot
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var shot_sound: AudioStreamPlayer = $SFX/ShotSound
 
 
 func _ready():
@@ -31,7 +31,12 @@ func shoot():
 	can_shoot = false
 	reload_timer.start()
 	
-	var entities = get_tree().get_first_node_in_group(Constants.GROUPS.ENTITIES_LAYER)
+	animation_player.stop()
+	animation_player.play("shoot")
+	shot_sound.pitch_scale = randf_range(1, 1.1)
+	shot_sound.play()
+	
+	var entities = Utils.get_entities_layer()
 	
 	for i in bullet_count:
 		var bullet = bullet_scene.instantiate() as PistolBullet
@@ -48,9 +53,6 @@ func shoot():
 		bullet.apply_upgrades(upgrades)
 		
 		entities.add_child(bullet)
-	
-	
-	shoot_sound.play()
 	
 	
 func apply_upgrade(upgrade: WeaponUpgrade):

@@ -1,8 +1,8 @@
 class_name AnvilManager
 extends Node
 
-@export var first_spawn_time := 60.0
-@export var spawn_time := 120.0
+@export var first_spawn_time := 30.0
+@export var spawn_time := 90.0
 @export var anvil_scene: PackedScene
 
 @onready var timer: Timer = $Timer

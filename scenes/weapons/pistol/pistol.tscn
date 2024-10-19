@@ -1,26 +1,86 @@
-[gd_scene load_steps=5 format=3 uid="uid://vpugf0fbno2e"]
+[gd_scene load_steps=9 format=3 uid="uid://vpugf0fbno2e"]
 
 [ext_resource type="Script" path="res://scenes/weapons/pistol/pistol.gd" id="1_8fjpu"]
 [ext_resource type="Texture2D" uid="uid://cwk4lvfawo8db" path="res://scenes/weapons/pistol/pistol.png" id="1_xbhbj"]
 [ext_resource type="PackedScene" uid="uid://ck6vo5d385q3c" path="res://scenes/weapons/pistol/pistol_bullet/pistol_bullet.tscn" id="2_wilu3"]
 [ext_resource type="AudioStream" uid="uid://bb8pliwdcj7wg" path="res://scenes/weapons/pistol/sfx/shoot.wav" id="4_it1t1"]
 
+[sub_resource type="Animation" id="Animation_hr3ij"]
+resource_name = "default"
+length = 0.1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.05, 0, 0.05, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_un0xr"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.05, 0, 0.05, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_3twrf"]
+resource_name = "shoot"
+length = 0.25
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.125, 0, 0.125, 0, 2, -0.1875, 0, 0.1875, 0, 3, -0.1875, 0, 0.1875, 0, 4, -0.1875, 0, 0.1875, 0),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f5i2q"]
+_data = {
+"RESET": SubResource("Animation_un0xr"),
+"default": SubResource("Animation_hr3ij"),
+"shoot": SubResource("Animation_3twrf")
+}
+
 [node name="Pistol" type="Node2D"]
 z_index = 1
 script = ExtResource("1_8fjpu")
 bullet_scene = ExtResource("2_wilu3")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f5i2q")
+}
+autoplay = "default"
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="ShotSound" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_it1t1")
+volume_db = -16.0
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_xbhbj")
+hframes = 4
+vframes = 2
 
 [node name="ShootPosition" type="Marker2D" parent="."]
 position = Vector2(5, -2)
 
 [node name="ReloadTimer" type="Timer" parent="."]
-
-[node name="SFX" type="Node" parent="."]
-
-[node name="Shoot" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("4_it1t1")
-volume_db = -16.0
