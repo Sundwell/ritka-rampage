@@ -5,8 +5,6 @@
 
 [node name="AnvilManager" type="Node"]
 script = ExtResource("1_v7ug4")
-first_spawn_time = 5.0
-spawn_time = 15.0
 anvil_scene = ExtResource("2_g352g")
 
 [node name="Timer" type="Timer" parent="."]

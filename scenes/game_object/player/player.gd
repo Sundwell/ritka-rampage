@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const RUN_SPEED := 125.0
-const BASE_MOVE_SPEED := 50.0
-const ACCELERATION_SMOOTHING := 15
+const RUN_SPEED = 125.0
+const BASE_MOVE_SPEED = 50.0
+const ACCELERATION_SMOOTHING = 15
 
 var is_shooting := false
 var mutations: Dictionary = {}
@@ -90,7 +90,15 @@ func state_moving():
 		animation_player.play("run")
 #endregion
 
-		
-func on_mutation_upgrade_selected(upgrade: MutationUpgrade, current_upgrades: Dictionary):
-	if upgrade.id == MutationUpgrade.Type.FASTER_MOVEMENT:
-		move_speed = BASE_MOVE_SPEED + (0.1 * current_upgrades[MutationUpgrade.Type.FASTER_MOVEMENT].quantity)
+
+func apply_mutation(mutation: MutationUpgrade):
+	match mutation.id:
+		MutationUpgrade.Id.SPEED_UP:
+			var speed_up_count: int = Utils.get_upgrade_quantity(mutations, MutationUpgrade.Id.SPEED_UP)
+			move_speed = BASE_MOVE_SPEED + ((BASE_MOVE_SPEED * 0.1) * speed_up_count)
+	
+
+
+func on_mutation_upgrade_selected(mutation: MutationUpgrade, current_mutations: Dictionary):
+	mutations = current_mutations.duplicate()
+	apply_mutation(mutation)

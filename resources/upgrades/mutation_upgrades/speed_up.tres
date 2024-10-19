@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MutationUpgrade" load_steps=2 format=3 uid="uid://caj3bfqyoyy37"]
+
+[ext_resource type="Script" path="res://resources/upgrades/mutation_upgrades/mutation_upgrade.gd" id="1_jiha3"]
+
+[resource]
+script = ExtResource("1_jiha3")
+id = 0
+title = "Speed Up"
+max_quantity = 5
+description = "Fasten your running by 10% per upgrade"

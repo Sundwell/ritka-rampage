@@ -18,7 +18,6 @@ texture = ExtResource("1_xbhbj")
 position = Vector2(5, -2)
 
 [node name="ReloadTimer" type="Timer" parent="."]
-wait_time = 0.3
 
 [node name="SFX" type="Node" parent="."]
 
