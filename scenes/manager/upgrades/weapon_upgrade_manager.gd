@@ -1,25 +1,22 @@
 extends Node
 
-@export var upgrade_pool: WeaponUpgradesPool
 @export var anvil_manager: AnvilManager
 @export var upgrade_screen_scene: PackedScene
 
 var current_upgrades: Dictionary = {}
-var upgrades_weighted_table: WeightedTable = WeightedTable.new()
+var upgrades_pool: WeightedTable = WeightedTable.new()
 
 
 func _ready() -> void:
-	update_weighted_table()
 	GameEvents.anvil_collected.connect(on_anvil_collected)
+	GameEvents.weapon_changed.connect(on_weapon_changed)
 	
 	
-func update_weighted_table():
-	upgrades_weighted_table.clear()
-	
-	var available_upgrades: Array[WeaponUpgrade] = upgrade_pool.upgrades.duplicate()
+func set_upgrades_pool(upgrades: Array[WeaponUpgrade]):
+	var available_upgrades: Array[WeaponUpgrade] = upgrades.duplicate()
 	
 	for upgrade: WeaponUpgrade in available_upgrades:
-		upgrades_weighted_table.add_item(upgrade, upgrade.weight)
+		upgrades_pool.add_item(upgrade, upgrade.weight)
 	
 
 func apply_upgrade(upgrade: WeaponUpgrade):
@@ -37,14 +34,11 @@ func apply_upgrade(upgrade: WeaponUpgrade):
 	
 	if upgrade.max_quantity > 0:
 		if current_upgrades[upgrade_id]["quantity"] == upgrade.max_quantity:
-			upgrade_pool.upgrades = upgrade_pool.upgrades.filter(
-					func (pool_upgrade): return pool_upgrade.id != upgrade_id
-			)
-			update_weighted_table()
+			upgrades_pool.remove_item(upgrade)
 
 	
 func pick_upgrades() -> Array[WeaponUpgrade]:
-	var items = upgrades_weighted_table.pick_random_items(3)
+	var items = upgrades_pool.pick_random_items(3)
 	
 	var weapon_upgrades: Array[WeaponUpgrade] = []
 	
@@ -72,3 +66,7 @@ func on_anvil_collected() -> void:
 
 	upgrade_screen.set_weapon_upgrades(upgrades_to_show)
 	upgrade_screen.upgrade_selected.connect(on_upgrade_selected)
+	
+	
+func on_weapon_changed(weapon: Weapon) -> void:
+	set_upgrades_pool(weapon.upgrades_pool.upgrades)

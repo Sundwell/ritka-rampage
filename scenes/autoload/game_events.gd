@@ -4,6 +4,7 @@ signal orange_energy_collected(amount: float)
 signal mutation_upgrade_selected(upgrade: MutationUpgrade, current_upgrades: Dictionary)
 signal anvil_collected
 signal weapon_upgrade_selected(upgrade: WeaponUpgrade, current_upgrades: Dictionary)
+signal weapon_changed(new_weapon: Weapon)
 
 
 func emit_orange_energy_collected(amount: float):
@@ -20,3 +21,7 @@ func emit_anvil_collected():
 	
 func emit_weapon_upgrade_selected(upgrade: WeaponUpgrade, current_upgrades: Dictionary):
 	weapon_upgrade_selected.emit(upgrade, current_upgrades)
+	
+	
+func emit_weapon_changed(new_weapon: Weapon):
+	weapon_changed.emit(new_weapon)

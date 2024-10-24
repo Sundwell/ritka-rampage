@@ -1,4 +1,4 @@
-extends Node2D
+extends Weapon
 
 const BASE_RELOAD_TIME = 0.3
 

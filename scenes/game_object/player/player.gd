@@ -4,15 +4,17 @@ const RUN_SPEED = 125.0
 const BASE_MOVE_SPEED = 50.0
 const ACCELERATION_SMOOTHING = 15
 
+@export var initial_weapon_scene: PackedScene
+
 var is_shooting := false
 var mutations: Dictionary = {}
 var move_speed := BASE_MOVE_SPEED
 var state_machine := CallableStateMachine.new()
 
-@onready var health_component = $HealthComponent
-@onready var weapon_controller = $WeaponController
+@onready var health_component: HealthComponent = $HealthComponent
 @onready var animation_player = $AnimationPlayer
 @onready var visuals = $Visuals
+@onready var weapon_controller: WeaponContoller = $WeaponController
 
 
 func _ready():
@@ -21,6 +23,8 @@ func _ready():
 	state_machine.add_states(state_idle, enter_state_idle)
 	state_machine.add_states(state_moving)
 	state_machine.set_initial_state(state_idle)
+	
+	weapon_controller.set_weapon(initial_weapon_scene)
 	
 
 func _physics_process(delta: float):

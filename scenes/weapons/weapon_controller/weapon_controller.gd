@@ -1,17 +1,11 @@
+class_name WeaponContoller
 extends Node2D
+
+var weapon: Weapon
 
 @onready var weapon_position: Node2D = $WeaponPosition
 
-@export var weapon_scene: PackedScene
-var weapon: Node2D
 
-
-func _ready():
-	weapon = weapon_scene.instantiate()
-	weapon.global_rotation = global_rotation
-	weapon_position.add_child(weapon)
-	
-	
 func _physics_process(delta):
 	var mouse_position = get_global_mouse_position()
 	look_at(mouse_position)
@@ -20,5 +14,21 @@ func _physics_process(delta):
 	
 	
 func shoot():
-	if weapon.has_method("shoot"):
+	if weapon is Weapon:
 		weapon.shoot()
+		
+		
+func set_weapon(new_weapon_scene: PackedScene):
+	if weapon != null:
+		weapon_position.remove_child(weapon)
+		return
+	
+	weapon = new_weapon_scene.instantiate()
+	
+	if weapon is not Weapon:
+		return
+	
+	weapon.global_rotation = global_rotation
+	weapon_position.add_child(weapon)
+	
+	GameEvents.emit_weapon_changed(weapon)

@@ -1,15 +1,20 @@
 class_name WeightedTable
 extends Node
 
-var items = []
+var items := []
 var total_weight := 0
 
 
-func add_item(item, weight: int) -> void:
+func add_item(item: Variant, weight: int) -> void:
 	items.append({
 		"value": item,
 		"weight": weight
 	})
+	total_weight += weight
+	
+	
+func remove_item(item_to_remove: Variant) -> void:
+	items = items.filter(func (item): item.value != item_to_remove)
 	total_weight = get_items_weight(items)
 	
 	

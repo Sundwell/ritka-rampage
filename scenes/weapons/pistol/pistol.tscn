@@ -1,13 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://vpugf0fbno2e"]
+[gd_scene load_steps=10 format=3 uid="uid://vpugf0fbno2e"]
 
 [ext_resource type="Script" path="res://scenes/weapons/pistol/pistol.gd" id="1_8fjpu"]
 [ext_resource type="Texture2D" uid="uid://cwk4lvfawo8db" path="res://scenes/weapons/pistol/pistol.png" id="1_xbhbj"]
 [ext_resource type="PackedScene" uid="uid://ck6vo5d385q3c" path="res://scenes/weapons/pistol/pistol_bullet/pistol_bullet.tscn" id="2_wilu3"]
+[ext_resource type="Resource" uid="uid://qst0kq5he2eh" path="res://resources/upgrades/weapon_upgrades/pistol/pistol_upgrades_pool.tres" id="3_v7bp6"]
 [ext_resource type="AudioStream" uid="uid://bb8pliwdcj7wg" path="res://scenes/weapons/pistol/sfx/shoot.wav" id="4_it1t1"]
 
-[sub_resource type="Animation" id="Animation_hr3ij"]
-resource_name = "default"
-length = 0.1
+[sub_resource type="Animation" id="Animation_un0xr"]
+length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -20,8 +20,9 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0)
 }
 
-[sub_resource type="Animation" id="Animation_un0xr"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_hr3ij"]
+resource_name = "default"
+length = 0.1
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -61,6 +62,7 @@ _data = {
 z_index = 1
 script = ExtResource("1_8fjpu")
 bullet_scene = ExtResource("2_wilu3")
+upgrades_pool = ExtResource("3_v7bp6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
