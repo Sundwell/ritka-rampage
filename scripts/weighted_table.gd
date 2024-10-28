@@ -14,7 +14,7 @@ func add_item(item: Variant, weight: int) -> void:
 	
 	
 func remove_item(item_to_remove: Variant) -> void:
-	items = items.filter(func (item): item.value != item_to_remove)
+	items = items.filter(func (item): return item.value != item_to_remove)
 	total_weight = get_items_weight(items)
 	
 	
