@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddkuoft8656d3"]
+
+[ext_resource type="PackedScene" uid="uid://dqlswblbvmvfk" path="res://scenes/vfx/orange_collected_particles.tscn" id="1_dwqdk"]
+
+[node name="ParticlesCache" type="Node2D"]
+
+[node name="OrangeCollectedParticles" parent="." instance=ExtResource("1_dwqdk")]
