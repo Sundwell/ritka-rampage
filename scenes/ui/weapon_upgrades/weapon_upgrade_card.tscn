@@ -1,26 +1,23 @@
 [gd_scene load_steps=3 format=3 uid="uid://d07jabc63stmh"]
 
 [ext_resource type="Script" path="res://scenes/ui/weapon_upgrades/weapon_upgrade_card.gd" id="1_4c2uk"]
+[ext_resource type="PackedScene" uid="uid://ctvfewktbvewa" path="res://scenes/components/card_animator_component.tscn" id="2_ciyxs"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_582wi"]
-bg_color = Color(0.210497, 0.141483, 0.228516, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[node name="WeaponUpgradeCard" type="Panel"]
-custom_minimum_size = Vector2(100, 150)
-theme_override_styles/panel = SubResource("StyleBoxFlat_582wi")
+[node name="WeaponUpgradeCard" type="PanelContainer" groups=["weapon_upgrade_card"]]
+custom_minimum_size = Vector2(150, 200)
+offset_right = 150.0
+offset_bottom = 150.0
+pivot_offset = Vector2(75, 100)
+mouse_default_cursor_shape = 2
+theme_type_variation = &"WUStatPanelContainer"
 script = ExtResource("1_4c2uk")
 
+[node name="CardAnimatorComponent" parent="." node_paths=PackedStringArray("card") instance=ExtResource("2_ciyxs")]
+card = NodePath("..")
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -28,18 +25,34 @@ theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="TitlePanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
+mouse_filter = 2
+theme_type_variation = &"WUTitleStatPanelContainer"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TitlePanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/TitlePanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"OutlinedLabel"
+theme_override_font_sizes/font_size = 10
 text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(84, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 8
+theme_type_variation = &"OutlinedLabel"
+theme_override_font_sizes/font_size = 5
 text = "Some description"
-autowrap_mode = 2
+autowrap_mode = 3

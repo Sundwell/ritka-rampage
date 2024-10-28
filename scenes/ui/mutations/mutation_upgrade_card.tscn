@@ -9,18 +9,15 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="MutationUpgradeCard" type="Panel"]
+[node name="MutationUpgradeCard" type="PanelContainer"]
 custom_minimum_size = Vector2(100, 150)
+offset_right = 100.0
+offset_bottom = 150.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_582wi")
 script = ExtResource("1_cqhwk")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -42,4 +39,4 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 8
 text = "Some description"
-autowrap_mode = 2
+autowrap_mode = 3

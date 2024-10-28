@@ -68,6 +68,7 @@ _data = {
 material = SubResource("CanvasItemMaterial_klg3p")
 emitting = false
 lifetime = 0.3
+one_shot = true
 explosiveness = 1.0
 texture = ExtResource("1_y6122")
 spread = 180.0

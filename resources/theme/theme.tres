@@ -1,7 +1,72 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c8xvyrfkkn5np"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://c8xvyrfkkn5np"]
 
-[ext_resource type="FontFile" uid="uid://oung254smuh8" path="res://resources/theme/KarenFat.ttf" id="1_ukyqe"]
+[ext_resource type="Texture2D" uid="uid://cu2iwxg4umt64" path="res://assets/ui/ui.png" id="1_l3myt"]
+[ext_resource type="FontFile" uid="uid://52lgutb5irrr" path="res://resources/theme/QuinqueFive.ttf" id="2_w28pi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aqwd6"]
+texture = ExtResource("1_l3myt")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 3.0
+region_rect = Rect2(0, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p5m4h"]
+texture = ExtResource("1_l3myt")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 3.0
+region_rect = Rect2(32, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p0be4"]
+texture = ExtResource("1_l3myt")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+region_rect = Rect2(50, 2, 12, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lk8xu"]
+texture = ExtResource("1_l3myt")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+region_rect = Rect2(18, 2, 12, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c4q6a"]
+texture = ExtResource("1_l3myt")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+region_rect = Rect2(18, 18, 12, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ho10"]
+texture = ExtResource("1_l3myt")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 3.0
+region_rect = Rect2(0, 16, 16, 16)
 
 [resource]
-default_font = ExtResource("1_ukyqe")
+default_font = ExtResource("2_w28pi")
 default_font_size = 16
+Label/font_sizes/font_size = 10
+OutlinedLabel/base_type = &"Label"
+OutlinedLabel/colors/font_outline_color = Color(0.133333, 0.137255, 0.137255, 1)
+OutlinedLabel/constants/outline_size = 5
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_aqwd6")
+WUMechanicPanelContainer/base_type = &"PanelContainer"
+WUMechanicPanelContainer/styles/panel = SubResource("StyleBoxTexture_p5m4h")
+WUStatPanelContainer/base_type = &"PanelContainer"
+WUTitleMechanicPanelContainer/base_type = &"PanelContainer"
+WUTitleMechanicPanelContainer/styles/panel = SubResource("StyleBoxTexture_p0be4")
+WUTitleStatPanelContainer/base_type = &"PanelContainer"
+WUTitleStatPanelContainer/styles/panel = SubResource("StyleBoxTexture_lk8xu")
+WUTitleTransformationPanelContainer/base_type = &"PanelContainer"
+WUTitleTransformationPanelContainer/styles/panel = SubResource("StyleBoxTexture_c4q6a")
+WUTransformationPanelContainer/base_type = &"PanelContainer"
+WUTransformationPanelContainer/styles/panel = SubResource("StyleBoxTexture_3ho10")

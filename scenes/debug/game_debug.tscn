@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://dte4tqajd1cdo"]
+
+[ext_resource type="PackedScene" uid="uid://opwxpmnb8voa" path="res://scenes/game_object/player/player.tscn" id="1_13yh6"]
+[ext_resource type="PackedScene" uid="uid://d2a52b2apau0v" path="res://scenes/manager/upgrades/weapon_upgrade_manager.tscn" id="2_hvkir"]
+[ext_resource type="PackedScene" uid="uid://biyftkstxyn66" path="res://scenes/game_object/anvil/anvil.tscn" id="3_pdp2m"]
+[ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange/orange.tscn" id="4_5vy8c"]
+
+[node name="GameDebug" type="Node"]
+
+[node name="WeaponUpgradeManager" parent="." instance=ExtResource("2_hvkir")]
+
+[node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
+
+[node name="Player" parent="Entities" instance=ExtResource("1_13yh6")]
+
+[node name="Anvil" parent="Entities" instance=ExtResource("3_pdp2m")]
+position = Vector2(72, -4)
+
+[node name="OrangeEnergy" parent="Entities" instance=ExtResource("4_5vy8c")]
+position = Vector2(-70, -6)
+
+[node name="OrangeEnergy2" parent="Entities" instance=ExtResource("4_5vy8c")]
+position = Vector2(-100, -3)
+
+[node name="OrangeEnergy3" parent="Entities" instance=ExtResource("4_5vy8c")]
+position = Vector2(-136, 1)
+
+[node name="OrangeEnergy4" parent="Entities" instance=ExtResource("4_5vy8c")]
+position = Vector2(-137, -32)
+
+[node name="OrangeEnergy5" parent="Entities" instance=ExtResource("4_5vy8c")]
+position = Vector2(-87, -36)
+
+[node name="OrangeEnergy6" parent="Entities" instance=ExtResource("4_5vy8c")]
+position = Vector2(-115, -57)
+
+[node name="OrangeEnergy7" parent="Entities" instance=ExtResource("4_5vy8c")]
+position = Vector2(-109, -25)
+
+[node name="OrangeEnergy8" parent="Entities" instance=ExtResource("4_5vy8c")]
+position = Vector2(-85, -60)
+
+[node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]
+
+[editable path="Entities/OrangeEnergy"]

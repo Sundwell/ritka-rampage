@@ -1,6 +1,5 @@
 extends Node
 
-@export var anvil_manager: AnvilManager
 @export var upgrade_screen_scene: PackedScene
 
 var current_upgrades: Dictionary = {}

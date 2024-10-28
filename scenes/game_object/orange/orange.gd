@@ -30,6 +30,7 @@ func throw_particles():
 	
 	particles.global_position = particles_spawn_position
 	foreground_layer.add_child(particles)
+	particles.emitting = true
 	
 	
 func collect():

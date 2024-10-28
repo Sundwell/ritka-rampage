@@ -1,5 +1,5 @@
 class_name MutationUpgradeCard
-extends Panel
+extends PanelContainer
 
 signal selected
 

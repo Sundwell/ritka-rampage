@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctvfewktbvewa"]
+
+[ext_resource type="Script" path="res://scenes/components/card_animator_component.gd" id="1_yap2t"]
+
+[node name="CardAnimatorComponent" type="Node"]
+script = ExtResource("1_yap2t")

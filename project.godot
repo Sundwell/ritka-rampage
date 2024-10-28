@@ -37,6 +37,11 @@ window/stretch/mode="canvas_items"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[global_group]
+
+foreground_layer=""
+entities_layer=""
+
 [gui]
 
 theme/custom="res://resources/theme/theme.tres"

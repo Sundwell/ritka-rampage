@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxxnmnvm7dh86"]
+
+[ext_resource type="PackedScene" uid="uid://oe5r7n7ofof4" path="res://scenes/ui/weapon_upgrades/weapon_upgrade_screen.tscn" id="1_8ofdp"]
+
+[node name="UIDebug" type="Node"]
+process_mode = 3
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(291, 171)
+
+[node name="WeaponUpgradeScreen" parent="." instance=ExtResource("1_8ofdp")]
