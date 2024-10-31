@@ -17,7 +17,9 @@ const WEIGHT_BY_TYPE = {
 @export var weapon: Constants.Weapon
 @export var max_quantity: int
 @export var type: Type
+@export var hint: String
 @export_multiline var description: String
+
 
 var weight:
 	get():

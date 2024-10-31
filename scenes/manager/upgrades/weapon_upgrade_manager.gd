@@ -63,7 +63,7 @@ func on_anvil_collected() -> void:
 	var upgrade_screen = upgrade_screen_scene.instantiate() as WeaponUpgradeScreen
 	add_child(upgrade_screen)
 
-	upgrade_screen.set_weapon_upgrades(upgrades_to_show)
+	upgrade_screen.set_weapon_upgrades(upgrades_to_show, current_upgrades)
 	upgrade_screen.upgrade_selected.connect(on_upgrade_selected)
 	
 	

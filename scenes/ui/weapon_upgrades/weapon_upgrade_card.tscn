@@ -40,6 +40,7 @@ theme_override_constants/margin_bottom = 4
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/TitlePanelContainer/MarginContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_type_variation = &"OutlinedLabel"
 theme_override_font_sizes/font_size = 10
@@ -48,7 +49,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -56,3 +62,23 @@ theme_type_variation = &"OutlinedLabel"
 theme_override_font_sizes/font_size = 5
 text = "Some description"
 autowrap_mode = 3
+
+[node name="HintLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_type_variation = &"OrangeHintLabel"
+text = "Hint text"
+autowrap_mode = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="QuantityLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"OutlinedLabel"
+theme_override_font_sizes/font_size = 5
+text = "0/5"

@@ -100,6 +100,7 @@ libraries = {
 
 [node name="SpawnSound" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("3_gptgy")
+volume_db = -10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8atnx")
@@ -114,5 +115,3 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_pv2e1")
-
-[node name="Camera2D" type="Camera2D" parent="."]

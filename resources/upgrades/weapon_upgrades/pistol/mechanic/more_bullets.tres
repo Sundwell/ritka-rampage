@@ -9,4 +9,5 @@ title = "More bullets"
 weapon = 0
 max_quantity = 2
 type = 1
-description = "More bullets! (not accurate)"
+hint = "Say \"NO\" to accuracy"
+description = "More bullets!"

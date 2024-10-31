@@ -7,6 +7,8 @@ signal selected
 @onready var description_label: Label = %DescriptionLabel
 @onready var animator_component: CardAnimatorComponent = $CardAnimatorComponent
 @onready var title_panel_container: PanelContainer = %TitlePanelContainer
+@onready var quantity_label: Label = %QuantityLabel
+@onready var hint_label: Label = %HintLabel
 
 var disabled := false
 var variatons_mapping = {
@@ -31,9 +33,17 @@ func set_card_variation(type: WeaponUpgrade.Type):
 	title_panel_container.theme_type_variation = variation["title_panel"]
 	
 	
-func set_weapon_upgrade(upgrade: WeaponUpgrade):
+func set_weapon_upgrade(upgrade: WeaponUpgrade, current_upgrades: Dictionary):
 	title_label.text = upgrade.title
 	description_label.text = upgrade.description
+	
+	var selected_times = Utils.get_upgrade_quantity(current_upgrades, upgrade.get_id())
+	quantity_label.text = '%d/%d' % [selected_times, upgrade.max_quantity]
+	
+	if not upgrade.hint:
+		hint_label.queue_free()
+	else:
+		hint_label.text = upgrade.hint
 	
 	set_card_variation(upgrade.type)
 	

@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmkeplc4w76hm"]
+[gd_scene load_steps=5 format=3 uid="uid://bmkeplc4w76hm"]
 
 [ext_resource type="Script" path="res://scenes/manager/upgrades/mutation_upgrade_manager.gd" id="1_115ja"]
+[ext_resource type="PackedScene" uid="uid://b4tmea22onhpt" path="res://scenes/ui/mutations/mutation_upgrade_screen.tscn" id="2_cc0fm"]
+[ext_resource type="Script" path="res://resources/upgrades/mutation_upgrades/mutation_upgrade.gd" id="2_w6efl"]
+[ext_resource type="Resource" uid="uid://caj3bfqyoyy37" path="res://resources/upgrades/mutation_upgrades/speed_up.tres" id="3_jne4x"]
 
 [node name="MutationUpgradeManager" type="Node"]
 script = ExtResource("1_115ja")
+upgrade_pool = Array[ExtResource("2_w6efl")]([ExtResource("3_jne4x")])
+upgrade_screen_scene = ExtResource("2_cc0fm")
