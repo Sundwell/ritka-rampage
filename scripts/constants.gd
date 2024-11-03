@@ -11,4 +11,4 @@ enum Weapon {
 	PISTOL,
 }
 
-const PLAYER_VIEW_RADIUS := 180.0
+const PLAYER_VIEW_RADIUS := 370.0
