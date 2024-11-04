@@ -177,7 +177,6 @@ script = ExtResource("1_snu1q")
 initial_weapon_scene = ExtResource("5_m3j0x")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_tfpur")]
-max_health = 100.0
 
 [node name="HealthChangedTextSpawnerComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_utin2")]
 health_component = NodePath("../HealthComponent")

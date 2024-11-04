@@ -1,7 +1,33 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://c8xvyrfkkn5np"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://c8xvyrfkkn5np"]
 
 [ext_resource type="Texture2D" uid="uid://cu2iwxg4umt64" path="res://assets/ui/ui.png" id="1_l3myt"]
 [ext_resource type="FontFile" uid="uid://52lgutb5irrr" path="res://resources/theme/QuinqueFive.ttf" id="2_w28pi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pyqle"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l8dja"]
+texture = ExtResource("1_l3myt")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(50, 18, 12, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wrbu1"]
+texture = ExtResource("1_l3myt")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(34, 18, 12, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_73o4q"]
+texture = ExtResource("1_l3myt")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(2, 34, 12, 12)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aqwd6"]
 texture = ExtResource("1_l3myt")
@@ -9,7 +35,7 @@ texture_margin_left = 4.0
 texture_margin_top = 6.0
 texture_margin_right = 4.0
 texture_margin_bottom = 3.0
-region_rect = Rect2(0, 0, 16, 16)
+region_rect = Rect2(2, 2, 12, 12)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p5m4h"]
 texture = ExtResource("1_l3myt")
@@ -17,7 +43,7 @@ texture_margin_left = 4.0
 texture_margin_top = 6.0
 texture_margin_right = 4.0
 texture_margin_bottom = 3.0
-region_rect = Rect2(32, 0, 16, 16)
+region_rect = Rect2(34, 2, 13, 12)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p0be4"]
 texture = ExtResource("1_l3myt")
@@ -25,7 +51,7 @@ texture_margin_left = 1.0
 texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
-region_rect = Rect2(50, 2, 12, 12)
+region_rect = Rect2(53, 5, 6, 6)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lk8xu"]
 texture = ExtResource("1_l3myt")
@@ -33,7 +59,7 @@ texture_margin_left = 1.0
 texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
-region_rect = Rect2(18, 2, 12, 12)
+region_rect = Rect2(21, 5, 6, 6)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c4q6a"]
 texture = ExtResource("1_l3myt")
@@ -41,7 +67,7 @@ texture_margin_left = 1.0
 texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
-region_rect = Rect2(18, 18, 12, 12)
+region_rect = Rect2(21, 21, 6, 6)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ho10"]
 texture = ExtResource("1_l3myt")
@@ -49,11 +75,18 @@ texture_margin_left = 4.0
 texture_margin_top = 6.0
 texture_margin_right = 4.0
 texture_margin_bottom = 3.0
-region_rect = Rect2(0, 16, 16, 16)
+region_rect = Rect2(2, 18, 12, 12)
 
 [resource]
 default_font = ExtResource("2_w28pi")
 default_font_size = 15
+Button/colors/font_outline_color = Color(0.14902, 0.137255, 0.239216, 1)
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 5
+Button/styles/focus = SubResource("StyleBoxEmpty_pyqle")
+Button/styles/hover = SubResource("StyleBoxTexture_l8dja")
+Button/styles/normal = SubResource("StyleBoxTexture_wrbu1")
+Button/styles/pressed = SubResource("StyleBoxTexture_73o4q")
 Label/colors/font_outline_color = Color(0.14902, 0.137255, 0.239216, 1)
 Label/constants/outline_size = 5
 Label/font_sizes/font_size = 5

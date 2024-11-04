@@ -92,8 +92,6 @@ experience_manager = NodePath("../Managers/ExperienceManager")
 [node name="Managers" type="Node" parent="."]
 
 [node name="ArenaTimeManager" parent="Managers" instance=ExtResource("3_dwsl6")]
-end_screen_scene = ExtResource("2_jn3hq")
-arena_duration = 600.0
 
 [node name="EnemyManager" parent="Managers" node_paths=PackedStringArray("difficulty_manager") instance=ExtResource("2_y0yni")]
 difficulty_stages = Array[ExtResource("7_0n4ps")]([SubResource("Resource_olwkn"), SubResource("Resource_achuj"), SubResource("Resource_y4vhx")])
@@ -111,6 +109,7 @@ experience_manager = NodePath("../ExperienceManager")
 [node name="AnvilManager" parent="Managers" instance=ExtResource("20_f3wcp")]
 
 [node name="GameCamera" parent="." instance=ExtResource("2_ipo2b")]
+position = Vector2(-57, -16)
 
 [node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
 y_sort_enabled = true
