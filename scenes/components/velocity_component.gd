@@ -33,3 +33,12 @@ func move():
 	character_body.velocity = velocity
 	character_body.move_and_slide()
 	velocity = character_body.velocity
+	
+	
+func stop():
+	if character_body == null:
+		return
+		
+	character_body.velocity = Vector2.ZERO
+	character_body.move_and_slide()
+	velocity = character_body.velocity

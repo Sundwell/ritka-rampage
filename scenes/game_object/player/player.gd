@@ -15,6 +15,7 @@ var state_machine := CallableStateMachine.new()
 @onready var animation_player = $AnimationPlayer
 @onready var visuals = $Visuals
 @onready var weapon_controller: WeaponContoller = $WeaponController
+@onready var velocity_component: VelocityComponent = $VelocityComponent
 
 
 func _ready():
@@ -29,7 +30,6 @@ func _ready():
 
 func _physics_process(delta: float):
 	state_machine.update()
-	move_and_slide()
 	shoot()
 		
 		
@@ -55,18 +55,17 @@ func get_movement_direction() -> Vector2:
 func move():
 	var direction = get_movement_direction()
 	
-	var speed = move_speed if is_shooting else RUN_SPEED
+	var speed: float = move_speed if is_shooting else RUN_SPEED
 	
-	var target_velocity = direction.normalized() * speed
-	velocity = velocity.lerp(target_velocity, 1.0 - exp(-ACCELERATION_SMOOTHING * get_physics_process_delta_time()))
-	
-	#step_sound.playing = true
+	velocity_component.max_speed = speed
+	velocity_component.accelerate_in_direction(direction)
+	velocity_component.move()
 		
 
 #region States
 func enter_state_idle():
 	animation_player.play("idle")
-	velocity = Vector2.ZERO
+	velocity_component.stop()
 	weapon_controller.visible = true
 		
 		
