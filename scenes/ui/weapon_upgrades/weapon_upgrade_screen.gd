@@ -10,7 +10,7 @@ signal upgrade_selected(upgrade: WeaponUpgrade)
 
 
 func _ready():
-	get_tree().paused = true
+	GlobalActions.pause_game()
 
 
 func set_weapon_upgrades(upgrades: Array[WeaponUpgrade], current_upgrades: Dictionary):
@@ -29,5 +29,5 @@ func on_upgrade_selected(upgrade: WeaponUpgrade):
 	upgrade_selected.emit(upgrade)
 	animation_player.play("out")
 	await animation_player.animation_finished
-	get_tree().paused = false
+	GlobalActions.unpause_game()
 	queue_free()

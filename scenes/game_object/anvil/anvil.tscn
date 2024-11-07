@@ -100,7 +100,8 @@ libraries = {
 
 [node name="SpawnSound" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("3_gptgy")
-volume_db = -10.0
+volume_db = -20.0
+bus = &"SFX"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8atnx")

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://02wtk3gkbpmn"]
+[gd_scene load_steps=5 format=3 uid="uid://02wtk3gkbpmn"]
 
 [ext_resource type="Script" path="res://scenes/ui/mutations/mutation_upgrade_card.gd" id="1_cqhwk"]
 [ext_resource type="PackedScene" uid="uid://ctvfewktbvewa" path="res://scenes/components/card_animator_component.tscn" id="2_ff1ht"]
+[ext_resource type="AudioStream" uid="uid://dssca28jkdf3q" path="res://assets/audio/sfx/mutation_select.wav" id="3_1sjgx"]
+[ext_resource type="AudioStream" uid="uid://clyc7x6n6y3ms" path="res://assets/audio/sfx/hover.wav" id="5_5krho"]
 
 [node name="MutationUpgradeCard" type="PanelContainer" groups=["mutation_upgrade_card"]]
 custom_minimum_size = Vector2(150, 200)
@@ -13,6 +15,12 @@ script = ExtResource("1_cqhwk")
 
 [node name="CardAnimatorComponent" parent="." node_paths=PackedStringArray("card") instance=ExtResource("2_ff1ht")]
 card = NodePath("..")
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1sjgx")
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_5krho")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

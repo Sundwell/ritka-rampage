@@ -5,7 +5,7 @@ extends CanvasLayer
 
 
 func _ready():
-	get_tree().paused = true
+	GlobalActions.pause_game()
 	
 	panel_container.pivot_offset = panel_container.size / 2
 	panel_container.scale = Vector2.ZERO
@@ -23,7 +23,7 @@ func set_defeat():
 
 
 func on_restart_button_pressed():
-	get_tree().paused = false
+	GlobalActions.unpause_game()
 	get_tree().reload_current_scene()
 	
 	

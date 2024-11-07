@@ -10,7 +10,7 @@ signal upgrade_selected(upgrade: MutationUpgrade)
 
 
 func _ready():
-	get_tree().paused = true
+	GlobalActions.pause_game()
 
 
 func set_mutation_upgrades(upgrades: Array[MutationUpgrade]):
@@ -29,5 +29,5 @@ func on_upgrade_selected(upgrade: MutationUpgrade):
 	upgrade_selected.emit(upgrade)
 	animation_player.play("out")
 	await animation_player.animation_finished
-	get_tree().paused = false
+	GlobalActions.unpause_game()
 	queue_free()

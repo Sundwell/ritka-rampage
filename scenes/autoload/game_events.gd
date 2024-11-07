@@ -5,6 +5,7 @@ signal mutation_upgrade_selected(upgrade: MutationUpgrade, current_upgrades: Dic
 signal anvil_collected
 signal weapon_upgrade_selected(upgrade: WeaponUpgrade, current_upgrades: Dictionary)
 signal weapon_changed(new_weapon: Weapon)
+signal game_paused(is_paused: bool)
 
 
 func emit_orange_energy_collected(amount: float):
@@ -25,3 +26,7 @@ func emit_weapon_upgrade_selected(upgrade: WeaponUpgrade, current_upgrades: Dict
 	
 func emit_weapon_changed(new_weapon: Weapon):
 	weapon_changed.emit(new_weapon)
+	
+	
+func emit_game_paused(is_paused: bool):
+	game_paused.emit(is_paused)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=32 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ddkuoft8656d3" path="res://scenes/cache/particles_cache.tscn" id="3_4e6ny"]
 [ext_resource type="PackedScene" uid="uid://csopqp6wvh5n" path="res://scenes/ui/mutations/experience_bar.tscn" id="3_6rnxb"]
 [ext_resource type="PackedScene" uid="uid://hrmwpla6w5kt" path="res://scenes/manager/arena_time_manager.tscn" id="3_dwsl6"]
+[ext_resource type="PackedScene" uid="uid://du1gfwna275ok" path="res://scenes/components/audio/soundtrack_player_component.tscn" id="4_dy3qn"]
 [ext_resource type="PackedScene" uid="uid://cobi6d0h2keep" path="res://scenes/manager/experience_manager.tscn" id="6_8mjvm"]
 [ext_resource type="TileSet" uid="uid://b5jwrivhevsl6" path="res://resources/tileset.tres" id="6_a6vb0"]
 [ext_resource type="Script" path="res://resources/difficulty/difficulty_stage.gd" id="7_0n4ps"]
@@ -32,7 +33,7 @@ spawn_count = 1
 script = ExtResource("7_0n4ps")
 enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_si3j4")])
 difficulty_level = 0
-time_to_spawn = 1.0
+time_to_spawn = 0.5
 
 [sub_resource type="Resource" id="Resource_sd787"]
 script = ExtResource("8_rp34t")
@@ -50,7 +51,7 @@ spawn_count = 1
 script = ExtResource("7_0n4ps")
 enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_sd787"), SubResource("Resource_wbvcv")])
 difficulty_level = 6
-time_to_spawn = 2.0
+time_to_spawn = 0.5
 
 [sub_resource type="Resource" id="Resource_k0tyg"]
 script = ExtResource("8_rp34t")
@@ -73,8 +74,8 @@ spawn_count = 1
 [sub_resource type="Resource" id="Resource_y4vhx"]
 script = ExtResource("7_0n4ps")
 enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_k0tyg"), SubResource("Resource_v2cr1"), SubResource("Resource_f3iik")])
-difficulty_level = 12
-time_to_spawn = 1.5
+difficulty_level = 9
+time_to_spawn = 0.7
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_fqumt")
@@ -82,6 +83,11 @@ end_screen_scene = ExtResource("2_jn3hq")
 
 [node name="ParticlesCache" parent="." instance=ExtResource("3_4e6ny")]
 position = Vector2(-108, -46)
+
+[node name="SoundtrackPlayerComponent" parent="." instance=ExtResource("4_dy3qn")]
+process_mode = 3
+volume_db = -30.0
+autoplay = true
 
 [node name="ArenaTimeUI" parent="." node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("2_7sja6")]
 arena_time_manager = NodePath("../Managers/ArenaTimeManager")

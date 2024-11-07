@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://r1vpw62fcrjw"]
+[gd_scene load_steps=7 format=3 uid="uid://r1vpw62fcrjw"]
 
 [ext_resource type="Script" path="res://scenes/ui/end_screen.gd" id="1_6ukal"]
+[ext_resource type="PackedScene" uid="uid://rij5bvmvffnm" path="res://scenes/ui/app_button.tscn" id="2_m7nyx"]
 
 [sub_resource type="Animation" id="Animation_sx5pp"]
 length = 0.001
@@ -113,14 +114,12 @@ vertical_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="RestartButton" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_m7nyx")]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_default_cursor_shape = 2
 text = "Restart"
 
-[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="QuitButton" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_m7nyx")]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_default_cursor_shape = 2
 text = "Quit"

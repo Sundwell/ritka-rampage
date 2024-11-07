@@ -1,0 +1,21 @@
+[gd_scene load_steps=8 format=3 uid="uid://du1gfwna275ok"]
+
+[ext_resource type="AudioStream" uid="uid://d4e1kwh1585pw" path="res://assets/audio/music/soundtrack_meadow/part_1.wav" id="1_fquin"]
+[ext_resource type="Script" path="res://scenes/components/audio/soundtrack_player_component.gd" id="1_wlo87"]
+[ext_resource type="AudioStream" uid="uid://bbhemg8tljnyi" path="res://assets/audio/music/soundtrack_meadow/part_2.wav" id="2_v4t7f"]
+[ext_resource type="AudioStream" uid="uid://bsjs4st23ejmu" path="res://assets/audio/music/soundtrack_meadow/part_3.wav" id="3_lcbc1"]
+[ext_resource type="AudioStream" uid="uid://0nl76g4qq557" path="res://assets/audio/music/soundtrack_meadow/part_4.wav" id="4_54suk"]
+[ext_resource type="AudioStream" uid="uid://2a5gtl5nfydg" path="res://assets/audio/music/soundtrack_meadow/part_5.wav" id="5_w2mrk"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_j4p1x"]
+stream_count = 5
+stream_0 = ExtResource("1_fquin")
+stream_1 = ExtResource("2_v4t7f")
+stream_2 = ExtResource("3_lcbc1")
+stream_3 = ExtResource("4_54suk")
+stream_4 = ExtResource("5_w2mrk")
+
+[node name="SoundtrackPlayerComponent" type="AudioStreamPlayer"]
+stream = SubResource("AudioStreamPlaylist_j4p1x")
+bus = &"Music"
+script = ExtResource("1_wlo87")

@@ -9,6 +9,8 @@ signal selected
 @onready var title_panel_container: PanelContainer = %TitlePanelContainer
 @onready var quantity_label: Label = %QuantityLabel
 @onready var hint_label: Label = %HintLabel
+@onready var select_sound: AudioStreamPlayer = $SelectSound
+@onready var hover_sound: AudioStreamPlayer = $HoverSound
 
 var disabled := false
 var variatons_mapping = {
@@ -59,6 +61,8 @@ func select_card():
 	
 	disabled = true
 	
+	select_sound.play()
+	
 	animator_component.play_selected()
 	var all_cards = get_tree().get_nodes_in_group("weapon_upgrade_card")
 	for card: WeaponUpgradeCard in all_cards:
@@ -79,6 +83,8 @@ func on_gui_input(event: InputEvent):
 func on_mouse_entered():
 	if disabled:
 		return
+		
+	hover_sound.play()
 	
 	animator_component.play_hover_in()
 	

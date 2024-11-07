@@ -3,11 +3,13 @@ extends PanelContainer
 
 signal selected
 
+var disabled := false
+
 @onready var title_label: Label = %TitleLabel
 @onready var description_label: Label = %DescriptionLabel
 @onready var animator_component: CardAnimatorComponent = $CardAnimatorComponent
-
-var disabled := false
+@onready var hover_sound: AudioStreamPlayer = $HoverSound
+@onready var select_sound: AudioStreamPlayer = $SelectSound
 
 
 func _ready():
@@ -30,6 +32,8 @@ func select_card():
 	
 	disabled = true
 	
+	select_sound.play()
+	
 	animator_component.play_selected()
 	
 	var all_cards = get_tree().get_nodes_in_group("mutation_upgrade_card")
@@ -51,6 +55,8 @@ func on_gui_input(event: InputEvent):
 func on_mouse_entered():
 	if disabled:
 		return
+		
+	hover_sound.play()
 	
 	animator_component.play_hover_in()
 	
