@@ -11,4 +11,11 @@ enum Weapon {
 	PISTOL,
 }
 
-const PLAYER_VIEW_RADIUS := 370.0
+const PLAYER_VIEW_RADIUS = 370.0
+
+
+const AUDIO_BUSES = {
+	"SFX": "SFX",
+	"Music": "Music",
+	"Master": "Master"
+}
