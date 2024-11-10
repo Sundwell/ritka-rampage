@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-var main_scene = preload("res://scenes/main/main.tscn")
-var settings_scene = preload("res://settings_menu.tscn")
+@export var settings_scene: PackedScene
+@export var main_scene: PackedScene
 
 @onready var play_button: Button = %PlayButton
 @onready var settings_button: Button = %SettingsButton

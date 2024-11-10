@@ -74,7 +74,7 @@ autoplay = "default"
 
 [node name="ShotSound" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("4_it1t1")
-volume_db = -16.0
+bus = &"SFX"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.75, 0.75)

@@ -1,19 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4tothkjcil2f"]
+[gd_scene load_steps=8 format=3 uid="uid://b4tothkjcil2f"]
 
 [ext_resource type="Script" path="res://scenes/ui/menus/main_menu.gd" id="1_ct0pc"]
 [ext_resource type="PackedScene" uid="uid://rij5bvmvffnm" path="res://scenes/ui/app_button.tscn" id="2_a5s15"]
-[ext_resource type="AudioStream" uid="uid://bbhemg8tljnyi" path="res://assets/audio/music/soundtrack_meadow/part_2.wav" id="2_j6e4n"]
+[ext_resource type="PackedScene" uid="uid://5p624wsr7m2d" path="res://scenes/ui/menus/settings_menu.tscn" id="2_movie"]
 [ext_resource type="Texture2D" uid="uid://csm3wy375fqyn" path="res://assets/environment/tileset.png" id="2_udkq3"]
+[ext_resource type="PackedScene" uid="uid://cqd01tgnwtfhh" path="res://scenes/main/main.tscn" id="3_5sin2"]
+[ext_resource type="AudioStream" uid="uid://lviwjb7tg0s3" path="res://assets/audio/music/menu.ogg" id="4_qd6dr"]
 
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_83cbt"]
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_b2ryu"]
+fade_time = 1.0
 stream_count = 1
-stream_0 = ExtResource("2_j6e4n")
+stream_0 = ExtResource("4_qd6dr")
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_ct0pc")
+settings_scene = ExtResource("2_movie")
+main_scene = ExtResource("3_5sin2")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamPlaylist_83cbt")
+stream = SubResource("AudioStreamPlaylist_b2ryu")
 autoplay = true
 bus = &"Music"
 

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://c8xvyrfkkn5np"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://c8xvyrfkkn5np"]
 
 [ext_resource type="Texture2D" uid="uid://cu2iwxg4umt64" path="res://assets/ui/ui.png" id="1_l3myt"]
 [ext_resource type="FontFile" uid="uid://52lgutb5irrr" path="res://resources/theme/QuinqueFive.ttf" id="2_w28pi"]
@@ -28,6 +28,38 @@ texture_margin_top = 6.0
 texture_margin_right = 4.0
 texture_margin_bottom = 5.0
 region_rect = Rect2(2, 34, 12, 12)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_d8te4"]
+size = Vector2(0, 0)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rxg46"]
+size = Vector2(0, 0)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2gjlo"]
+size = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qngi"]
+bg_color = Color(0.890196, 0.470588, 0.25098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s81ov"]
+bg_color = Color(0.976471, 0.607843, 0.305882, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s62qb"]
+content_margin_left = 2.0
+content_margin_top = 6.0
+content_margin_right = 2.0
+content_margin_bottom = 6.0
+bg_color = Color(0.113725, 0.113725, 0.129412, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aqwd6"]
 texture = ExtResource("1_l3myt")
@@ -87,6 +119,13 @@ Button/styles/focus = SubResource("StyleBoxEmpty_pyqle")
 Button/styles/hover = SubResource("StyleBoxTexture_l8dja")
 Button/styles/normal = SubResource("StyleBoxTexture_wrbu1")
 Button/styles/pressed = SubResource("StyleBoxTexture_73o4q")
+HSlider/constants/grabber_offset = 2
+HSlider/icons/grabber = SubResource("PlaceholderTexture2D_d8te4")
+HSlider/icons/grabber_disabled = SubResource("PlaceholderTexture2D_rxg46")
+HSlider/icons/grabber_highlight = SubResource("PlaceholderTexture2D_2gjlo")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_0qngi")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_s81ov")
+HSlider/styles/slider = SubResource("StyleBoxFlat_s62qb")
 Label/colors/font_outline_color = Color(0.14902, 0.137255, 0.239216, 1)
 Label/constants/outline_size = 5
 Label/font_sizes/font_size = 5
