@@ -64,6 +64,9 @@ process_mode = 3
 script = ExtResource("1_2yi1q")
 upgrade_card_scene = ExtResource("2_q15yy")
 
+[node name="ScreenSound" type="AudioStreamPlayer" parent="."]
+autoplay = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_7bqv3")

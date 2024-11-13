@@ -7,6 +7,7 @@ signal upgrade_selected(upgrade: MutationUpgrade)
 
 @onready var upgrade_card_container: HBoxContainer = %UpgradeCardContainer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var screen_sound: AudioStreamPlayer = $ScreenSound
 
 
 func _ready():

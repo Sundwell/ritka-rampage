@@ -7,7 +7,8 @@ var current_upgrades: Dictionary = {}
 
 
 func _ready():
-	experience_manager.level_up.connect(on_level_up)
+	if experience_manager:
+		experience_manager.leveled_up.connect(on_leveled_up)
 	
 	
 func apply_upgrade(upgrade: MutationUpgrade):
@@ -46,7 +47,7 @@ func on_upgrade_selected(upgrade: MutationUpgrade):
 	apply_upgrade(upgrade)
 	
 	
-func on_level_up(current_level: int):
+func on_leveled_up(current_level: int):
 	var upgrades_to_show: Array[MutationUpgrade] = pick_upgrades()
 	
 	if upgrades_to_show.size() == 0:

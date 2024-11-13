@@ -2,7 +2,7 @@ class_name ExperienceManager
 extends Node
 
 signal experience_updated(current_experience: float, target_experience: float)
-signal level_up(new_level: int)
+signal leveled_up(new_level: int)
 
 const EXPERIENCE_GROWTH = 5
 
@@ -14,15 +14,19 @@ var level := 1
 func _ready():
 	GameEvents.orange_energy_collected.connect(on_orange_energy_collected)
 	
+	
+func level_up():
+	current_experience = 0.0
+	level += 1
+	leveled_up.emit(level)
+	target_experience += EXPERIENCE_GROWTH
+	
 
 func increment_experience(amount: float):
 	current_experience = min(target_experience, current_experience + amount)
 	
 	if current_experience == target_experience:
-		current_experience = 0.0
-		level += 1
-		level_up.emit(level)
-		target_experience += EXPERIENCE_GROWTH
+		level_up()
 		
 	experience_updated.emit(current_experience, target_experience)
 	

@@ -5,7 +5,10 @@ extends Node2D
 
 
 func _ready():
-	%Player.health_component.died.connect(on_player_died)
+	var player = Utils.get_player()
+	
+	if player:
+		player.health_component.died.connect(on_player_died)
 	
 	
 func _unhandled_input(event: InputEvent) -> void:
