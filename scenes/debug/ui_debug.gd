@@ -19,8 +19,8 @@ func _ready() -> void:
 
 func show_lose_screen():
 	var end_screen = end_screen_scene.instantiate()
-	add_child(end_screen)
 	end_screen.set_defeat()
+	add_child(end_screen)
 	
 	
 func show_win_screen():

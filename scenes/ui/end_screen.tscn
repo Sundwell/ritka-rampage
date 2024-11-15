@@ -64,8 +64,10 @@ process_mode = 3
 script = ExtResource("1_6ukal")
 
 [node name="LoseSound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [node name="WinSound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
