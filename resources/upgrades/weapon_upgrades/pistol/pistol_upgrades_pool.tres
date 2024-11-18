@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="WeaponUpgradesPool" load_steps=7 format=3 uid="uid://qst0kq5he2eh"]
+[gd_resource type="Resource" script_class="WeaponUpgrades" load_steps=7 format=3 uid="uid://qst0kq5he2eh"]
 
-[ext_resource type="Script" path="res://resources/upgrades/weapon_upgrades/weapon_upgrades_pool.gd" id="1_fhp3j"]
+[ext_resource type="Script" path="res://resources/upgrades/weapon_upgrades/weapon_upgrades.gd" id="1_fhp3j"]
 [ext_resource type="Script" path="res://resources/upgrades/weapon_upgrades/weapon_upgrade.gd" id="2_ni3rd"]
 [ext_resource type="Resource" uid="uid://cwr74oatpjrcx" path="res://resources/upgrades/weapon_upgrades/pistol/stat/damage_up.tres" id="3_us7jv"]
 [ext_resource type="Resource" uid="uid://djamg450tr134" path="res://resources/upgrades/weapon_upgrades/pistol/stat/improved_ballistics.tres" id="4_wgxph"]

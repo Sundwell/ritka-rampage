@@ -1,6 +1,8 @@
 class_name HurtboxComponent
 extends Area2D
 
+signal got_hurt
+
 @export var health_component: HealthComponent
 @export var has_invinsibility_frames: bool = false
 var surrounding_hitboxes: Array[HitboxComponent]
@@ -18,6 +20,7 @@ func _physics_process(delta):
 
 func process_hitboxes():
 	for hitbox_component in surrounding_hitboxes:
+		got_hurt.emit()
 		apply_damage(hitbox_component)
 			
 			

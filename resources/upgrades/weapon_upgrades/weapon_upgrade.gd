@@ -29,3 +29,8 @@ var weight:
 func get_id() -> int:
 	push_error("get_id() must be overriden in subclass")
 	return -1
+	
+	
+func get_incompatible_upgrade_ids() -> Array[int]:
+	push_error("get_incompatible_upgrades() must be overriden in subclass")
+	return [-1]

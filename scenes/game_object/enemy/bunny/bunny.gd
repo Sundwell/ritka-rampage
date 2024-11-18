@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const SPEED := 180.0
 const JUMP_DISTANCE := 60.0
 
+var speed := 180.0
 var jumped_distance := 0.0
 var is_jumping := false
 var state_machine := CallableStateMachine.new()
@@ -15,7 +15,8 @@ var state_machine := CallableStateMachine.new()
 
 func _ready():
 	hitbox_component.damage = 4.0
-	velocity_component.max_speed = SPEED
+	speed = velocity_component.max_speed
+	velocity_component.max_speed = speed
 	
 	state_machine.add_states(state_jumping, Callable(), exit_state_jumping)
 	state_machine.add_states(state_jump_preparation, enter_state_jump_preparation)
@@ -40,7 +41,7 @@ func state_jump_preparation():
 func state_jumping():
 	velocity_component.move()
 	
-	jumped_distance += SPEED * get_physics_process_delta_time()
+	jumped_distance += speed * get_physics_process_delta_time()
 	
 	if jumped_distance >= JUMP_DISTANCE:
 		state_machine.change_state(state_jump_preparation)

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PistolUpgrade" load_steps=2 format=3 uid="uid://b8c1gjdntjyl"]
+
+[ext_resource type="Script" path="res://resources/upgrades/weapon_upgrades/pistol/pistol_upgrade.gd" id="1_see22"]
+
+[resource]
+script = ExtResource("1_see22")
+id = 4
+incompatible_uprades = Array[int]([])
+title = "Piercing Shots"
+weapon = 0
+max_quantity = 2
+type = 1
+hint = "Slow penetration"
+description = "+1 pierced enemy per upgrade"

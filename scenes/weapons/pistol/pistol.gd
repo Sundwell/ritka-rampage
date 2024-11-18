@@ -48,7 +48,6 @@ func shoot():
 		if upgrades.has(PistolUpgrade.Id.MORE_BULLETS):
 			bullet_rotation_degrees = bullet_rotation_degrees - randi_range(-30, 30)
 		
-		
 		bullet.rotation = deg_to_rad(bullet_rotation_degrees)
 		bullet.apply_upgrades(upgrades)
 		

@@ -54,7 +54,7 @@ func pick_random_item(items_to_exclude: Array = []) -> Variant:
 	return null
 			
 			
-func pick_random_items(amount: int) -> Array[Variant]:
+func pick_random_items(amount: int) -> Array:
 	var picked_items := []
 	
 	for i in amount:

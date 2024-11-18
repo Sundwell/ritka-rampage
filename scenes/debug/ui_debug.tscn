@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cxxnmnvm7dh86"]
+[gd_scene load_steps=13 format=4 uid="uid://cxxnmnvm7dh86"]
 
 [ext_resource type="Script" path="res://scenes/debug/ui_debug.gd" id="1_5ks6w"]
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_uvtml"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ddkuoft8656d3" path="res://scenes/cache/particles_cache.tscn" id="6_ddm7e"]
 [ext_resource type="TileSet" uid="uid://b5jwrivhevsl6" path="res://resources/tileset.tres" id="6_tn1kw"]
 [ext_resource type="PackedScene" uid="uid://opwxpmnb8voa" path="res://scenes/game_object/player/player.tscn" id="7_0pi3q"]
+[ext_resource type="PackedScene" uid="uid://biyftkstxyn66" path="res://scenes/game_object/anvil/anvil.tscn" id="12_28td7"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_uvtml")
@@ -102,5 +103,20 @@ position = Vector2(-90, -108)
 [node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
 
 [node name="Player" parent="Entities" instance=ExtResource("7_0pi3q")]
+
+[node name="Anvil" parent="Entities" instance=ExtResource("12_28td7")]
+position = Vector2(25, -111)
+
+[node name="Anvil2" parent="Entities" instance=ExtResource("12_28td7")]
+position = Vector2(85, -59)
+
+[node name="Anvil3" parent="Entities" instance=ExtResource("12_28td7")]
+position = Vector2(64, 103)
+
+[node name="Anvil4" parent="Entities" instance=ExtResource("12_28td7")]
+position = Vector2(116, 58)
+
+[node name="Anvil5" parent="Entities" instance=ExtResource("12_28td7")]
+position = Vector2(140, -1)
 
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]

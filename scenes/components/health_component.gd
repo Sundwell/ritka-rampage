@@ -9,6 +9,11 @@ var current_health: float
 
 
 func _ready():
+	set_max_health(max_health)
+	
+	
+func set_max_health(value: float):
+	max_health = value
 	current_health = max_health
 
 

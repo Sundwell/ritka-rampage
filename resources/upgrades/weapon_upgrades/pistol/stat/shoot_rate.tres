@@ -9,4 +9,5 @@ title = "Shoot Rate"
 weapon = 0
 max_quantity = 5
 type = 0
+hint = ""
 description = "+10% shoot rate"

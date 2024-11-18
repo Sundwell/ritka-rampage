@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdom52g2fl5n"]
+
+[ext_resource type="Script" path="res://scenes/components/weapon_upgrades_pool_component.gd" id="1_mj8ot"]
+
+[node name="WeaponUpgradesPoolComponent" type="Node"]
+script = ExtResource("1_mj8ot")
