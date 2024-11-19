@@ -20,7 +20,9 @@ colors = PackedColorArray(1, 1, 1, 0, 0.98, 0.638633, 0.049, 0.694118)
 [node name="PistolBullet" type="Node2D" node_paths=PackedStringArray("hitbox_component")]
 top_level = true
 script = ExtResource("1_haia6")
+base_health = 3.0
 hitbox_component = NodePath("HitboxComponent")
+base_damage = 4.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_i4pkq")]
 max_health = 1.0

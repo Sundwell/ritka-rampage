@@ -3,10 +3,10 @@ extends Node2D
 
 const BASE_SPEED = 250.0
 const BASE_MAX_DISTANCE = 130.0
-const BASE_DAMAGE = 2.0
 
 @export var base_health := 1.0
 @export var hitbox_component: HitboxComponent
+@export var base_damage = 2.0
 var speed := BASE_SPEED
 var max_distance := BASE_MAX_DISTANCE
 var travelled_distance := 0
@@ -18,7 +18,6 @@ var upgrades_count := {}
 
 func _ready():
 	_set_max_health(base_health)
-	_set_damage(BASE_DAMAGE)
 	projectile_hurtbox_component.collided.connect(on_collided)
 	health_component.died.connect(on_died)
 
@@ -35,9 +34,6 @@ func _physics_process(delta):
 		
 		
 func _set_max_health(health: float):
-	print(health)
-	print(health_component)
-	print(health_component.set_max_health)
 	health_component.set_max_health(health)
 	
 	
@@ -69,7 +65,8 @@ func apply_upgrades(upgrades: Dictionary):
 		speed = speed * 0.8
 		
 	var damage_up_count: int = upgrades_count[PistolUpgrade.Id.DAMAGE_UP]
-	_set_damage(BASE_DAMAGE + damage_up_count)
+	base_damage = base_damage + damage_up_count
+	_set_damage(base_damage)
 
 
 func on_died():
@@ -79,5 +76,5 @@ func on_died():
 func on_collided():
 	health_component.damage(1)
 	
-	var new_damage: float = max(1, hitbox_component.damage * 0.7)
+	var new_damage: float = max(1, hitbox_component.damage - (base_damage * 0.3))
 	Callable(_set_damage.bind(new_damage)).call_deferred()
