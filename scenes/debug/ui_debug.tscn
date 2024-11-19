@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cxxnmnvm7dh86"]
+[gd_scene load_steps=14 format=4 uid="uid://cxxnmnvm7dh86"]
 
 [ext_resource type="Script" path="res://scenes/debug/ui_debug.gd" id="1_5ks6w"]
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_uvtml"]
@@ -12,6 +12,7 @@
 [ext_resource type="TileSet" uid="uid://b5jwrivhevsl6" path="res://resources/tileset.tres" id="6_tn1kw"]
 [ext_resource type="PackedScene" uid="uid://opwxpmnb8voa" path="res://scenes/game_object/player/player.tscn" id="7_0pi3q"]
 [ext_resource type="PackedScene" uid="uid://biyftkstxyn66" path="res://scenes/game_object/anvil/anvil.tscn" id="12_28td7"]
+[ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/game_object/enemy/bunny/bunny.tscn" id="13_0b838"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_uvtml")
@@ -119,4 +120,35 @@ position = Vector2(116, 58)
 [node name="Anvil5" parent="Entities" instance=ExtResource("12_28td7")]
 position = Vector2(140, -1)
 
+[node name="Bunny" parent="Entities" instance=ExtResource("13_0b838")]
+position = Vector2(-122, -78)
+
+[node name="HealthComponent" parent="Entities/Bunny" index="0"]
+max_health = 1111.0
+
+[node name="VelocityComponent" parent="Entities/Bunny" index="2"]
+max_speed = 0.0
+
+[node name="Bunny2" parent="Entities" instance=ExtResource("13_0b838")]
+position = Vector2(-88, -59)
+
+[node name="HealthComponent" parent="Entities/Bunny2" index="0"]
+max_health = 1111.0
+
+[node name="VelocityComponent" parent="Entities/Bunny2" index="2"]
+max_speed = 0.0
+
+[node name="Bunny3" parent="Entities" instance=ExtResource("13_0b838")]
+position = Vector2(-151, -93)
+
+[node name="HealthComponent" parent="Entities/Bunny3" index="0"]
+max_health = 1111.0
+
+[node name="VelocityComponent" parent="Entities/Bunny3" index="2"]
+max_speed = 0.0
+
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]
+
+[editable path="Entities/Bunny"]
+[editable path="Entities/Bunny2"]
+[editable path="Entities/Bunny3"]

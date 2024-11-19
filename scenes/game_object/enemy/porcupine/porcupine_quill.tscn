@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dg85ra3y0fmul" path="res://scenes/game_object/enemy/porcupine/porcupine_quill.png" id="1_4kuvp"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/porcupine/porcupine_quill.gd" id="1_b4lcj"]
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="2_aanuy"]
-[ext_resource type="PackedScene" uid="uid://n78ef23nvddy" path="res://scenes/components/projectile_hurtbox_component.tscn" id="3_ggtl8"]
+[ext_resource type="PackedScene" uid="uid://0vth6qt1d50l" path="res://scenes/components/projectile_hurtbox_component.tscn" id="3_ggtl8"]
 [ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="4_tixn8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uuv3j"]
@@ -16,9 +16,7 @@ script = ExtResource("1_b4lcj")
 [node name="HealthComponent" parent="." instance=ExtResource("2_aanuy")]
 max_health = 1.0
 
-[node name="ProjectileHurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_ggtl8")]
-collision_mask = 33
-health_component = NodePath("../HealthComponent")
+[node name="ProjectileHurtboxComponent" parent="." instance=ExtResource("3_ggtl8")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileHurtboxComponent"]
 position = Vector2(1.19209e-07, 0)

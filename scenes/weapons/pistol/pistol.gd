@@ -6,7 +6,6 @@ const BASE_RELOAD_TIME = 0.3
 
 var can_shoot := true
 var reload_time := BASE_RELOAD_TIME
-var damage := 2.0
 var bullet_count := 1
 var upgrades := {}
 
@@ -40,7 +39,6 @@ func shoot():
 	
 	for i in bullet_count:
 		var bullet = bullet_scene.instantiate() as PistolBullet
-		bullet.hitbox_component.damage = damage
 		bullet.position = shoot_position.global_position
 		
 		var bullet_rotation_degrees: float = global_rotation_degrees
@@ -49,17 +47,15 @@ func shoot():
 			bullet_rotation_degrees = bullet_rotation_degrees - randi_range(-30, 30)
 		
 		bullet.rotation = deg_to_rad(bullet_rotation_degrees)
-		bullet.apply_upgrades(upgrades)
 		
 		entities.add_child(bullet)
+		bullet.apply_upgrades(upgrades)
 	
 	
 func apply_upgrade(upgrade: WeaponUpgrade):
 	match upgrade.get_id():
 		PistolUpgrade.Id.SHOOT_RATE:
 			reload_timer.wait_time = (BASE_RELOAD_TIME - ((BASE_RELOAD_TIME * 0.1) * upgrades[PistolUpgrade.Id.SHOOT_RATE].quantity))
-		PistolUpgrade.Id.DAMAGE_UP:
-			damage = 2.0 + upgrades[PistolUpgrade.Id.DAMAGE_UP].quantity
 		PistolUpgrade.Id.MORE_BULLETS:
 			bullet_count += 1
 

@@ -34,6 +34,7 @@ shape = SubResource("CircleShape2D_fdwcm")
 visible = false
 collision_layer = 8
 reload_time = 0.0
+damage = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_fdwcm")

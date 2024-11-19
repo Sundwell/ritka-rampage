@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_p4e4h")
 id = 1
-incompatible_uprades = Array[int]([2])
+incompatible_uprades = Array[int]([])
 title = "Damage Up"
 weapon = 0
 max_quantity = 5

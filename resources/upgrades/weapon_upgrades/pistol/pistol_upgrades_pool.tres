@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponUpgrades" load_steps=7 format=3 uid="uid://qst0kq5he2eh"]
+[gd_resource type="Resource" script_class="WeaponUpgrades" load_steps=8 format=3 uid="uid://qst0kq5he2eh"]
 
 [ext_resource type="Script" path="res://resources/upgrades/weapon_upgrades/weapon_upgrades.gd" id="1_fhp3j"]
 [ext_resource type="Script" path="res://resources/upgrades/weapon_upgrades/weapon_upgrade.gd" id="2_ni3rd"]
@@ -6,7 +6,8 @@
 [ext_resource type="Resource" uid="uid://djamg450tr134" path="res://resources/upgrades/weapon_upgrades/pistol/stat/improved_ballistics.tres" id="4_wgxph"]
 [ext_resource type="Resource" uid="uid://ddhtxwf5wm78b" path="res://resources/upgrades/weapon_upgrades/pistol/stat/shoot_rate.tres" id="5_efh7b"]
 [ext_resource type="Resource" uid="uid://cj2gajfd4cdys" path="res://resources/upgrades/weapon_upgrades/pistol/mechanic/more_bullets.tres" id="6_5qgvv"]
+[ext_resource type="Resource" uid="uid://b8c1gjdntjyl" path="res://resources/upgrades/weapon_upgrades/pistol/mechanic/piercing_shots.tres" id="7_0u04j"]
 
 [resource]
 script = ExtResource("1_fhp3j")
-upgrades = Array[ExtResource("2_ni3rd")]([ExtResource("6_5qgvv"), ExtResource("3_us7jv"), ExtResource("4_wgxph"), ExtResource("5_efh7b")])
+upgrades = Array[ExtResource("2_ni3rd")]([ExtResource("6_5qgvv"), ExtResource("3_us7jv"), ExtResource("4_wgxph"), ExtResource("5_efh7b"), ExtResource("7_0u04j")])
