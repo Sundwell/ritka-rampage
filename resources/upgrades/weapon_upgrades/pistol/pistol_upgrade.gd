@@ -9,6 +9,8 @@ enum Id {
 	# Mechanic
 	MORE_BULLETS,
 	PIERCING_SHOTS,
+	RICOCHET,
+	EXPLOSIVE_BULLETS,
 }
 
 @export var id: Id

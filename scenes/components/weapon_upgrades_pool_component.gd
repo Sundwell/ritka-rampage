@@ -24,10 +24,10 @@ func _set_upgrades(new_upgrades: Array[WeaponUpgrade]):
 func _is_upgrade_available(upgrade: WeaponUpgrade) -> bool:
 	match upgrade.type:
 		WeaponUpgrade.Type.MECHANIC:
-			if collected_anvils_count == 0:
+			if collected_anvils_count < 2:
 				return false
 		WeaponUpgrade.Type.EVOLUTION:
-			if is_weapon_evolved or collected_anvils_count < 3:
+			if is_weapon_evolved or collected_anvils_count <= 3:
 				return false
 				
 	return true

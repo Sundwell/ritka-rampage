@@ -43,6 +43,8 @@ version_control/autoload_on_startup=true
 
 foreground_layer=""
 entities_layer=""
+player=""
+enemy=""
 
 [gui]
 

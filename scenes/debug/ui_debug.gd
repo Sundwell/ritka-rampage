@@ -11,7 +11,7 @@ extends Node
 
 
 func _ready() -> void:
-	weapon_upgrade_button.pressed.connect(weapon_upgrade_manager.on_anvil_collected)
+	weapon_upgrade_button.pressed.connect(on_weapon_upgrade_pressed)
 	mutation_upgrade_button.pressed.connect(experience_manager.level_up)
 	lose_button.pressed.connect(show_lose_screen)
 	win_button.pressed.connect(show_win_screen)
@@ -21,6 +21,10 @@ func show_lose_screen():
 	var end_screen = end_screen_scene.instantiate()
 	end_screen.set_defeat()
 	add_child(end_screen)
+	
+	
+func on_weapon_upgrade_pressed():
+	GameEvents.emit_anvil_collected()
 	
 	
 func show_win_screen():

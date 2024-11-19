@@ -121,7 +121,7 @@ position = Vector2(116, 58)
 position = Vector2(140, -1)
 
 [node name="Bunny" parent="Entities" instance=ExtResource("13_0b838")]
-position = Vector2(-122, -78)
+position = Vector2(-156, -61)
 
 [node name="HealthComponent" parent="Entities/Bunny" index="0"]
 max_health = 1111.0
@@ -139,7 +139,7 @@ max_health = 1111.0
 max_speed = 0.0
 
 [node name="Bunny3" parent="Entities" instance=ExtResource("13_0b838")]
-position = Vector2(-151, -93)
+position = Vector2(-227, -90)
 
 [node name="HealthComponent" parent="Entities/Bunny3" index="0"]
 max_health = 1111.0
