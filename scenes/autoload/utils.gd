@@ -32,3 +32,7 @@ func get_nearest_node_in_group(group: String, position: Vector2, excluded_nodes:
 	)
 	
 	return available_nodes[0]
+	
+	
+func get_children_of_type(parent: Node, type) -> Array[Node]:
+	return parent.get_children().filter(func (child): return is_instance_of(child, type))

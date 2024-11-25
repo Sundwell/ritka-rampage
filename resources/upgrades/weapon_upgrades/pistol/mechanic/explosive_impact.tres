@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PistolUpgrade" load_steps=2 format=3 uid="uid://bnyxc28kkj6tt"]
+
+[ext_resource type="Script" path="res://resources/upgrades/weapon_upgrades/pistol/pistol_upgrade.gd" id="1_7f0av"]
+
+[resource]
+script = ExtResource("1_7f0av")
+id = 6
+incompatible_uprades = Array[int]([])
+title = "Explosive Impact"
+weapon = 0
+max_quantity = 2
+type = 1
+hint = "You are not safe."
+description = "15% additional area damage per level"

@@ -129,6 +129,33 @@ max_health = 1111.0
 [node name="VelocityComponent" parent="Entities/Bunny" index="2"]
 max_speed = 0.0
 
+[node name="Bunny4" parent="Entities" instance=ExtResource("13_0b838")]
+position = Vector2(-213, 30)
+
+[node name="HealthComponent" parent="Entities/Bunny4" index="0"]
+max_health = 1111.0
+
+[node name="VelocityComponent" parent="Entities/Bunny4" index="2"]
+max_speed = 0.0
+
+[node name="Bunny5" parent="Entities" instance=ExtResource("13_0b838")]
+position = Vector2(-223, 36)
+
+[node name="HealthComponent" parent="Entities/Bunny5" index="0"]
+max_health = 1111.0
+
+[node name="VelocityComponent" parent="Entities/Bunny5" index="2"]
+max_speed = 0.0
+
+[node name="Bunny6" parent="Entities" instance=ExtResource("13_0b838")]
+position = Vector2(-214, 40)
+
+[node name="HealthComponent" parent="Entities/Bunny6" index="0"]
+max_health = 1111.0
+
+[node name="VelocityComponent" parent="Entities/Bunny6" index="2"]
+max_speed = 0.0
+
 [node name="Bunny2" parent="Entities" instance=ExtResource("13_0b838")]
 position = Vector2(-88, -59)
 
@@ -150,5 +177,8 @@ max_speed = 0.0
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]
 
 [editable path="Entities/Bunny"]
+[editable path="Entities/Bunny4"]
+[editable path="Entities/Bunny5"]
+[editable path="Entities/Bunny6"]
 [editable path="Entities/Bunny2"]
 [editable path="Entities/Bunny3"]

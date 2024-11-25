@@ -5,20 +5,22 @@ const BASE_SPEED = 250.0
 const BASE_MAX_DISTANCE = 130.0
 const MAX_RICOCHET_DISTANCE = 80.0
 
-@export var base_health := 1.0
+@export var base_max_health := 1.0
 @export var hitbox_component: HitboxComponent
 @export var base_damage = 2.0
+@export var explosion_scene: PackedScene
 var speed := BASE_SPEED
 var max_distance := BASE_MAX_DISTANCE
 var travelled_distance := 0
 var upgrades_count := {}
+var exploded_count := 0
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var projectile_hurtbox_component: Area2D = $ProjectileHurtboxComponent
 
 
 func _ready():
-	_set_max_health(base_health)
+	_set_max_health(base_max_health)
 	projectile_hurtbox_component.collided.connect(on_collided)
 	health_component.died.connect(on_died)
 
@@ -48,6 +50,7 @@ func _update_upgrades_count(upgrades: Dictionary):
 		PistolUpgrade.Id.PIERCING_SHOTS,
 		PistolUpgrade.Id.DAMAGE_UP,
 		PistolUpgrade.Id.RICOCHET,
+		PistolUpgrade.Id.EXPLOSIVE_IMPACT
 	]
 	
 	for id: PistolUpgrade.Id in BULLET_UPGRADE_IDS:
@@ -63,7 +66,7 @@ func apply_upgrades(upgrades: Dictionary):
 	
 	var piercing_shots_count: int = upgrades_count[PistolUpgrade.Id.PIERCING_SHOTS]
 	if piercing_shots_count > 0:
-		_set_max_health(base_health + piercing_shots_count)
+		_set_max_health(base_max_health + piercing_shots_count)
 		speed = speed * 0.8
 		
 	var damage_up_count: int = upgrades_count[PistolUpgrade.Id.DAMAGE_UP]
@@ -72,7 +75,7 @@ func apply_upgrades(upgrades: Dictionary):
 	
 	var ricochet_count: int = upgrades_count[PistolUpgrade.Id.RICOCHET]
 	if ricochet_count > 0:
-		_set_max_health(base_health + ricochet_count)
+		_set_max_health(base_max_health + ricochet_count)
 		_set_damage(base_damage * 0.7)
 		
 		
@@ -107,10 +110,28 @@ func ricochet():
 
 func on_died():
 	queue_free()
+	
+	
+func _create_explosion(damage: float):
+	exploded_count += 1
+	
+	var explosion = explosion_scene.instantiate() as Explosion
+	explosion.set_damage(damage)
+	explosion.global_position = global_position
+	Utils.get_entities_layer().add_child(explosion)
+	
+	
+func _can_create_explosion() -> bool:
+	return exploded_count == 0
 
 
 func on_collided():
 	health_component.damage(1)
+	
+	var explosive_impact_count: int = upgrades_count[PistolUpgrade.Id.EXPLOSIVE_IMPACT]
+	if explosive_impact_count > 0 and _can_create_explosion():
+		var explosion_damage = hitbox_component.damage * (explosive_impact_count * 0.15)
+		Callable(_create_explosion.bind(explosion_damage)).call_deferred()
 	
 	if health_component.get_health_percent() == 0:
 		return

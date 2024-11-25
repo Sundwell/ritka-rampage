@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_see22")
 id = 4
-incompatible_uprades = Array[int]([])
+incompatible_uprades = Array[int]([5])
 title = "Piercing Shots"
 weapon = 0
 max_quantity = 2

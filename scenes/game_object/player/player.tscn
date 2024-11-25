@@ -235,7 +235,6 @@ position = Vector2(0, -5)
 collision_layer = 32
 collision_mask = 16
 health_component = NodePath("../HealthComponent")
-has_invinsibility_frames = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_4sibk")

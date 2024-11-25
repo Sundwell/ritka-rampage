@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_ib5rk")
 id = 5
-incompatible_uprades = Array[int]([])
+incompatible_uprades = Array[int]([4])
 title = "Ricochet"
 weapon = 0
 max_quantity = 2
