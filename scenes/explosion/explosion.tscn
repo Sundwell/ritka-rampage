@@ -101,6 +101,7 @@ shape = SubResource("CircleShape2D_0m4ud")
 emitting = false
 amount = 48
 lifetime = 0.4
+one_shot = true
 explosiveness = 1.0
 spread = 180.0
 gravity = Vector2(0, 0)
