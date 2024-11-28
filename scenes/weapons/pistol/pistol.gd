@@ -6,7 +6,6 @@ const BASE_RELOAD_TIME = 0.3
 
 var can_shoot := true
 var reload_time := BASE_RELOAD_TIME
-var bullet_count := 1
 var upgrades := {}
 
 @onready var shoot_position = $ShootPosition
@@ -37,14 +36,24 @@ func shoot():
 	
 	var entities = Utils.get_entities_layer()
 	
-	for i in bullet_count:
+	var bullet_count: int = 1
+	var more_bullets_count: int = Utils.get_upgrade_quantity(upgrades, PistolUpgrade.Id.MORE_BULLETS)
+	
+	if more_bullets_count > 0:
+		var chance_for_additional_bullet: float = more_bullets_count * 0.15
+		var has_additional_bullet: bool = randf_range(0, 1) <= chance_for_additional_bullet
+		if has_additional_bullet:
+			bullet_count += 1
+	
+	for i in range(bullet_count):
 		var bullet = bullet_scene.instantiate() as PistolBullet
 		bullet.position = shoot_position.global_position
 		
 		var bullet_rotation_degrees: float = global_rotation_degrees
 		
-		if upgrades.has(PistolUpgrade.Id.MORE_BULLETS):
-			bullet_rotation_degrees = bullet_rotation_degrees - randi_range(-30, 30)
+		if bullet_count > 1:
+			var rotation_multiplier = -1 if i % 2 == 0 else 1
+			bullet_rotation_degrees += 5.0 * rotation_multiplier
 		
 		bullet.rotation = deg_to_rad(bullet_rotation_degrees)
 		
@@ -56,8 +65,6 @@ func apply_upgrade(upgrade: WeaponUpgrade):
 	match upgrade.get_id():
 		PistolUpgrade.Id.SHOOT_RATE:
 			reload_timer.wait_time = (BASE_RELOAD_TIME - ((BASE_RELOAD_TIME * 0.1) * upgrades[PistolUpgrade.Id.SHOOT_RATE].quantity))
-		PistolUpgrade.Id.MORE_BULLETS:
-			bullet_count += 1
 
 
 func on_reload_timer_timeout():

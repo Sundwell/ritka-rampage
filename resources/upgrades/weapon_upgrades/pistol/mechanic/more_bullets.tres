@@ -5,9 +5,10 @@
 [resource]
 script = ExtResource("1_ps4m0")
 id = 3
+incompatible_uprades = Array[int]([])
 title = "More bullets"
 weapon = 0
 max_quantity = 2
 type = 1
-hint = "Say \"NO\" to accuracy"
-description = "More bullets!"
+hint = "Accuracy? A bit."
+description = "15% chance for additional bullet per level"
