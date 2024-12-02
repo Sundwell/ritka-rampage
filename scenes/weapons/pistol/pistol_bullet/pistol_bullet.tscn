@@ -26,6 +26,7 @@ explosion_scene = ExtResource("2_wcckn")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_i4pkq")]
 max_health = 1.0
+enable_floating_text = false
 
 [node name="ProjectileHurtboxComponent" parent="." instance=ExtResource("4_hmcoo")]
 

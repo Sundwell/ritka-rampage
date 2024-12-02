@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/ui/floating_text.gd" id="1_ui7i2"]
 
 [node name="FloatingText" type="Node2D"]
+z_index = 1
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_ui7i2")
 
