@@ -5,6 +5,7 @@ signal died
 signal damaged(amount: float)
 
 @export var max_health: float = 10.0
+@export var enable_floating_text := true
 var current_health: float
 
 
@@ -17,9 +18,21 @@ func set_max_health(value: float):
 	current_health = max_health
 
 
+func _spawn_damaged_text(amount: float):
+	if not enable_floating_text:
+		return
+
+	var parent = get_parent()
+	if parent is Node2D:
+		FloatingTextManager.spawn_text(str(amount), parent.global_position)
+
+
 func damage(damage_amount: float):
 	current_health = max(current_health - damage_amount, 0)
 	damaged.emit(damage_amount)
+	
+	_spawn_damaged_text(damage_amount)
+	
 	Callable(check_death).call_deferred()
 	
 	

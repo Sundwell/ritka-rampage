@@ -5,7 +5,6 @@ extends Node2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision_shape: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var floating_text_spawner_component = $FloatingTextSpawnerComponent
 @onready var eat_sound: AudioStreamPlayer2D = $SFX/EatSound
 
 
@@ -36,7 +35,7 @@ func throw_particles():
 func collect():
 	throw_particles()
 	GameEvents.emit_orange_energy_collected(1)
-	floating_text_spawner_component.spawn_text('+1', FloatingText.Type.ORANGE_PICK_UP)
+	FloatingTextManager.spawn_text('+1', global_position, FloatingText.Type.ORANGE_PICK_UP)
 	animation_player.play('eaten')
 	
 

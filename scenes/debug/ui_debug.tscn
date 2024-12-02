@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cxxnmnvm7dh86"]
+[gd_scene load_steps=15 format=4 uid="uid://cxxnmnvm7dh86"]
 
 [ext_resource type="Script" path="res://scenes/debug/ui_debug.gd" id="1_5ks6w"]
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_uvtml"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://opwxpmnb8voa" path="res://scenes/game_object/player/player.tscn" id="7_0pi3q"]
 [ext_resource type="PackedScene" uid="uid://biyftkstxyn66" path="res://scenes/game_object/anvil/anvil.tscn" id="12_28td7"]
 [ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/game_object/enemy/bunny/bunny.tscn" id="13_0b838"]
+[ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange/orange.tscn" id="14_8lexw"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_uvtml")
@@ -173,6 +174,9 @@ max_health = 1111.0
 
 [node name="VelocityComponent" parent="Entities/Bunny3" index="2"]
 max_speed = 0.0
+
+[node name="OrangeEnergy" parent="Entities" instance=ExtResource("14_8lexw")]
+position = Vector2(-64, 13)
 
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]
 

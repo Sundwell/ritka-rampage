@@ -92,8 +92,8 @@ func ricochet():
 		return
 		
 	var available_enemies = enemies.slice(1).filter(
-			func (enemy: Node2D):
-				return enemy.global_position.distance_to(global_position) <= MAX_RICOCHET_DISTANCE
+			func (enemy_near: Node2D):
+				return enemy_near.global_position.distance_to(global_position) <= MAX_RICOCHET_DISTANCE
 	)
 	
 	if available_enemies.is_empty():
@@ -113,8 +113,6 @@ func on_died():
 	
 	
 func _create_explosion(damage: float):
-	exploded_count += 1
-	
 	var explosion = explosion_scene.instantiate() as Explosion
 	explosion.set_damage(damage)
 	explosion.global_position = global_position
@@ -130,6 +128,7 @@ func on_collided():
 	
 	var explosive_impact_count: int = upgrades_count[PistolUpgrade.Id.EXPLOSIVE_IMPACT]
 	if explosive_impact_count > 0 and _can_create_explosion():
+		exploded_count += 1
 		var explosion_damage = hitbox_component.damage * (explosive_impact_count * 0.15)
 		Callable(_create_explosion.bind(explosion_damage)).call_deferred()
 	

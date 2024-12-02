@@ -15,6 +15,7 @@ script = ExtResource("1_b4lcj")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_aanuy")]
 max_health = 1.0
+enable_floating_text = false
 
 [node name="ProjectileHurtboxComponent" parent="." instance=ExtResource("3_ggtl8")]
 

@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://0fecexi8j7gb"]
+[gd_scene load_steps=10 format=3 uid="uid://0fecexi8j7gb"]
 
 [ext_resource type="Script" path="res://scenes/game_object/orange/orange.gd" id="1_buvoc"]
 [ext_resource type="Texture2D" uid="uid://ba4kgp2lmt86e" path="res://scenes/game_object/orange/orange.png" id="1_qhtu8"]
 [ext_resource type="PackedScene" uid="uid://dqlswblbvmvfk" path="res://scenes/vfx/orange_collected_particles.tscn" id="2_sbomo"]
 [ext_resource type="AudioStream" uid="uid://cjo67ai4wum6h" path="res://scenes/game_object/orange/eat_sound.wav" id="3_88xu6"]
-[ext_resource type="PackedScene" uid="uid://byo6o7fua67bc" path="res://scenes/components/floating_text/floating_text_spawner_component.tscn" id="3_e22k4"]
 
 [sub_resource type="Animation" id="Animation_j2xrk"]
 length = 0.001
@@ -129,8 +128,6 @@ autoplay = "default"
 
 [node name="EatSound" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("3_88xu6")
-
-[node name="FloatingTextSpawnerComponent" parent="." instance=ExtResource("3_e22k4")]
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

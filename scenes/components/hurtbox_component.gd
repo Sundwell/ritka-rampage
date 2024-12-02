@@ -1,8 +1,6 @@
 class_name HurtboxComponent
 extends Area2D
 
-signal got_hurt
-
 @export var health_component: HealthComponent
 
 

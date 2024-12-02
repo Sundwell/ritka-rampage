@@ -21,6 +21,7 @@ Constants="*res://scenes/autoload/constants.gd"
 Utils="*res://scenes/autoload/utils.gd"
 GlobalActions="*res://scenes/autoload/global_actions.gd"
 TweenEffect="*res://scenes/autoload/tween_effect.gd"
+FloatingTextManager="*res://scenes/autoload/floating_text_manager.tscn"
 
 [debug]
 

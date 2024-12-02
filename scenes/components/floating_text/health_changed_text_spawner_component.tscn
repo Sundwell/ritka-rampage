@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgs3jisn4rlps"]
-
-[ext_resource type="Script" path="res://scenes/components/floating_text/health_changed_text_spawner_component.gd" id="1_coy2l"]
-[ext_resource type="PackedScene" uid="uid://byo6o7fua67bc" path="res://scenes/components/floating_text/floating_text_spawner_component.tscn" id="2_gq5nk"]
-
-[node name="HealthChangedTextSpawnerComponent" type="Node2D"]
-script = ExtResource("1_coy2l")
-
-[node name="FloatingTextSpawnerComponent" parent="." instance=ExtResource("2_gq5nk")]

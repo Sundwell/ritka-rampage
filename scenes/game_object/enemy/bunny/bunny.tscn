@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bwsxcvg8tgsku"]
+[gd_scene load_steps=20 format=3 uid="uid://bwsxcvg8tgsku"]
 
 [ext_resource type="Texture2D" uid="uid://d2064pj05mkxy" path="res://scenes/game_object/enemy/bunny/bunny.png" id="1_5rorc"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/bunny/bunny.gd" id="1_6uvuu"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="8_5shgc"]
 [ext_resource type="Texture2D" uid="uid://dw6tqbe2ry1kk" path="res://scenes/game_object/enemy/bunny/soul.png" id="8_ifdj7"]
 [ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/components/ground_shadow/ground_shadow_component.tscn" id="9_dgoci"]
-[ext_resource type="PackedScene" uid="uid://bgs3jisn4rlps" path="res://scenes/components/floating_text/health_changed_text_spawner_component.tscn" id="9_fuwje"]
 
 [sub_resource type="Animation" id="Animation_ehbuc"]
 length = 0.001
@@ -131,9 +130,6 @@ sprite = NodePath("../Visuals/Sprite2D")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_ycsh0")]
 soul_texture = ExtResource("8_ifdj7")
-health_component = NodePath("../HealthComponent")
-
-[node name="HealthChangedTextSpawnerComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("9_fuwje")]
 health_component = NodePath("../HealthComponent")
 
 [node name="ActionsAnimationPlayer" type="AnimationPlayer" parent="."]
