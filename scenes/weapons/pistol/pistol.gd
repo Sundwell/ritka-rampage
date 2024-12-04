@@ -45,14 +45,15 @@ func shoot():
 		if has_additional_bullet:
 			bullet_count += 1
 	
-	for i in range(bullet_count):
+	for bullet_number in range(bullet_count):
 		var bullet = bullet_scene.instantiate() as PistolBullet
 		bullet.position = shoot_position.global_position
 		
 		var bullet_rotation_degrees: float = global_rotation_degrees
 		
 		if bullet_count > 1:
-			var rotation_multiplier = -1 if i % 2 == 0 else 1
+			var multiplier: int = ceil(bullet_number / 2.0)
+			var rotation_multiplier = -multiplier if bullet_number % 2 == 0 else multiplier
 			bullet_rotation_degrees += 5.0 * rotation_multiplier
 		
 		bullet.rotation = deg_to_rad(bullet_rotation_degrees)
