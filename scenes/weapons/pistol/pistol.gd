@@ -52,9 +52,17 @@ func shoot():
 		var bullet_rotation_degrees: float = global_rotation_degrees
 		
 		if bullet_count > 1:
-			var multiplier: int = ceil(bullet_number / 2.0)
-			var rotation_multiplier = -multiplier if bullet_number % 2 == 0 else multiplier
-			bullet_rotation_degrees += 5.0 * rotation_multiplier
+			var multiplier: float = ceil((bullet_number) / 2.0)
+			var is_bullets_even := bullet_count % 2 == 0
+			
+			if bullet_count == 2:
+				multiplier = 1
+			elif is_bullets_even:
+				bullet_rotation_degrees -= 2.5
+			
+			var is_bullet_even = bullet_number % 2 == 0
+			var rotation_multiplier = -multiplier if is_bullet_even else multiplier
+			bullet_rotation_degrees += 5 * rotation_multiplier
 		
 		bullet.rotation = deg_to_rad(bullet_rotation_degrees)
 		
