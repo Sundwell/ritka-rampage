@@ -99,6 +99,7 @@ pause={
 2d_physics/layer_6="PlayerHurtbox"
 2d_physics/layer_7="EnemyHurtbox"
 2d_physics/layer_8="PlayerPickupbox"
+2d_physics/layer_9="Decorations"
 
 [rendering]
 

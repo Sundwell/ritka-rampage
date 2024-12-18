@@ -16,12 +16,13 @@ var state_machine := CallableStateMachine.new()
 @onready var visuals = $Visuals
 @onready var weapon_controller: WeaponContoller = $WeaponController
 @onready var velocity_component: VelocityComponent = $VelocityComponent
+@onready var shooting_state_change_timer: Timer = $ShootingStateChangeTimer
 
 
 func _ready():
 	GameEvents.mutation_upgrade_selected.connect(on_mutation_upgrade_selected)
 	
-	state_machine.add_states(state_idle, enter_state_idle)
+	state_machine.add_states(state_idle, enter_state_idle, exit_state_idle)
 	state_machine.add_states(state_moving)
 	state_machine.set_initial_state(state_idle)
 	
@@ -35,9 +36,10 @@ func _physics_process(delta: float):
 		
 func shoot():
 	if Input.is_action_pressed('fire'):
+		shooting_state_change_timer.start()
 		is_shooting = true
 		weapon_controller.shoot()
-	else:
+	elif shooting_state_change_timer.is_stopped():
 		is_shooting = false
 		
 		
@@ -63,6 +65,10 @@ func move():
 		
 
 #region States
+func exit_state_idle():
+	shooting_state_change_timer.stop()
+
+
 func enter_state_idle():
 	animation_player.play("idle")
 	velocity_component.stop()

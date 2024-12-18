@@ -4,5 +4,5 @@
 
 [node name="ProjectileHurtboxComponent" type="Area2D"]
 collision_layer = 0
-collision_mask = 65
+collision_mask = 256
 script = ExtResource("1_q8px7")

@@ -29,6 +29,7 @@ max_health = 1.0
 enable_floating_text = false
 
 [node name="ProjectileHurtboxComponent" parent="." instance=ExtResource("4_hmcoo")]
+collision_mask = 320
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileHurtboxComponent"]
 shape = SubResource("CircleShape2D_fdwcm")
