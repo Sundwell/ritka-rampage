@@ -7,11 +7,13 @@ var max_distance: float = 140.0
 var travelled_distance: float = 0.0
 
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
+@onready var projectile_hurtbox_component: ProjectileHurtboxComponent = $ProjectileHurtboxComponent
 
 
 func _ready():
 	hitbox_component.damage = DAMAGE
 	$HealthComponent.died.connect(on_died)
+	projectile_hurtbox_component.collided.connect(on_collided)
 
 
 func _physics_process(delta):
@@ -24,8 +26,16 @@ func _physics_process(delta):
 	travelled_distance += delta * quill_speed * speed_multiplier
 	
 	if travelled_distance >= max_distance:
-		queue_free()
+		die()
+		
+		
+func die():
+	queue_free()
 		
 		
 func on_died():
-	queue_free()
+	die()
+	
+	
+func on_collided():
+	die()

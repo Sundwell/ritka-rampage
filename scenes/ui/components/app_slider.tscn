@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwq1a2sardnvl"]
+
+[ext_resource type="Script" path="res://scenes/ui/components/app_slider.gd" id="1_67wjr"]
+[ext_resource type="AudioStream" uid="uid://cpvpicfbawy0i" path="res://assets/audio/sfx/button_click.ogg" id="2_621ub"]
+
+[node name="SfxSlider" type="HSlider"]
+offset_right = 60.0
+offset_bottom = 12.0
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("1_67wjr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_621ub")
+bus = &"SFX"

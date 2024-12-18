@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://5p624wsr7m2d"]
+[gd_scene load_steps=4 format=3 uid="uid://5p624wsr7m2d"]
 
-[ext_resource type="PackedScene" uid="uid://rij5bvmvffnm" path="res://scenes/ui/app_button.tscn" id="1_2q4dh"]
+[ext_resource type="PackedScene" uid="uid://rij5bvmvffnm" path="res://scenes/ui/components/app_button.tscn" id="1_2q4dh"]
 [ext_resource type="Script" path="res://scenes/ui/menus/settings_menu.gd" id="1_r4niq"]
+[ext_resource type="PackedScene" uid="uid://dwq1a2sardnvl" path="res://scenes/ui/components/app_slider.tscn" id="2_lo7k2"]
 
 [node name="SettingsMenu" type="CanvasLayer"]
 layer = 2
@@ -62,12 +63,10 @@ layout_mode = 2
 layout_mode = 2
 text = "SFX Volume"
 
-[node name="SfxSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsContainer/SfxContainer"]
+[node name="SfxSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsContainer/SfxContainer" instance=ExtResource("2_lo7k2")]
 unique_name_in_owner = true
 layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.5
+sound_on_drag_end = true
 
 [node name="MusicContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsContainer"]
 layout_mode = 2
@@ -76,12 +75,11 @@ layout_mode = 2
 layout_mode = 2
 text = "Music Volume"
 
-[node name="MusicSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsContainer/MusicContainer"]
+[node name="MusicSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsContainer/MusicContainer" instance=ExtResource("2_lo7k2")]
 unique_name_in_owner = true
 layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.5
+audio_bus_name = "Music"
+sound_on_drag_end = true
 
 [node name="WindowContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsContainer"]
 layout_mode = 2

@@ -13,6 +13,12 @@ var current_enemies_table: WeightedTable = WeightedTable.new()
 
 
 func _ready():
+	difficulty_stages.sort_custom(
+			func (stageA: DifficultyStage, stageB: DifficultyStage):
+				if stageA.difficulty_level < stageB.difficulty_level:
+					return true
+				return false
+	)
 	update_difficulty_stage(0)
 	update_difficulty_stage_settings()
 	timer.start()

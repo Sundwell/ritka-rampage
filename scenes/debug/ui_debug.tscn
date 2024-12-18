@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=4 uid="uid://cxxnmnvm7dh86"]
+[gd_scene load_steps=16 format=4 uid="uid://cxxnmnvm7dh86"]
 
 [ext_resource type="Script" path="res://scenes/debug/ui_debug.gd" id="1_5ks6w"]
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_uvtml"]
 [ext_resource type="PackedScene" uid="uid://r1vpw62fcrjw" path="res://scenes/ui/end_screen.tscn" id="2_7xvar"]
-[ext_resource type="PackedScene" uid="uid://rij5bvmvffnm" path="res://scenes/ui/app_button.tscn" id="2_koxa1"]
+[ext_resource type="PackedScene" uid="uid://rij5bvmvffnm" path="res://scenes/ui/components/app_button.tscn" id="2_koxa1"]
 [ext_resource type="PackedScene" uid="uid://6xndi4vlwwav" path="res://scenes/ui/menus/pause_menu.tscn" id="3_pdcsc"]
 [ext_resource type="PackedScene" uid="uid://d2a52b2apau0v" path="res://scenes/manager/upgrades/weapon_upgrade_manager.tscn" id="3_xdll0"]
 [ext_resource type="PackedScene" uid="uid://cobi6d0h2keep" path="res://scenes/manager/experience_manager.tscn" id="4_fk7km"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://biyftkstxyn66" path="res://scenes/game_object/anvil/anvil.tscn" id="12_28td7"]
 [ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/game_object/enemy/bunny/bunny.tscn" id="13_0b838"]
 [ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange/orange.tscn" id="14_8lexw"]
+[ext_resource type="PackedScene" uid="uid://dwmlg050i08ac" path="res://scenes/game_object/enemy/stubborn_cow/stubborn_cow.tscn" id="15_4fknr"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_uvtml")
@@ -173,6 +174,9 @@ max_speed = 0.0
 
 [node name="OrangeEnergy" parent="Entities" instance=ExtResource("14_8lexw")]
 position = Vector2(-64, 13)
+
+[node name="StubbornCow" parent="Entities" instance=ExtResource("15_4fknr")]
+position = Vector2(-31, -64)
 
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]
 
