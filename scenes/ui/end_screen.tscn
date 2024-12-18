@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://r1vpw62fcrjw"]
 
 [ext_resource type="Script" path="res://scenes/ui/end_screen.gd" id="1_6ukal"]
-[ext_resource type="PackedScene" uid="uid://rij5bvmvffnm" path="res://scenes/ui/app_button.tscn" id="2_m7nyx"]
+[ext_resource type="PackedScene" uid="uid://rij5bvmvffnm" path="res://scenes/ui/components/app_button.tscn" id="2_m7nyx"]
 
 [sub_resource type="Animation" id="Animation_sx5pp"]
 length = 0.001

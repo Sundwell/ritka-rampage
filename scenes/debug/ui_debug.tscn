@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/debug/ui_debug.gd" id="1_5ks6w"]
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_uvtml"]
 [ext_resource type="PackedScene" uid="uid://r1vpw62fcrjw" path="res://scenes/ui/end_screen.tscn" id="2_7xvar"]
-[ext_resource type="PackedScene" uid="uid://rij5bvmvffnm" path="res://scenes/ui/app_button.tscn" id="2_koxa1"]
+[ext_resource type="PackedScene" uid="uid://rij5bvmvffnm" path="res://scenes/ui/components/app_button.tscn" id="2_koxa1"]
 [ext_resource type="PackedScene" uid="uid://6xndi4vlwwav" path="res://scenes/ui/menus/pause_menu.tscn" id="3_pdcsc"]
 [ext_resource type="PackedScene" uid="uid://d2a52b2apau0v" path="res://scenes/manager/upgrades/weapon_upgrade_manager.tscn" id="3_xdll0"]
 [ext_resource type="PackedScene" uid="uid://cobi6d0h2keep" path="res://scenes/manager/experience_manager.tscn" id="4_fk7km"]

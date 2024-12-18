@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://rij5bvmvffnm"]
 
-[ext_resource type="Script" path="res://scenes/ui/app_button.gd" id="1_vfnew"]
+[ext_resource type="Script" path="res://scenes/ui/components/app_button.gd" id="1_vfnew"]
 [ext_resource type="AudioStream" uid="uid://cpvpicfbawy0i" path="res://assets/audio/sfx/button_click.ogg" id="2_yrf8u"]
 
 [node name="AppButton" type="Button"]

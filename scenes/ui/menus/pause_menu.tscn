@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/ui/menus/pause_menu.gd" id="1_ffoyu"]
 [ext_resource type="PackedScene" uid="uid://5p624wsr7m2d" path="res://scenes/ui/menus/settings_menu.tscn" id="2_dehwt"]
-[ext_resource type="PackedScene" uid="uid://rij5bvmvffnm" path="res://scenes/ui/app_button.tscn" id="2_mxojf"]
+[ext_resource type="PackedScene" uid="uid://rij5bvmvffnm" path="res://scenes/ui/components/app_button.tscn" id="2_mxojf"]
 
 [sub_resource type="Animation" id="Animation_sx5pp"]
 length = 0.001
