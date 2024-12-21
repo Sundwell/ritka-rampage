@@ -7,6 +7,8 @@ signal back_pressed
 @onready var music_slider: HSlider = %MusicSlider
 @onready var window_mode_button: Button = %WindowButton
 @onready var back_button: Button = %BackButton
+@onready var margin_container: MarginContainer = $MarginContainer
+@onready var panel_container: PanelContainer = $MarginContainer/PanelContainer
 
 
 func _ready() -> void:
@@ -16,7 +18,14 @@ func _ready() -> void:
 	back_button.pressed.connect(on_back_pressed)
 	
 	update_displayed_values()
-
+	
+	
+func set_ui_position(position: Constants.UIPositions = Constants.UIPositions.CENTER):
+	match position:
+		Constants.UIPositions.RIGHT:
+			margin_container.add_theme_constant_override('margin_right', 100)
+			panel_container.size_flags_horizontal = Control.SIZE_SHRINK_END
+			
 
 func update_window_mode_display():
 	var mode_text = "Windowed"

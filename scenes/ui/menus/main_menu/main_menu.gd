@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var play_button: Button = %PlayButton
 @onready var settings_button: Button = %SettingsButton
 @onready var quit_button: Button = %QuitButton
+@onready var margin_container: MarginContainer = $MarginContainer
 
 
 func _ready() -> void:
@@ -21,6 +22,7 @@ func on_play_pressed():
 func on_settings_pressed():
 	var settings_menu_instance = settings_scene.instantiate() as SettingsMenu
 	add_child(settings_menu_instance)
+	settings_menu_instance.set_ui_position(Constants.UIPositions.RIGHT)
 	
 	settings_menu_instance.back_pressed.connect(settings_menu_instance.queue_free)
 	

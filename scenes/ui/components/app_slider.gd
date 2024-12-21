@@ -11,7 +11,7 @@ func _ready() -> void:
 	audio_stream_player.bus = audio_bus_name
 	
 	
-func on_drag_ended(value_changed: bool):
+func on_drag_ended(new_value: bool):
 	if sound_on_drag_end:
 		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 		audio_stream_player.play()

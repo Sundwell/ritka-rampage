@@ -11,8 +11,12 @@ enum Weapon {
 	PISTOL,
 }
 
-const PLAYER_VIEW_RADIUS = 370.0
+enum UIPositions {
+	CENTER,
+	RIGHT
+}
 
+const PLAYER_VIEW_RADIUS = 370.0
 
 const AUDIO_BUSES = {
 	"SFX": "SFX",
