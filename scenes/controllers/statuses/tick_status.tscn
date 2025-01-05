@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlfndvxca8iiu"]
+
+[ext_resource type="Script" path="res://scenes/controllers/statuses/tick_status.gd" id="1_6i38c"]
+
+[node name="TickStatus" type="Node" node_paths=PackedStringArray("tick_timer", "duration_timer")]
+script = ExtResource("1_6i38c")
+tick_timer = NodePath("TickTimer")
+duration_timer = NodePath("DurationTimer")
+
+[node name="TickTimer" type="Timer" parent="."]
+
+[node name="DurationTimer" type="Timer" parent="."]
+one_shot = true

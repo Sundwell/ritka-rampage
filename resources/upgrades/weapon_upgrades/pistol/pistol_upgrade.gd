@@ -11,6 +11,7 @@ enum Id {
 	PIERCING_SHOTS,
 	RICOCHET,
 	EXPLOSIVE_IMPACT,
+	BLOODY_BURDEN,
 }
 
 @export var id: Id

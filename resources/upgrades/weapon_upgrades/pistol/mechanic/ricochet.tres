@@ -10,5 +10,5 @@ title = "Ricochet"
 weapon = 0
 max_quantity = 2
 type = 1
-hint = "Damage? Nope."
+hint = "Damage? Where?"
 description = "+1 bounce off enemy per upgrade"

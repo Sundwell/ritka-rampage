@@ -9,6 +9,7 @@ const MAX_RICOCHET_DISTANCE = 80.0
 @export var hitbox_component: HitboxComponent
 @export var base_damage = 2.0
 @export var explosion_scene: PackedScene
+@export var tick_status_scene: PackedScene
 var speed := BASE_SPEED
 var max_distance := BASE_MAX_DISTANCE
 var travelled_distance := 0
@@ -21,7 +22,7 @@ var exploded_count := 0
 
 func _ready():
 	_set_max_health(base_max_health)
-	projectile_hurtbox_component.collided.connect(on_collided)
+	projectile_hurtbox_component.collided.connect(_on_collided)
 	health_component.died.connect(on_died)
 
 
@@ -50,7 +51,8 @@ func _update_upgrades_count(upgrades: Dictionary):
 		PistolUpgrade.Id.PIERCING_SHOTS,
 		PistolUpgrade.Id.DAMAGE_UP,
 		PistolUpgrade.Id.RICOCHET,
-		PistolUpgrade.Id.EXPLOSIVE_IMPACT
+		PistolUpgrade.Id.EXPLOSIVE_IMPACT,
+		PistolUpgrade.Id.BLOODY_BURDEN,
 	]
 	
 	for id: PistolUpgrade.Id in BULLET_UPGRADE_IDS:
@@ -77,6 +79,13 @@ func apply_upgrades(upgrades: Dictionary):
 	if ricochet_count > 0:
 		_set_max_health(base_max_health + ricochet_count)
 		_set_damage(base_damage * 0.7)
+		
+	var bloody_burden_count: int = upgrades_count[PistolUpgrade.Id.BLOODY_BURDEN]
+	if bloody_burden_count > 0:
+		var status: TickStatus = tick_status_scene.instantiate()
+		var tick_time: float = 1.0 - (0.25 * (bloody_burden_count - 1))
+		status.setup(hitbox_component.damage * 0.3, 3.0, tick_time)
+		hitbox_component.statuses.append(status)
 		
 		
 func ricochet():
@@ -123,8 +132,10 @@ func _can_create_explosion() -> bool:
 	return exploded_count == 0
 
 
-func on_collided():
+func _on_collided():
 	health_component.damage(1)
+	
+	hitbox_component.clear_statuses.call_deferred()
 	
 	var explosive_impact_count: int = upgrades_count[PistolUpgrade.Id.EXPLOSIVE_IMPACT]
 	if explosive_impact_count > 0 and _can_create_explosion():

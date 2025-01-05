@@ -1,13 +1,15 @@
 extends CharacterBody2D
 
-const RUN_SPEED = 125.0
+const BASE_RUN_SPEED = 125.0
 const BASE_MOVE_SPEED = 50.0
 const ACCELERATION_SMOOTHING = 15
 
 @export var initial_weapon_scene: PackedScene
 
 var is_shooting := false
-var mutations: Dictionary = {}
+var mutations_count: Dictionary = {}
+var weapon_upgrades_count: Dictionary = {}
+var run_speed := BASE_RUN_SPEED
 var move_speed := BASE_MOVE_SPEED
 var state_machine := CallableStateMachine.new()
 
@@ -20,7 +22,8 @@ var state_machine := CallableStateMachine.new()
 
 
 func _ready():
-	GameEvents.mutation_upgrade_selected.connect(on_mutation_upgrade_selected)
+	GameEvents.mutation_upgrade_selected.connect(_on_mutation_upgrade_selected)
+	GameEvents.weapon_upgrade_selected.connect(_on_weapon_upgrade_selected)
 	
 	state_machine.add_states(state_idle, enter_state_idle, exit_state_idle)
 	state_machine.add_states(state_moving)
@@ -57,7 +60,7 @@ func get_movement_direction() -> Vector2:
 func move():
 	var direction = get_movement_direction()
 	
-	var speed: float = move_speed if is_shooting else RUN_SPEED
+	var speed: float = move_speed if is_shooting else run_speed
 	
 	velocity_component.max_speed = speed
 	velocity_component.accelerate_in_direction(direction)
@@ -100,14 +103,49 @@ func state_moving():
 #endregion
 
 
-func apply_mutation(mutation: MutationUpgrade):
-	match mutation.id:
-		MutationUpgrade.Id.SPEED_UP:
-			var speed_up_count: int = Utils.get_upgrade_quantity(mutations, MutationUpgrade.Id.SPEED_UP)
-			move_speed = BASE_MOVE_SPEED + ((BASE_MOVE_SPEED * 0.1) * speed_up_count)
+func _update_mutations_count(mutations: Dictionary):
+	const MUTATION_IDS = [
+		MutationUpgrade.Id.SPEED_UP
+	]
 	
+	for id in MUTATION_IDS:
+		mutations_count[id] = Utils.get_upgrade_quantity(mutations, id)
+	
+	
+func _update_weapon_upgrades_count(upgrades: Dictionary):
+	const UPGRADE_IDS = [
+		PistolUpgrade.Id.BLOODY_BURDEN,
+	]
+	
+	for id in UPGRADE_IDS:
+		weapon_upgrades_count[id] = Utils.get_upgrade_quantity(upgrades, id)
 
 
-func on_mutation_upgrade_selected(mutation: MutationUpgrade, current_mutations: Dictionary):
-	mutations = current_mutations.duplicate()
-	apply_mutation(mutation)
+func _update_movement_speed():
+	var speed_up_count: int = mutations_count.get(MutationUpgrade.Id.SPEED_UP, 0)
+	var bloody_burden_count: int = weapon_upgrades_count.get(PistolUpgrade.Id.BLOODY_BURDEN, 0)
+	var speed_multiplier: float = 1.0 + ((BASE_MOVE_SPEED * 0.1) * speed_up_count)
+	
+	if bloody_burden_count > 0:
+		speed_multiplier *= 0.8
+		
+	move_speed = BASE_MOVE_SPEED * speed_multiplier
+	run_speed = BASE_RUN_SPEED * speed_multiplier
+	
+	
+func _apply_mutations():
+	var speed_up_count: int = mutations_count.get(MutationUpgrade.Id.SPEED_UP, 0)
+	if speed_up_count > 0:
+		_update_movement_speed()
+
+
+func _on_mutation_upgrade_selected(mutation: MutationUpgrade, current_mutations: Dictionary):
+	mutations_count[mutation.id] = Utils.get_upgrade_quantity(current_mutations, mutation.id)
+	_apply_mutations()
+	
+	
+func _on_weapon_upgrade_selected(upgrade: WeaponUpgrade, current_upgrades: Dictionary):
+	weapon_upgrades_count[upgrade.get_id()] = Utils.get_upgrade_quantity(current_upgrades, upgrade.get_id())
+	
+	if upgrade.get_id() == PistolUpgrade.Id.BLOODY_BURDEN:
+		_update_movement_speed()

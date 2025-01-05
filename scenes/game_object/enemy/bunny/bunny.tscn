@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://bwsxcvg8tgsku"]
+[gd_scene load_steps=21 format=3 uid="uid://bwsxcvg8tgsku"]
 
 [ext_resource type="Texture2D" uid="uid://d2064pj05mkxy" path="res://scenes/game_object/enemy/bunny/bunny.png" id="1_5rorc"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/bunny/bunny.gd" id="1_6uvuu"]
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="2_3otdp"]
+[ext_resource type="PackedScene" uid="uid://gbwjb2qhqvk0" path="res://scenes/manager/statuses/status_manager.tscn" id="2_jwdia"]
 [ext_resource type="PackedScene" uid="uid://cdmwpfegixcco" path="res://scenes/components/orange_drop_component.tscn" id="3_u7d0e"]
 [ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange/orange.tscn" id="4_jij05"]
 [ext_resource type="PackedScene" uid="uid://cwatwkjukjlvd" path="res://scenes/components/hurtbox_component.tscn" id="5_q6qwx"]
@@ -110,6 +111,9 @@ collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_6uvuu")
 
+[node name="StatusManager" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_jwdia")]
+health_component = NodePath("../HealthComponent")
+
 [node name="HealthComponent" parent="." instance=ExtResource("2_3otdp")]
 max_health = 4.0
 
@@ -137,11 +141,12 @@ libraries = {
 "": SubResource("AnimationLibrary_02i8m")
 }
 
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_q6qwx")]
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "status_manager") instance=ExtResource("5_q6qwx")]
 visible = false
 collision_layer = 64
 collision_mask = 8
 health_component = NodePath("../HealthComponent")
+status_manager = NodePath("../StatusManager")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, -6)

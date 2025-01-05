@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://opwxpmnb8voa"]
+[gd_scene load_steps=21 format=3 uid="uid://opwxpmnb8voa"]
 
 [ext_resource type="Texture2D" uid="uid://yr54tlu3thkq" path="res://scenes/game_object/player/ritka.png" id="1_aes1j"]
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_snu1q"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ceo6q5oos0dqn" path="res://scenes/components/velocity_component.tscn" id="4_3lhnd"]
 [ext_resource type="PackedScene" uid="uid://cgti0dc327rmr" path="res://scenes/weapons/weapon_controller/weapon_controller.tscn" id="4_erw3t"]
 [ext_resource type="AudioStream" uid="uid://cjujexkrkwpfb" path="res://scenes/game_object/player/sfx/step_sound.wav" id="5_7v2s2"]
+[ext_resource type="PackedScene" uid="uid://gbwjb2qhqvk0" path="res://scenes/manager/statuses/status_manager.tscn" id="5_35dnx"]
 [ext_resource type="PackedScene" uid="uid://vpugf0fbno2e" path="res://scenes/weapons/pistol/pistol.tscn" id="5_m3j0x"]
 [ext_resource type="AudioStream" uid="uid://cpm34au6tecby" path="res://scenes/game_object/player/sfx/run_sound.wav" id="6_xrv24"]
 [ext_resource type="PackedScene" uid="uid://cf5byk2x3b7ae" path="res://scenes/components/health_bar_component.tscn" id="8_cdija"]
@@ -181,6 +182,9 @@ max_health = 100.0
 
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("character_body") instance=ExtResource("4_3lhnd")]
 character_body = NodePath("..")
+
+[node name="StatusManager" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_35dnx")]
+health_component = NodePath("../HealthComponent")
 
 [node name="ShootingStateChangeTimer" type="Timer" parent="."]
 wait_time = 0.3

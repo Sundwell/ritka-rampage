@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PistolUpgrade" load_steps=2 format=3 uid="uid://b68abkypodogp"]
+
+[ext_resource type="Script" path="res://resources/upgrades/weapon_upgrades/pistol/pistol_upgrade.gd" id="1_i3v72"]
+
+[resource]
+script = ExtResource("1_i3v72")
+id = 7
+incompatible_uprades = Array[int]([])
+title = "Bloody Burden"
+weapon = 0
+max_quantity = 2
+type = 1
+hint = "More blood. Less sense"
+description = "Deal 25% bullet damage as bleed ticks. Faster ticks per level"

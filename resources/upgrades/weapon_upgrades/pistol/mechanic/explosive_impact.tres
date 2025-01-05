@@ -10,5 +10,5 @@ title = "Explosive Impact"
 weapon = 0
 max_quantity = 2
 type = 1
-hint = "You are not safe."
+hint = "Use with caution"
 description = "15% additional area damage per level"

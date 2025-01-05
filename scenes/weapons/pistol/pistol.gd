@@ -84,5 +84,5 @@ func on_weapon_upgrade_selected(upgrade: WeaponUpgrade, current_upgrades: Dictio
 	if upgrade is not PistolUpgrade:
 		return
 		
-	upgrades = current_upgrades.duplicate()
+	upgrades = current_upgrades.duplicate(true)
 	apply_upgrade(upgrade)
