@@ -55,6 +55,6 @@ func on_settings_back_pressed(settings_menu: SettingsMenu):
 
 func on_quit_pressed():
 	GlobalActions.unpause_game()
-	get_tree().change_scene_to_file("res://scenes/ui/menus/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/ui/menus/main_menu/main_menu.tscn")
 	
 	

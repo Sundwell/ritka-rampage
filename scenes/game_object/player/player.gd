@@ -124,7 +124,7 @@ func _update_weapon_upgrades_count(upgrades: Dictionary):
 func _update_movement_speed():
 	var speed_up_count: int = mutations_count.get(MutationUpgrade.Id.SPEED_UP, 0)
 	var bloody_burden_count: int = weapon_upgrades_count.get(PistolUpgrade.Id.BLOODY_BURDEN, 0)
-	var speed_multiplier: float = 1.0 + ((BASE_MOVE_SPEED * 0.1) * speed_up_count)
+	var speed_multiplier: float = 1.0 + (0.1 * speed_up_count)
 	
 	if bloody_burden_count > 0:
 		speed_multiplier *= 0.8
