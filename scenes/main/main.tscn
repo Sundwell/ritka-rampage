@@ -117,7 +117,6 @@ experience_manager = NodePath("../ExperienceManager")
 
 [node name="GameCamera" parent="." instance=ExtResource("2_ipo2b")]
 position = Vector2(-57, -16)
-zoom = Vector2(0.5, 0.5)
 
 [node name="TileMap" type="Node2D" parent="."]
 
