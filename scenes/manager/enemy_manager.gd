@@ -37,7 +37,7 @@ func get_spawn_position() -> Vector2:
 	var spawn_position := Vector2.ZERO
 	var random_direction := Vector2.RIGHT.rotated(randf_range(0, TAU))
 	
-	for i in 4:
+	for i in 7:
 		spawn_position = player.global_position + (random_direction * Constants.PLAYER_VIEW_RADIUS)
 		
 		var query_params := PhysicsRayQueryParameters2D.create(player.global_position, spawn_position, 1)
@@ -46,7 +46,7 @@ func get_spawn_position() -> Vector2:
 		if result.is_empty():
 			break
 		else:
-			random_direction = random_direction.rotated(deg_to_rad(90))
+			random_direction = random_direction.rotated(deg_to_rad(45))
 	
 	return spawn_position
 	
@@ -88,7 +88,7 @@ func on_timer_timeout():
 	var enemy = enemy_spawn_config.enemy_scene.instantiate()
 	enemy.global_position = get_spawn_position()
 	
-	var entities_layer = get_tree().get_first_node_in_group(Constants.GROUPS.ENTITIES_LAYER)
+	var entities_layer = Utils.get_entities_layer()
 	entities_layer.add_child(enemy)
 	
 

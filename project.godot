@@ -22,6 +22,7 @@ Utils="*res://scenes/autoload/utils.gd"
 GlobalActions="*res://scenes/autoload/global_actions.gd"
 TweenEffect="*res://scenes/autoload/tween_effect.gd"
 FloatingTextManager="*res://scenes/autoload/floating_text_manager.tscn"
+CursorManager="*res://scenes/autoload/cursor_manager.tscn"
 
 [debug]
 

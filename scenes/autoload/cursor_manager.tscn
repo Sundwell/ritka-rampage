@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://do8x6r550afo"]
+
+[ext_resource type="Script" path="res://scenes/autoload/cursor_manager.gd" id="1_fv2h4"]
+[ext_resource type="Texture2D" uid="uid://c1v4jqcksrweb" path="res://assets/ui/cursor.png" id="2_epj55"]
+
+[node name="CursorManager" type="Node"]
+script = ExtResource("1_fv2h4")
+default_texture = ExtResource("2_epj55")
