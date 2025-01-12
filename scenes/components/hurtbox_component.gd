@@ -7,6 +7,7 @@ extends Area2D
 
 func _ready():
 	area_entered.connect(on_area_entered)
+	health_component.died.connect(_on_died)
 
 
 func apply_damage(hitbox_component: HitboxComponent):
@@ -30,3 +31,10 @@ func on_area_entered(other_area: Area2D):
 	
 	apply_damage(hitbox)
 	
+	
+func _on_died():
+	var children: Array[Node] = get_children()
+	
+	for child in children:
+		if child is CollisionShape2D:
+			child.set_deferred("disabled", true)

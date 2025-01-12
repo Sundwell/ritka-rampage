@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://p4ofdanvpv5m"]
+[gd_scene load_steps=22 format=3 uid="uid://p4ofdanvpv5m"]
 
 [ext_resource type="Script" path="res://scenes/game_object/enemy/porcupine/porcupine.gd" id="1_mij8t"]
 [ext_resource type="Texture2D" uid="uid://dpch4pfkoleiw" path="res://scenes/game_object/enemy/porcupine/porcupine.png" id="1_nid44"]
 [ext_resource type="PackedScene" uid="uid://dg1tpx8up2b4u" path="res://scenes/game_object/enemy/porcupine/porcupine_quill.tscn" id="2_p0xme"]
+[ext_resource type="PackedScene" uid="uid://gbwjb2qhqvk0" path="res://scenes/manager/statuses/status_manager.tscn" id="3_gtinb"]
 [ext_resource type="Script" path="res://scenes/components/hurtbox_component.gd" id="3_w4tlv"]
 [ext_resource type="PackedScene" uid="uid://cdmwpfegixcco" path="res://scenes/components/orange_drop_component.tscn" id="4_u0n8m"]
 [ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange/orange.tscn" id="5_f4dlv"]
@@ -194,6 +195,9 @@ libraries = {
 "": SubResource("AnimationLibrary_lsdms")
 }
 
+[node name="StatusManager" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_gtinb")]
+health_component = NodePath("../HealthComponent")
+
 [node name="OrangeDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_u0n8m")]
 drop_chance = 1.0
 orange_scene = ExtResource("5_f4dlv")
@@ -216,13 +220,14 @@ sprite = NodePath("../Visuals/Sprite2D")
 soul_texture = ExtResource("9_6dpom")
 health_component = NodePath("../HealthComponent")
 
-[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component", "status_manager")]
 visible = false
 position = Vector2(-1, -6)
 collision_layer = 64
 collision_mask = 8
 script = ExtResource("3_w4tlv")
 health_component = NodePath("../HealthComponent")
+status_manager = NodePath("../StatusManager")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_dnmxj")

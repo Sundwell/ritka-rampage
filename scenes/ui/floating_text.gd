@@ -29,7 +29,7 @@ func start(text: String, type: Type = Type.DAMAGE):
 		if amount is float:
 			var scale_multiplier = clamp(MIN_SCALE + (amount / 40), MIN_SCALE, MAX_SCALE)
 			
-			if amount < 2.0:
+			if amount < 1.0:
 				scale_multiplier = LITTLE_NUMBER_SCALE
 			scale = Vector2(scale_multiplier, scale_multiplier)
 	

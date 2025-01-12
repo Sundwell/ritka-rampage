@@ -58,7 +58,6 @@ func exit_state_jumping():
 
 
 func enter_state_die():
-	$HurtboxComponent.queue_free()
 	$HitboxComponent.queue_free()
 	$CollisionShape2D.queue_free()
 	actions_animation_player.play('die')
