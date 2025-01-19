@@ -10,5 +10,5 @@ title = "Zenith"
 weapon = 0
 max_quantity = 1
 type = 2
-hint = "TODO"
-description = "TODO"
+hint = "Peak of evolution"
+description = "Halves all negatives from upgrades. Removes limitations"

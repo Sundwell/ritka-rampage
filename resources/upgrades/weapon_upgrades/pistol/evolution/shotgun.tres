@@ -10,5 +10,5 @@ title = "Shotgun"
 weapon = 0
 max_quantity = 1
 type = 2
-hint = "TODO"
-description = "TODO"
+hint = "More bullets"
+description = "Chance to multiple all bullets, improves some upgrades"
