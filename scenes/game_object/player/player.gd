@@ -126,8 +126,10 @@ func _update_movement_speed():
 	var bloody_burden_count: int = weapon_upgrades_count.get(PistolUpgrade.Id.BLOODY_BURDEN, 0)
 	var speed_multiplier: float = 1.0 + (0.1 * speed_up_count)
 	
+	var is_zenith: bool = weapon_upgrades_count.get(PistolUpgrade.Id.ZENITH, 0) > 0
+	
 	if bloody_burden_count > 0:
-		speed_multiplier *= 0.8
+		speed_multiplier *= 0.9 if is_zenith else 0.8
 		
 	move_speed = BASE_MOVE_SPEED * speed_multiplier
 	run_speed = BASE_RUN_SPEED * speed_multiplier
@@ -147,5 +149,5 @@ func _on_mutation_upgrade_selected(mutation: MutationUpgrade, current_mutations:
 func _on_weapon_upgrade_selected(upgrade: WeaponUpgrade, current_upgrades: Dictionary):
 	weapon_upgrades_count[upgrade.get_id()] = Utils.get_upgrade_quantity(current_upgrades, upgrade.get_id())
 	
-	if upgrade.get_id() == PistolUpgrade.Id.BLOODY_BURDEN:
+	if [PistolUpgrade.Id.BLOODY_BURDEN, PistolUpgrade.Id.ZENITH].has(upgrade.get_id()):
 		_update_movement_speed()

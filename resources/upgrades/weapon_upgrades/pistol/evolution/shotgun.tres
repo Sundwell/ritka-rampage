@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PistolUpgrade" load_steps=2 format=3 uid="uid://cclyqekd4v7q8"]
+
+[ext_resource type="Script" path="res://resources/upgrades/weapon_upgrades/pistol/pistol_upgrade.gd" id="1_ilguk"]
+
+[resource]
+script = ExtResource("1_ilguk")
+id = 8
+incompatible_uprades = Array[int]([9])
+title = "Shotgun"
+weapon = 0
+max_quantity = 1
+type = 2
+hint = "TODO"
+description = "TODO"

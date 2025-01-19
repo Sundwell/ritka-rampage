@@ -12,6 +12,9 @@ enum Id {
 	RICOCHET,
 	EXPLOSIVE_IMPACT,
 	BLOODY_BURDEN,
+	# Evolution
+	SHOTGUN,
+	ZENITH
 }
 
 @export var id: Id

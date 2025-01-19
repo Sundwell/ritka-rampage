@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b151mbj1k8ah8"]
+[gd_scene load_steps=9 format=3 uid="uid://b151mbj1k8ah8"]
 
 [ext_resource type="Script" path="res://scenes/explosion/explosion.gd" id="1_p6m3e"]
 [ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="2_s0qrb"]
+[ext_resource type="AudioStream" uid="uid://c50yisp1ywtt5" path="res://scenes/explosion/bullet_explosion.mp3" id="3_3pha2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0m4ud"]
 radius = 20.0
@@ -116,3 +117,7 @@ libraries = {
 "": SubResource("AnimationLibrary_alhjk")
 }
 autoplay = "default"
+
+[node name="ExplodeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3pha2")
+autoplay = true

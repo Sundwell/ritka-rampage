@@ -4,20 +4,31 @@ extends Node2D
 const BASE_SPEED = 250.0
 const BASE_MAX_DISTANCE = 130.0
 const MAX_RICOCHET_DISTANCE = 80.0
+const TRAIL_COLOR_MAPPING = {
+	"zenith": "#88d6ffb1",
+	"shotgun": "#abaebeb1",
+}
 
 @export var base_max_health := 1.0
 @export var hitbox_component: HitboxComponent
 @export var base_damage = 2.0
 @export var explosion_scene: PackedScene
 @export var tick_status_scene: PackedScene
+@export var shotgun_bullet_texture: Texture
+@export var zenith_bullet_texture: Texture
+
 var speed := BASE_SPEED
 var max_distance := BASE_MAX_DISTANCE
 var travelled_distance := 0
 var upgrades_count := {}
 var exploded_count := 0
+var is_zenith := false
+var is_shotgun := false
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var projectile_hurtbox_component: Area2D = $ProjectileHurtboxComponent
+@onready var bullet_sprite: Sprite2D = $BulletSprite
+@onready var bullet_trail: Line2D = $BulletTrail
 
 
 func _ready():
@@ -46,21 +57,23 @@ func _set_damage(damage: float):
 		
 		
 func _update_upgrades_count(upgrades: Dictionary):
-	const BULLET_UPGRADE_IDS = [
-		PistolUpgrade.Id.IMPROVED_BALLISTICS,
-		PistolUpgrade.Id.PIERCING_SHOTS,
-		PistolUpgrade.Id.DAMAGE_UP,
-		PistolUpgrade.Id.RICOCHET,
-		PistolUpgrade.Id.EXPLOSIVE_IMPACT,
-		PistolUpgrade.Id.BLOODY_BURDEN,
-	]
-	
-	for id: PistolUpgrade.Id in BULLET_UPGRADE_IDS:
+	for id: PistolUpgrade.Id in PistolUpgrade.Id.values():
 		upgrades_count[id] = Utils.get_upgrade_quantity(upgrades, id)
+		
+	is_zenith = upgrades_count[PistolUpgrade.Id.ZENITH] > 0
+	is_shotgun = upgrades_count[PistolUpgrade.Id.SHOTGUN] > 0
 		
 		
 func apply_upgrades(upgrades: Dictionary):
 	_update_upgrades_count(upgrades)
+	
+	if is_zenith:
+		bullet_sprite.texture = zenith_bullet_texture
+		bullet_trail.gradient.colors[1] = Color(TRAIL_COLOR_MAPPING.zenith)
+		
+	if is_shotgun:
+		bullet_sprite.texture = shotgun_bullet_texture
+		bullet_trail.gradient.colors[1] = Color(TRAIL_COLOR_MAPPING.shotgun)
 	
 	var ballistics_count: int = upgrades_count[PistolUpgrade.Id.IMPROVED_BALLISTICS]
 	speed = BASE_SPEED + ((BASE_SPEED * 0.1) * ballistics_count)
@@ -68,8 +81,11 @@ func apply_upgrades(upgrades: Dictionary):
 	
 	var piercing_shots_count: int = upgrades_count[PistolUpgrade.Id.PIERCING_SHOTS]
 	if piercing_shots_count > 0:
+		if is_shotgun:
+			speed *= 1.2
+			max_distance *= 1.2
 		_set_max_health(base_max_health + piercing_shots_count)
-		speed = speed * 0.8
+		speed *= 0.9 if is_zenith else 0.8
 		
 	var damage_up_count: int = upgrades_count[PistolUpgrade.Id.DAMAGE_UP]
 	base_damage = base_damage + damage_up_count
@@ -77,8 +93,13 @@ func apply_upgrades(upgrades: Dictionary):
 	
 	var ricochet_count: int = upgrades_count[PistolUpgrade.Id.RICOCHET]
 	if ricochet_count > 0:
+		if is_shotgun:
+			ricochet_count += 1
+		
+		var damage_multiplier: float = 0.85 if is_zenith else 0.7
+		
 		_set_max_health(base_max_health + ricochet_count)
-		_set_damage(base_damage * 0.7)
+		_set_damage(base_damage * damage_multiplier)
 		
 	var bloody_burden_count: int = upgrades_count[PistolUpgrade.Id.BLOODY_BURDEN]
 	if bloody_burden_count > 0:
@@ -129,6 +150,9 @@ func _create_explosion(damage: float):
 	
 	
 func _can_create_explosion() -> bool:
+	if is_zenith:
+		return true
+	
 	return exploded_count == 0
 
 

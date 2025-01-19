@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PistolUpgrade" load_steps=2 format=3 uid="uid://d2yd0khal72wq"]
+
+[ext_resource type="Script" path="res://resources/upgrades/weapon_upgrades/pistol/pistol_upgrade.gd" id="1_oxkdr"]
+
+[resource]
+script = ExtResource("1_oxkdr")
+id = 9
+incompatible_uprades = Array[int]([8])
+title = "Zenith"
+weapon = 0
+max_quantity = 1
+type = 2
+hint = "TODO"
+description = "TODO"

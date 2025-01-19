@@ -17,6 +17,10 @@ var variatons_mapping = {
 	WeaponUpgrade.Type.MECHANIC: {
 		"main_panel": "WUMechanicPanelContainer",
 		"title_panel": "WUTitleMechanicPanelContainer"
+	},
+	WeaponUpgrade.Type.EVOLUTION: {
+		"main_panel": "WUTransformationPanelContainer",
+		"title_panel": "WUTitleTransformationPanelContainer",
 	}
 }
 

@@ -1,13 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://ck6vo5d385q3c"]
+[gd_scene load_steps=14 format=3 uid="uid://ck6vo5d385q3c"]
 
 [ext_resource type="Script" path="res://scenes/weapons/pistol/pistol_bullet/pistol_bullet.gd" id="1_haia6"]
-[ext_resource type="Texture2D" uid="uid://j0nffnyecxye" path="res://scenes/weapons/pistol/pistol_bullet/bullet.png" id="2_6pqw6"]
+[ext_resource type="Texture2D" uid="uid://bf8p3oelu0s34" path="res://scenes/weapons/pistol/pistol_bullet/bullet.png" id="2_6pqw6"]
 [ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="2_i4pkq"]
 [ext_resource type="PackedScene" uid="uid://b151mbj1k8ah8" path="res://scenes/explosion/explosion.tscn" id="2_wcckn"]
 [ext_resource type="PackedScene" uid="uid://dlfndvxca8iiu" path="res://scenes/controllers/statuses/tick_status.tscn" id="3_8ayi0"]
 [ext_resource type="Script" path="res://scenes/weapons/pistol/pistol_bullet/bullet_trail.gd" id="3_38db2"]
 [ext_resource type="PackedScene" uid="uid://0vth6qt1d50l" path="res://scenes/components/projectile_hurtbox_component.tscn" id="4_hmcoo"]
 [ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="4_p18sw"]
+[ext_resource type="Texture2D" uid="uid://j0nffnyecxye" path="res://scenes/weapons/pistol/pistol_bullet/shotgun_bullet.png" id="4_ykjm5"]
+[ext_resource type="Texture2D" uid="uid://8bd2vqsywkwt" path="res://scenes/weapons/pistol/pistol_bullet/zenith_bullet.png" id="5_p2wvi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fdwcm"]
 radius = 4.0
@@ -17,14 +19,17 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_1u0d0"]
-colors = PackedColorArray(1, 1, 1, 0, 0.98, 0.638633, 0.049, 0.694118)
+colors = PackedColorArray(1, 1, 1, 0, 1, 0.694118, 0.0313726, 0.694118)
 
 [node name="PistolBullet" type="Node2D" node_paths=PackedStringArray("hitbox_component")]
 top_level = true
+z_index = 1
 script = ExtResource("1_haia6")
 hitbox_component = NodePath("HitboxComponent")
 explosion_scene = ExtResource("2_wcckn")
 tick_status_scene = ExtResource("3_8ayi0")
+shotgun_bullet_texture = ExtResource("4_ykjm5")
+zenith_bullet_texture = ExtResource("5_p2wvi")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_i4pkq")]
 max_health = 1.0
@@ -44,7 +49,7 @@ damage = 2.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_fdwcm")
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="BulletTrail" type="Line2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
 top_level = true
 width = 3.0
@@ -52,5 +57,5 @@ width_curve = SubResource("Curve_ctexi")
 gradient = SubResource("Gradient_1u0d0")
 script = ExtResource("3_38db2")
 
-[node name="Bullet" type="Sprite2D" parent="."]
+[node name="BulletSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_6pqw6")

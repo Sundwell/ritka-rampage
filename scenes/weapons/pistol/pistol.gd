@@ -3,15 +3,18 @@ extends Weapon
 const BASE_RELOAD_TIME = 0.3
 
 @export var bullet_scene: PackedScene
+@export var shotgun_variant_scene: PackedScene
+@export var zenith_variant_scene: PackedScene
 
 var can_shoot := true
 var reload_time := BASE_RELOAD_TIME
 var upgrades := {}
 
-@onready var shoot_position = $ShootPosition
+var is_shotgun := false
+var is_zenith := false
+
 @onready var reload_timer: Timer = $ReloadTimer
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var shot_sound: AudioStreamPlayer = $SFX/ShotSound
+@onready var weapon_variant: PistolWeaponVariant = $DefaultVariant
 
 
 func _ready():
@@ -29,14 +32,13 @@ func shoot():
 	can_shoot = false
 	reload_timer.start()
 	
-	animation_player.stop()
-	animation_player.play("shoot")
-	shot_sound.pitch_scale = randf_range(1, 1.1)
-	shot_sound.play()
+	weapon_variant.animation_player.stop()
+	weapon_variant.play_shoot_animation()
+	weapon_variant.play_shoot_sound()
 	
 	var entities = Utils.get_entities_layer()
 	
-	var bullet_count: int = 1
+	var bullet_count := 1
 	var more_bullets_count: int = Utils.get_upgrade_quantity(upgrades, PistolUpgrade.Id.MORE_BULLETS)
 	
 	if more_bullets_count > 0:
@@ -44,10 +46,13 @@ func shoot():
 		var has_additional_bullet: bool = randf_range(0, 1) <= chance_for_additional_bullet
 		if has_additional_bullet:
 			bullet_count += 1
+			
+	if is_shotgun:
+		bullet_count *= randi_range(1, 3) 
 	
 	for bullet_number in range(bullet_count):
 		var bullet = bullet_scene.instantiate() as PistolBullet
-		bullet.position = shoot_position.global_position
+		bullet.position = weapon_variant.get_shoot_position()
 		
 		var bullet_rotation_degrees: float = global_rotation_degrees
 		
@@ -68,12 +73,25 @@ func shoot():
 		
 		entities.add_child(bullet)
 		bullet.apply_upgrades(upgrades)
+		
+		
+func _replace_variant(variant_scene: PackedScene):
+	var variant = variant_scene.instantiate() as PistolWeaponVariant
+	weapon_variant.queue_free()
+	add_child(variant)
+	weapon_variant = variant
 	
 	
 func apply_upgrade(upgrade: WeaponUpgrade):
 	match upgrade.get_id():
 		PistolUpgrade.Id.SHOOT_RATE:
 			reload_timer.wait_time = (BASE_RELOAD_TIME - ((BASE_RELOAD_TIME * 0.1) * upgrades[PistolUpgrade.Id.SHOOT_RATE].quantity))
+		PistolUpgrade.Id.SHOTGUN:
+			is_shotgun = true
+			_replace_variant(shotgun_variant_scene)
+		PistolUpgrade.Id.ZENITH:
+			is_zenith = true
+			_replace_variant(zenith_variant_scene)
 
 
 func on_reload_timer_timeout():

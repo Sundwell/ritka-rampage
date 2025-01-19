@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponUpgrades" load_steps=11 format=3 uid="uid://qst0kq5he2eh"]
+[gd_resource type="Resource" script_class="WeaponUpgrades" load_steps=13 format=3 uid="uid://qst0kq5he2eh"]
 
 [ext_resource type="Script" path="res://resources/upgrades/weapon_upgrades/weapon_upgrades.gd" id="1_fhp3j"]
 [ext_resource type="Script" path="res://resources/upgrades/weapon_upgrades/weapon_upgrade.gd" id="2_ni3rd"]
@@ -10,7 +10,9 @@
 [ext_resource type="Resource" uid="uid://bdtskcecjix7e" path="res://resources/upgrades/weapon_upgrades/pistol/mechanic/ricochet.tres" id="8_mv1y8"]
 [ext_resource type="Resource" uid="uid://bnyxc28kkj6tt" path="res://resources/upgrades/weapon_upgrades/pistol/mechanic/explosive_impact.tres" id="9_j6bxy"]
 [ext_resource type="Resource" uid="uid://b68abkypodogp" path="res://resources/upgrades/weapon_upgrades/pistol/mechanic/bloody_burden.tres" id="10_hkf45"]
+[ext_resource type="Resource" uid="uid://cclyqekd4v7q8" path="res://resources/upgrades/weapon_upgrades/pistol/evolution/shotgun.tres" id="11_hi4eb"]
+[ext_resource type="Resource" uid="uid://d2yd0khal72wq" path="res://resources/upgrades/weapon_upgrades/pistol/evolution/zenith.tres" id="12_bqmkq"]
 
 [resource]
 script = ExtResource("1_fhp3j")
-upgrades = Array[ExtResource("2_ni3rd")]([ExtResource("6_5qgvv"), ExtResource("3_us7jv"), ExtResource("4_wgxph"), ExtResource("5_efh7b"), ExtResource("7_0u04j"), ExtResource("8_mv1y8"), ExtResource("9_j6bxy"), ExtResource("10_hkf45")])
+upgrades = Array[ExtResource("2_ni3rd")]([ExtResource("6_5qgvv"), ExtResource("3_us7jv"), ExtResource("4_wgxph"), ExtResource("5_efh7b"), ExtResource("7_0u04j"), ExtResource("8_mv1y8"), ExtResource("9_j6bxy"), ExtResource("10_hkf45"), ExtResource("11_hi4eb"), ExtResource("12_bqmkq")])
