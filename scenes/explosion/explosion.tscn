@@ -121,3 +121,4 @@ autoplay = "default"
 [node name="ExplodeSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_3pha2")
 autoplay = true
+bus = &"SFX"

@@ -183,10 +183,9 @@ prepare_attack_particles = ExtResource("3_rt6fs")
 health_component = NodePath("../HealthComponent")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_u3ehd")]
-max_health = 20.0
+max_health = 14.0
 
 [node name="OrangeDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_cgo28")]
-drop_chance = 1.0
 orange_scene = ExtResource("3_273m8")
 health_component = NodePath("../HealthComponent")
 
@@ -216,6 +215,7 @@ shape = SubResource("CircleShape2D_n1ol4")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("5_imket")]
 collision_layer = 16
+damage = 6.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, -10)

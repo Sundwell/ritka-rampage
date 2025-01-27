@@ -4,3 +4,4 @@
 
 [node name="OrangeDropComponent" type="Node"]
 script = ExtResource("1_2wfi4")
+drop_chance = 0.4

@@ -14,7 +14,6 @@ var state_machine := CallableStateMachine.new()
 
 
 func _ready():
-	hitbox_component.damage = 4.0
 	speed = velocity_component.max_speed
 	velocity_component.max_speed = speed
 	
@@ -58,6 +57,7 @@ func exit_state_jumping():
 
 
 func enter_state_die():
+	GameEvents.emit_enemy_died()
 	$HitboxComponent.queue_free()
 	$CollisionShape2D.queue_free()
 	actions_animation_player.play('die')

@@ -1,9 +1,8 @@
 extends Node
 
-@onready var timer: Timer = $Timer
-
-@export var end_screen_scene: PackedScene
 @export var arena_duration: float = 60
+
+@onready var timer: Timer = $Timer
 
 
 func _ready():
@@ -17,5 +16,4 @@ func get_time_elapsed():
 
 
 func on_timer_timeout():
-	var end_screen = end_screen_scene.instantiate()
-	add_child(end_screen)
+	GameEvents.arena_timeout.emit()

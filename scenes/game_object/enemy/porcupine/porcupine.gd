@@ -67,6 +67,7 @@ func state_attack():
 
 
 func enter_state_die():
+	GameEvents.emit_enemy_died()
 	velocity = Vector2.ZERO
 	$CollisionShape2D.queue_free()
 	actions_animation_player.play('die')

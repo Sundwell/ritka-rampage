@@ -6,6 +6,9 @@ signal anvil_collected
 signal weapon_upgrade_selected(upgrade: WeaponUpgrade, current_upgrades: Dictionary)
 signal weapon_changed(new_weapon: Weapon)
 signal game_paused(is_paused: bool)
+signal arena_timeout
+signal enemy_died
+signal no_enemies_left
 
 
 func emit_orange_energy_collected(amount: float):
@@ -30,3 +33,15 @@ func emit_weapon_changed(new_weapon: Weapon):
 	
 func emit_game_paused(is_paused: bool):
 	game_paused.emit(is_paused)
+	
+	
+func emit_arena_timeout():
+	arena_timeout.emit()
+
+
+func emit_enemy_died():
+	enemy_died.emit()
+	
+	
+func emit_no_enemies_left():
+	no_enemies_left.emit()

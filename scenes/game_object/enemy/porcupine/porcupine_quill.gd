@@ -1,17 +1,13 @@
 extends Node2D
 
-const DAMAGE: float = 8.0
-
 var quill_speed: float = 120.0
 var max_distance: float = 140.0
 var travelled_distance: float = 0.0
 
-@onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var projectile_hurtbox_component: ProjectileHurtboxComponent = $ProjectileHurtboxComponent
 
 
 func _ready():
-	hitbox_component.damage = DAMAGE
 	$HealthComponent.died.connect(on_died)
 	projectile_hurtbox_component.collided.connect(on_collided)
 

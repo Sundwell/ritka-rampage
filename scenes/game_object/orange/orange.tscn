@@ -128,6 +128,7 @@ autoplay = "default"
 
 [node name="EatSound" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("3_88xu6")
+bus = &"SFX"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

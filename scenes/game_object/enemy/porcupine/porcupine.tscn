@@ -199,7 +199,6 @@ libraries = {
 health_component = NodePath("../HealthComponent")
 
 [node name="OrangeDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_u0n8m")]
-drop_chance = 1.0
 orange_scene = ExtResource("5_f4dlv")
 health_component = NodePath("../HealthComponent")
 

@@ -8,6 +8,7 @@ var current_stage: DifficultyStage:
 	get:
 		return difficulty_stages[current_stage_index]
 var current_enemies_table: WeightedTable = WeightedTable.new()
+var current_enemies_count := 0
 
 @onready var timer = $Timer
 
@@ -23,6 +24,8 @@ func _ready():
 	update_difficulty_stage_settings()
 	timer.start()
 	timer.timeout.connect(on_timer_timeout)
+	GameEvents.enemy_died.connect(_on_enemy_died)
+	GameEvents.arena_timeout.connect(_on_arena_timeout)
 	
 	if not difficulty_manager == null:
 		difficulty_manager.difficulty_level_update.connect(on_difficulty_level_update)
@@ -77,6 +80,13 @@ func update_difficulty_stage(current_difficulty: int):
 	update_difficulty_stage_settings()
 
 
+func _on_enemy_died():
+	current_enemies_count -= 1
+	
+	if current_enemies_count == 0:
+		GameEvents.emit_no_enemies_left()
+
+
 func on_timer_timeout():
 	var player = Utils.get_player()
 	
@@ -91,6 +101,12 @@ func on_timer_timeout():
 	var entities_layer = Utils.get_entities_layer()
 	entities_layer.add_child(enemy)
 	
+	current_enemies_count += 1
+	
 
 func on_difficulty_level_update(new_difficulty: int):
 	update_difficulty_stage(new_difficulty)
+	
+	
+func _on_arena_timeout():
+	timer.stop()

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const BASE_RUN_SPEED = 125.0
-const BASE_MOVE_SPEED = 50.0
+const BASE_MOVE_SPEED = 75.0
 const ACCELERATION_SMOOTHING = 15
 
 @export var initial_weapon_scene: PackedScene

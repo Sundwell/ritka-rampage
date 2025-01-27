@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 const MOVE_SPEED = 50.0
 const BULL_RUSH_SPEED = 240.0
-const BULL_RUSH_DAMAGE = 16.0
+const BULL_RUSH_DAMAGE = 10.0
 const BULL_RUSH_MAX_DISTANCE = 300.0
-const CONTACT_DAMAGE = 4.0
+const CONTACT_DAMAGE = 6.0
 const MIN_BULL_RUSH_START_DISTANCE = 70.0
 
 @export var prepare_attack_particles: PackedScene
@@ -81,6 +81,7 @@ func exit_state_bull_rush():
 	
 	
 func enter_state_die():
+	GameEvents.emit_enemy_died()
 	velocity = Vector2.ZERO
 	$HitboxComponent.queue_free()
 	$CollisionShape2D.queue_free()

@@ -198,10 +198,12 @@ position = Vector2(0, -5)
 [node name="StepSound" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("5_7v2s2")
 volume_db = -24.0
+bus = &"SFX"
 
 [node name="RunSound" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("6_xrv24")
 volume_db = -24.0
+bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

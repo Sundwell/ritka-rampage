@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=38 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
@@ -34,49 +34,79 @@ spawn_count = 1
 script = ExtResource("7_0n4ps")
 enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_si3j4")])
 difficulty_level = 0
-time_to_spawn = 1.0
+time_to_spawn = 0.7
 
-[sub_resource type="Resource" id="Resource_sd787"]
+[sub_resource type="Resource" id="Resource_b1qsw"]
 script = ExtResource("8_rp34t")
 enemy_scene = ExtResource("8_0au5e")
-weight = 5
+weight = 7
 spawn_count = 1
 
-[sub_resource type="Resource" id="Resource_wbvcv"]
+[sub_resource type="Resource" id="Resource_1oxer"]
 script = ExtResource("8_rp34t")
 enemy_scene = ExtResource("10_gmbgn")
+weight = 2
+spawn_count = 1
+
+[sub_resource type="Resource" id="Resource_p375t"]
+script = ExtResource("7_0n4ps")
+enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_b1qsw"), SubResource("Resource_1oxer")])
+difficulty_level = 7
+time_to_spawn = 0.75
+
+[sub_resource type="Resource" id="Resource_nsued"]
+script = ExtResource("8_rp34t")
+enemy_scene = ExtResource("8_0au5e")
 weight = 1
 spawn_count = 1
 
-[sub_resource type="Resource" id="Resource_achuj"]
-script = ExtResource("7_0n4ps")
-enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_sd787"), SubResource("Resource_wbvcv")])
-difficulty_level = 6
-time_to_spawn = 1.0
-
-[sub_resource type="Resource" id="Resource_k0tyg"]
+[sub_resource type="Resource" id="Resource_egdff"]
 script = ExtResource("8_rp34t")
 enemy_scene = ExtResource("10_gmbgn")
-weight = 3
+weight = 2
 spawn_count = 1
 
-[sub_resource type="Resource" id="Resource_v2cr1"]
+[sub_resource type="Resource" id="Resource_vgsyj"]
 script = ExtResource("8_rp34t")
 enemy_scene = ExtResource("11_kh17f")
-weight = 1
+weight = 2
 spawn_count = 1
 
-[sub_resource type="Resource" id="Resource_f3iik"]
-script = ExtResource("8_rp34t")
-enemy_scene = ExtResource("8_0au5e")
-weight = 5
-spawn_count = 1
-
-[sub_resource type="Resource" id="Resource_y4vhx"]
+[sub_resource type="Resource" id="Resource_n54ea"]
 script = ExtResource("7_0n4ps")
-enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_k0tyg"), SubResource("Resource_v2cr1"), SubResource("Resource_f3iik")])
+enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_nsued"), SubResource("Resource_egdff"), SubResource("Resource_vgsyj")])
 difficulty_level = 15
+time_to_spawn = 0.8
+
+[sub_resource type="Resource" id="Resource_j07id"]
+script = ExtResource("7_0n4ps")
+enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_nsued"), SubResource("Resource_egdff"), SubResource("Resource_vgsyj")])
+difficulty_level = 30
 time_to_spawn = 0.7
+
+[sub_resource type="Resource" id="Resource_ys0qw"]
+script = ExtResource("7_0n4ps")
+enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_nsued"), SubResource("Resource_egdff"), SubResource("Resource_vgsyj")])
+difficulty_level = 45
+time_to_spawn = 0.6
+
+[sub_resource type="Resource" id="Resource_m5i3h"]
+script = ExtResource("7_0n4ps")
+enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_nsued"), SubResource("Resource_egdff"), SubResource("Resource_vgsyj")])
+difficulty_level = 60
+time_to_spawn = 0.5
+
+[sub_resource type="Resource" id="Resource_mb0em"]
+script = ExtResource("7_0n4ps")
+enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_nsued"), SubResource("Resource_egdff"), SubResource("Resource_vgsyj")])
+difficulty_level = 75
+time_to_spawn = 0.4
+
+[sub_resource type="Resource" id="Resource_263s4"]
+script = ExtResource("7_0n4ps")
+enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_nsued"), SubResource("Resource_egdff"), SubResource("Resource_vgsyj")])
+difficulty_level = 80
+time_to_spawn = 0.5
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_fqumt")
@@ -99,9 +129,10 @@ experience_manager = NodePath("../Managers/ExperienceManager")
 [node name="Managers" type="Node" parent="."]
 
 [node name="ArenaTimeManager" parent="Managers" instance=ExtResource("3_dwsl6")]
+arena_duration = 900.0
 
 [node name="EnemyManager" parent="Managers" node_paths=PackedStringArray("difficulty_manager") instance=ExtResource("2_y0yni")]
-difficulty_stages = Array[ExtResource("7_0n4ps")]([SubResource("Resource_olwkn"), SubResource("Resource_achuj"), SubResource("Resource_y4vhx")])
+difficulty_stages = Array[ExtResource("7_0n4ps")]([SubResource("Resource_olwkn"), SubResource("Resource_p375t"), SubResource("Resource_n54ea"), SubResource("Resource_j07id"), SubResource("Resource_ys0qw"), SubResource("Resource_m5i3h"), SubResource("Resource_mb0em"), SubResource("Resource_263s4")])
 difficulty_manager = NodePath("../DifficultyManager")
 
 [node name="DifficultyManager" parent="Managers" instance=ExtResource("8_fj7m4")]
@@ -114,6 +145,7 @@ experience_manager = NodePath("../ExperienceManager")
 [node name="WeaponUpgradeManager" parent="Managers" instance=ExtResource("20_n7c20")]
 
 [node name="AnvilManager" parent="Managers" instance=ExtResource("20_f3wcp")]
+spawn_time = 75.0
 
 [node name="GameCamera" parent="." instance=ExtResource("2_ipo2b")]
 position = Vector2(-57, -16)
@@ -137,7 +169,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="Entities" instance=ExtResource("7_nxmj7")]
 unique_name_in_owner = true
-position = Vector2(-426, 358)
+position = Vector2(-28, 12)
 
 [node name="Bushes" type="Node2D" parent="Entities"]
 y_sort_enabled = true

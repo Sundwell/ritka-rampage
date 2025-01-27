@@ -118,7 +118,7 @@ health_component = NodePath("../HealthComponent")
 max_health = 4.0
 
 [node name="OrangeDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_u7d0e")]
-drop_chance = 0.35
+drop_chance = 0.4
 orange_scene = ExtResource("4_jij05")
 health_component = NodePath("../HealthComponent")
 
@@ -153,6 +153,7 @@ shape = SubResource("CircleShape2D_tm7nw")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("8_5shgc")]
 collision_layer = 16
+damage = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, -6)
