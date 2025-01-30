@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://clyc7x6n6y3ms"
-path="res://.godot/imported/hover.wav-3669a41e24c17935603b6c496a938df5.sample"
+uid="uid://bb8pliwdcj7wg"
+path="res://.godot/imported/shot.wav-069851b812400279c6ad06bbb667bd14.sample"
 
 [deps]
 
-source_file="res://assets/audio/sfx/hover.wav"
-dest_files=["res://.godot/imported/hover.wav-3669a41e24c17935603b6c496a938df5.sample"]
+source_file="res://scenes/weapons/pistol/sfx/shot.wav"
+dest_files=["res://.godot/imported/shot.wav-069851b812400279c6ad06bbb667bd14.sample"]
 
 [params]
 

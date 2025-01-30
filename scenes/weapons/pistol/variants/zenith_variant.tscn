@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/weapons/pistol/variants/pistol_weapon_variant.gd" id="1_7ceps"]
 [ext_resource type="Texture2D" uid="uid://c5pgue21t25rs" path="res://scenes/weapons/pistol/zenith.png" id="2_3c8ck"]
-[ext_resource type="AudioStream" uid="uid://bb8pliwdcj7wg" path="res://scenes/weapons/pistol/sfx/shoot.wav" id="3_vnnj3"]
+[ext_resource type="AudioStream" uid="uid://hehyt6ba16mk" path="res://scenes/weapons/pistol/sfx/zenith_shot.wav" id="3_6ttsp"]
 
 [sub_resource type="Animation" id="Animation_un0xr"]
 length = 0.001
@@ -79,5 +79,6 @@ position = Vector2(4, 0)
 [node name="SFX" type="Node" parent="."]
 
 [node name="ShootSound" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("3_vnnj3")
+stream = ExtResource("3_6ttsp")
+volume_db = -16.0
 bus = &"SFX"

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/weapons/pistol/variants/pistol_weapon_variant.gd" id="1_co0es"]
 [ext_resource type="Texture2D" uid="uid://bnd04bswu0x4g" path="res://scenes/weapons/pistol/shotgun.png" id="2_j05g5"]
-[ext_resource type="AudioStream" uid="uid://bb8pliwdcj7wg" path="res://scenes/weapons/pistol/sfx/shoot.wav" id="3_m4ts4"]
+[ext_resource type="AudioStream" uid="uid://ie3cd6ud0r34" path="res://scenes/weapons/pistol/sfx/shotgun_shot.wav" id="3_wuvhl"]
 
 [sub_resource type="Animation" id="Animation_un0xr"]
 length = 0.001
@@ -79,5 +79,6 @@ position = Vector2(6, -1)
 [node name="SFX" type="Node" parent="."]
 
 [node name="ShootSound" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("3_m4ts4")
+stream = ExtResource("3_wuvhl")
+volume_db = -20.0
 bus = &"SFX"

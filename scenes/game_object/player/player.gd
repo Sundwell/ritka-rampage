@@ -5,7 +5,6 @@ const BASE_MOVE_SPEED = 75.0
 const ACCELERATION_SMOOTHING = 15
 
 @export var initial_weapon_scene: PackedScene
-
 var is_shooting := false
 var mutations_count: Dictionary = {}
 var weapon_upgrades_count: Dictionary = {}
@@ -19,11 +18,15 @@ var state_machine := CallableStateMachine.new()
 @onready var weapon_controller: WeaponContoller = $WeaponController
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var shooting_state_change_timer: Timer = $ShootingStateChangeTimer
+@onready var hurt_sound: AudioStreamPlayer = $SFX/HurtSound
+@onready var hud_animation_player: AnimationPlayer = $HudAnimationPlayer
 
 
 func _ready():
 	GameEvents.mutation_upgrade_selected.connect(_on_mutation_upgrade_selected)
 	GameEvents.weapon_upgrade_selected.connect(_on_weapon_upgrade_selected)
+
+	health_component.damaged.connect(_on_damaged)
 	
 	state_machine.add_states(state_idle, enter_state_idle, exit_state_idle)
 	state_machine.add_states(state_moving)
@@ -151,3 +154,10 @@ func _on_weapon_upgrade_selected(upgrade: WeaponUpgrade, current_upgrades: Dicti
 	
 	if [PistolUpgrade.Id.BLOODY_BURDEN, PistolUpgrade.Id.ZENITH].has(upgrade.get_id()):
 		_update_movement_speed()
+
+
+func _on_damaged(_amount: float):
+	hud_animation_player.stop()
+	hud_animation_player.play("hurt")
+	hurt_sound.pitch_scale = randf_range(1, 1.1)
+	hurt_sound.play()

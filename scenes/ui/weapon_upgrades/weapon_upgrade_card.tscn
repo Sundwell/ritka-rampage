@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/ui/weapon_upgrades/weapon_upgrade_card.gd" id="1_4c2uk"]
 [ext_resource type="AudioStream" uid="uid://2uc2qm8evo3d" path="res://assets/audio/sfx/weapon_upgrade_select.wav" id="2_1hewj"]
 [ext_resource type="PackedScene" uid="uid://ctvfewktbvewa" path="res://scenes/components/card_animator_component.tscn" id="2_ciyxs"]
-[ext_resource type="AudioStream" uid="uid://clyc7x6n6y3ms" path="res://assets/audio/sfx/hover.wav" id="4_jrogl"]
+[ext_resource type="AudioStream" uid="uid://clyc7x6n6y3ms" path="res://assets/audio/sfx/card_hover.wav" id="4_jrogl"]
 
 [node name="WeaponUpgradeCard" type="PanelContainer" groups=["weapon_upgrade_card"]]
 custom_minimum_size = Vector2(150, 200)

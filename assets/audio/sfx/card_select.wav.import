@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dssca28jkdf3q"
-path="res://.godot/imported/mutation_select.wav-f232b5f585c63093ebf75b64d8ead118.sample"
+path="res://.godot/imported/card_select.wav-2118605924db6514893c7e9a307ca238.sample"
 
 [deps]
 
-source_file="res://assets/audio/sfx/mutation_select.wav"
-dest_files=["res://.godot/imported/mutation_select.wav-f232b5f585c63093ebf75b64d8ead118.sample"]
+source_file="res://assets/audio/sfx/card_select.wav"
+dest_files=["res://.godot/imported/card_select.wav-2118605924db6514893c7e9a307ca238.sample"]
 
 [params]
 

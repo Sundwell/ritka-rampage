@@ -54,15 +54,15 @@ func _set_max_health(health: float):
 	
 func _set_damage(damage: float):
 	hitbox_component.damage = damage
-		
-		
+	
+	
 func _update_upgrades_count(upgrades: Dictionary):
 	for id: PistolUpgrade.Id in PistolUpgrade.Id.values():
 		upgrades_count[id] = Utils.get_upgrade_quantity(upgrades, id)
 		
 	is_zenith = upgrades_count[PistolUpgrade.Id.ZENITH] > 0
 	is_shotgun = upgrades_count[PistolUpgrade.Id.SHOTGUN] > 0
-		
+	
 		
 func apply_upgrades(upgrades: Dictionary):
 	_update_upgrades_count(upgrades)
@@ -112,7 +112,7 @@ func apply_upgrades(upgrades: Dictionary):
 func ricochet():
 	var enemies = get_tree().get_nodes_in_group(Constants.GROUPS.ENEMY)
 	enemies.sort_custom(
-			func(a: Node2D, b: Node2D): 
+			func(a: Node2D, b: Node2D):
 				return a.global_position.distance_to(global_position) < b.global_position.distance_to(global_position)
 	)
 	
@@ -122,7 +122,7 @@ func ricochet():
 		return
 		
 	var available_enemies = enemies.slice(1).filter(
-			func (enemy_near: Node2D):
+			func(enemy_near: Node2D):
 				return enemy_near.global_position.distance_to(global_position) <= MAX_RICOCHET_DISTANCE
 	)
 	

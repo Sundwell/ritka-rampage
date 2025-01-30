@@ -48,7 +48,7 @@ func shoot():
 			bullet_count += 1
 			
 	if is_shotgun:
-		bullet_count *= randi_range(1, 3) 
+		bullet_count *= randi_range(1, 3)
 	
 	for bullet_number in range(bullet_count):
 		var bullet = bullet_scene.instantiate() as PistolBullet

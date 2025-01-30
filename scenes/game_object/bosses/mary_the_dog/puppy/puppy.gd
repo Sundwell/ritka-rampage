@@ -10,11 +10,13 @@ var is_dead := false
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var visuals: Node2D = $Visuals
+@onready var spawn_sound: AudioStreamPlayer2D = $SpawnSound
 
 
 func _ready() -> void:
 	sprite.texture = available_textures.pick_random()
 	health_component.died.connect(_on_died)
+	spawn_sound.pitch_scale = randf_range(0.95, 1.05)
 
 
 func _physics_process(delta: float) -> void:
