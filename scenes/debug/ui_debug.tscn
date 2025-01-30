@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cxxnmnvm7dh86"]
+[gd_scene load_steps=16 format=4 uid="uid://cxxnmnvm7dh86"]
 
 [ext_resource type="Script" path="res://scenes/debug/ui_debug.gd" id="1_5ks6w"]
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_uvtml"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://biyftkstxyn66" path="res://scenes/game_object/anvil/anvil.tscn" id="12_28td7"]
 [ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/game_object/enemy/bunny/bunny.tscn" id="13_0b838"]
 [ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange/orange.tscn" id="14_8lexw"]
+[ext_resource type="PackedScene" uid="uid://bi4h74wlxjtot" path="res://scenes/game_object/bosses/mary_the_dog/mary_the_dog.tscn" id="15_xge67"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_uvtml")
@@ -99,6 +100,7 @@ tile_map_data = PackedByteArray("AADm//X/AAAGAAQAAADr/wMAAAAGAAQAAADs/+z/AAAEAAM
 tile_set = ExtResource("6_tn1kw")
 
 [node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
+y_sort_enabled = true
 
 [node name="Player" parent="Entities" instance=ExtResource("7_0pi3q")]
 
@@ -174,6 +176,12 @@ max_speed = 0.0
 [node name="OrangeEnergy" parent="Entities" instance=ExtResource("14_8lexw")]
 position = Vector2(-64, 13)
 
+[node name="MaryTheDog" parent="Entities" instance=ExtResource("15_xge67")]
+position = Vector2(-47, -97)
+
+[node name="HealthComponent" parent="Entities/MaryTheDog" index="0"]
+max_health = 1.0
+
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]
 
 [editable path="Entities/Bunny"]
@@ -182,3 +190,4 @@ position = Vector2(-64, 13)
 [editable path="Entities/Bunny6"]
 [editable path="Entities/Bunny2"]
 [editable path="Entities/Bunny3"]
+[editable path="Entities/MaryTheDog"]

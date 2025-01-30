@@ -3,7 +3,7 @@ extends Area2D
 
 @export var reload_time: float = 0.5
 @export var damage := 0.0
-@export var statuses: Array[Status]
+var statuses: Array[Status]
 var collision_nodes: Array[Node] = []
 var is_active := true
 

@@ -4,6 +4,7 @@ extends Resource
 @export var enemy_spawn_configs: Array[EnemySpawnConfig]
 @export var difficulty_level: int
 @export var time_to_spawn := 1.0
+@export var boss_to_spawn: PackedScene
 
 
 func get_total_weight() -> int:

@@ -118,7 +118,6 @@ health_component = NodePath("../HealthComponent")
 max_health = 4.0
 
 [node name="OrangeDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_u7d0e")]
-drop_chance = 0.4
 orange_scene = ExtResource("4_jij05")
 health_component = NodePath("../HealthComponent")
 

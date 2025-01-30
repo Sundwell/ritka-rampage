@@ -235,12 +235,13 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPickupbox"]
 shape = SubResource("CircleShape2D_tjwd4")
 
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_477au")]
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "status_manager") instance=ExtResource("3_477au")]
 visible = false
 position = Vector2(0, -5)
 collision_layer = 32
 collision_mask = 16
 health_component = NodePath("../HealthComponent")
+status_manager = NodePath("../StatusManager")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_4sibk")

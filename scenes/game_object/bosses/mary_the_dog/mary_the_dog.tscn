@@ -1,0 +1,304 @@
+[gd_scene load_steps=27 format=3 uid="uid://bi4h74wlxjtot"]
+
+[ext_resource type="PackedScene" uid="uid://cwatwkjukjlvd" path="res://scenes/components/hurtbox_component.tscn" id="1_3y2o2"]
+[ext_resource type="Script" path="res://scenes/game_object/bosses/mary_the_dog/mary_the_dog.gd" id="1_p142c"]
+[ext_resource type="Texture2D" uid="uid://bmk4agbwrmr42" path="res://scenes/game_object/bosses/mary_the_dog/mary_the_dog_white.png" id="2_4jnp8"]
+[ext_resource type="PackedScene" uid="uid://dlfndvxca8iiu" path="res://scenes/controllers/statuses/tick_status.tscn" id="2_apwff"]
+[ext_resource type="PackedScene" uid="uid://ceo6q5oos0dqn" path="res://scenes/components/velocity_component.tscn" id="3_lkt6i"]
+[ext_resource type="PackedScene" uid="uid://ba15j2sh5g7ov" path="res://scenes/game_object/bosses/mary_the_dog/puppy/puppy.tscn" id="3_oa7jh"]
+[ext_resource type="PackedScene" uid="uid://0fecexi8j7gb" path="res://scenes/game_object/orange/orange.tscn" id="3_p8rqt"]
+[ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="4_8ic5f"]
+[ext_resource type="PackedScene" uid="uid://biyftkstxyn66" path="res://scenes/game_object/anvil/anvil.tscn" id="4_144ld"]
+[ext_resource type="Texture2D" uid="uid://b5cl255snud5r" path="res://scenes/game_object/bosses/mary_the_dog/mary_the_dog_black.png" id="4_m82md"]
+[ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="5_i5b36"]
+[ext_resource type="Texture2D" uid="uid://q54fsd2hwpuy" path="res://scenes/game_object/bosses/mary_the_dog/mary_the_dog_brown.png" id="5_wl1n7"]
+[ext_resource type="PackedScene" uid="uid://cdmwpfegixcco" path="res://scenes/components/orange_drop_component.tscn" id="6_etvnx"]
+[ext_resource type="PackedScene" uid="uid://cqlm0b75mtg4k" path="res://scenes/components/blood_particles_spawner_component.tscn" id="7_syeun"]
+[ext_resource type="PackedScene" uid="uid://gbwjb2qhqvk0" path="res://scenes/manager/statuses/status_manager.tscn" id="7_tem8m"]
+[ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/components/ground_shadow/ground_shadow_component.tscn" id="9_uli6e"]
+[ext_resource type="PackedScene" uid="uid://cf5byk2x3b7ae" path="res://scenes/components/health_bar_component.tscn" id="14_2q7x5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ipbq2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yxdey"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lf672"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s0t04"]
+radius = 15.0
+
+[sub_resource type="Animation" id="Animation_82dio"]
+resource_name = "run"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_xhcsc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BiteDirectionMarker/BiteHitboxComponent/BiteCollision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, -4)]
+}
+
+[sub_resource type="Animation" id="Animation_ut7cu"]
+resource_name = "bite"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7, 8, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BiteDirectionMarker/BiteHitboxComponent/BiteCollision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"try_bite_again"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_vinth"]
+resource_name = "die"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.680678, -2.80649, -6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1.7411, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.75, 0.75), Vector2(0.325, 0.325), Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(3, -4), Vector2(-1, -9), Vector2(0, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xb03g"]
+_data = {
+"RESET": SubResource("Animation_xhcsc"),
+"bite": SubResource("Animation_ut7cu"),
+"die": SubResource("Animation_vinth"),
+"run": SubResource("Animation_82dio")
+}
+
+[node name="MaryTheDog" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+script = ExtResource("1_p142c")
+tick_status_scene = ExtResource("2_apwff")
+puppy_scene = ExtResource("3_oa7jh")
+anvil_scene = ExtResource("4_144ld")
+available_textures = Array[Texture]([ExtResource("4_m82md"), ExtResource("5_wl1n7"), ExtResource("2_4jnp8")])
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_i5b36")]
+max_health = 80.0
+
+[node name="OrangeDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_etvnx")]
+drop_chance = 1.0
+orange_scene = ExtResource("3_p8rqt")
+health_component = NodePath("../HealthComponent")
+
+[node name="StatusManager" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_tem8m")]
+health_component = NodePath("../HealthComponent")
+
+[node name="VelocityComponent" parent="." node_paths=PackedStringArray("character_body") instance=ExtResource("3_lkt6i")]
+character_body = NodePath("..")
+max_speed = 100.0
+acceleration = 8.0
+
+[node name="HealTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="SummonTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="PuppySpawnTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="BaseCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_ipbq2")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("4_8ic5f")]
+collision_layer = 16
+damage = 6.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_yxdey")
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "status_manager") instance=ExtResource("1_3y2o2")]
+collision_layer = 64
+collision_mask = 8
+health_component = NodePath("../HealthComponent")
+status_manager = NodePath("../StatusManager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_lf672")
+debug_color = Color(0.695802, 0.462297, 0.482619, 0.42)
+
+[node name="BloodParticlesSpawnerComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_syeun")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
+
+[node name="BiteDirectionMarker" type="Marker2D" parent="."]
+position = Vector2(0, -9)
+
+[node name="BiteHitboxComponent" parent="BiteDirectionMarker" instance=ExtResource("4_8ic5f")]
+unique_name_in_owner = true
+position = Vector2(14, 0)
+collision_layer = 16
+reload_time = 0.0
+damage = 8.0
+
+[node name="BiteCollision" type="CollisionShape2D" parent="BiteDirectionMarker/BiteHitboxComponent"]
+shape = SubResource("CircleShape2D_s0t04")
+disabled = true
+debug_color = Color(0.886991, 0.31345, 0.274243, 0.42)
+
+[node name="Visuals" type="Node2D" parent="."]
+position = Vector2(3, -4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+unique_name_in_owner = true
+texture = ExtResource("2_4jnp8")
+offset = Vector2(0, -16)
+hframes = 4
+vframes = 3
+
+[node name="GroundShadowComponent" parent="Visuals" instance=ExtResource("9_uli6e")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xb03g")
+}
+autoplay = "run"
+
+[node name="HealthBarComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("14_2q7x5")]
+offset_left = -15.0
+offset_top = -28.0
+offset_right = 17.0
+offset_bottom = -22.0
+health_component = NodePath("../HealthComponent")

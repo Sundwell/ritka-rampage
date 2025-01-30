@@ -64,6 +64,13 @@ func update_enemies_table():
 func update_difficulty_stage_settings():
 	timer.wait_time = current_stage.time_to_spawn
 	update_enemies_table()
+	
+	if current_stage.boss_to_spawn:
+		var boss: Node2D = current_stage.boss_to_spawn.instantiate()
+		boss.global_position = get_spawn_position()
+		
+		var entities_layer := Utils.get_entities_layer()
+		entities_layer.add_child(boss)
 
 
 func update_difficulty_stage(current_difficulty: int):

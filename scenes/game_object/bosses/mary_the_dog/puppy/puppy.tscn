@@ -1,0 +1,182 @@
+[gd_scene load_steps=19 format=3 uid="uid://ba15j2sh5g7ov"]
+
+[ext_resource type="PackedScene" uid="uid://jfbffly5rjbc" path="res://scenes/components/health_component.tscn" id="1_bycaj"]
+[ext_resource type="Texture2D" uid="uid://bmk4agbwrmr42" path="res://scenes/game_object/bosses/mary_the_dog/mary_the_dog_white.png" id="1_pmdm7"]
+[ext_resource type="Script" path="res://scenes/game_object/bosses/mary_the_dog/puppy/puppy.gd" id="1_v23q6"]
+[ext_resource type="PackedScene" uid="uid://gbwjb2qhqvk0" path="res://scenes/manager/statuses/status_manager.tscn" id="2_qjw22"]
+[ext_resource type="Texture2D" uid="uid://b5cl255snud5r" path="res://scenes/game_object/bosses/mary_the_dog/mary_the_dog_black.png" id="2_xr3li"]
+[ext_resource type="PackedScene" uid="uid://cryx377fes7t2" path="res://scenes/components/hitbox_component.tscn" id="3_i4kv1"]
+[ext_resource type="Texture2D" uid="uid://q54fsd2hwpuy" path="res://scenes/game_object/bosses/mary_the_dog/mary_the_dog_brown.png" id="3_qa3pk"]
+[ext_resource type="PackedScene" uid="uid://cwatwkjukjlvd" path="res://scenes/components/hurtbox_component.tscn" id="4_y4b6s"]
+[ext_resource type="PackedScene" uid="uid://ceo6q5oos0dqn" path="res://scenes/components/velocity_component.tscn" id="5_27lwp"]
+[ext_resource type="PackedScene" uid="uid://cqlm0b75mtg4k" path="res://scenes/components/blood_particles_spawner_component.tscn" id="6_yvh16"]
+[ext_resource type="PackedScene" uid="uid://doqby582yfyo" path="res://scenes/components/ground_shadow/ground_shadow_component.tscn" id="8_mdv8w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c51vw"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d6jjk"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4d5vt"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_2kjir"]
+resource_name = "run"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/SpritesWrapper/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_fdsls"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/SpritesWrapper/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/SpritesWrapper:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/SpritesWrapper:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vv1h0"]
+resource_name = "die"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/SpritesWrapper:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 0.116629),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/SpritesWrapper:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.413643, -0.631809]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nnl5a"]
+_data = {
+"RESET": SubResource("Animation_fdsls"),
+"die": SubResource("Animation_vv1h0"),
+"run": SubResource("Animation_2kjir")
+}
+
+[node name="Puppy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_v23q6")
+available_textures = Array[Texture]([ExtResource("2_xr3li"), ExtResource("3_qa3pk"), ExtResource("1_pmdm7")])
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_bycaj")]
+max_health = 5.0
+
+[node name="VelocityComponent" parent="." node_paths=PackedStringArray("character_body") instance=ExtResource("5_27lwp")]
+character_body = NodePath("..")
+max_speed = 110.0
+acceleration = 5.0
+
+[node name="StatusManager" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_qjw22")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_c51vw")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="SpritesWrapper" type="Node2D" parent="Visuals"]
+position = Vector2(0, -4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals/SpritesWrapper"]
+unique_name_in_owner = true
+position = Vector2(0, 4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_pmdm7")
+offset = Vector2(0, -16)
+hframes = 4
+vframes = 3
+
+[node name="GroundShadowComponent" parent="Visuals" instance=ExtResource("8_mdv8w")]
+position = Vector2(-5.78877e-15, -2)
+scale = Vector2(0.7, 0.7)
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_i4kv1")]
+position = Vector2(0, -4)
+collision_layer = 16
+damage = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_d6jjk")
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "status_manager") instance=ExtResource("4_y4b6s")]
+position = Vector2(0, -4)
+collision_layer = 64
+collision_mask = 8
+health_component = NodePath("../HealthComponent")
+status_manager = NodePath("../StatusManager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_4d5vt")
+
+[node name="BloodParticlesSpawnerComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("6_yvh16")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/SpritesWrapper/Sprite2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nnl5a")
+}
+autoplay = "run"

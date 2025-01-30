@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=39 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://resources/difficulty/enemy_spawn_config.gd" id="8_rp34t"]
 [ext_resource type="PackedScene" uid="uid://bmkeplc4w76hm" path="res://scenes/manager/upgrades/mutation_upgrade_manager.tscn" id="9_0v1sx"]
 [ext_resource type="PackedScene" uid="uid://p4ofdanvpv5m" path="res://scenes/game_object/enemy/porcupine/porcupine.tscn" id="10_gmbgn"]
+[ext_resource type="PackedScene" uid="uid://bi4h74wlxjtot" path="res://scenes/game_object/bosses/mary_the_dog/mary_the_dog.tscn" id="11_hwr2m"]
 [ext_resource type="PackedScene" uid="uid://dwmlg050i08ac" path="res://scenes/game_object/enemy/stubborn_cow/stubborn_cow.tscn" id="11_kh17f"]
 [ext_resource type="PackedScene" uid="uid://wxjex0i2dwww" path="res://scenes/manager/anvil_manager.tscn" id="20_f3wcp"]
 [ext_resource type="PackedScene" uid="uid://d2a52b2apau0v" path="res://scenes/manager/upgrades/weapon_upgrade_manager.tscn" id="20_n7c20"]
@@ -77,36 +78,42 @@ script = ExtResource("7_0n4ps")
 enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_nsued"), SubResource("Resource_egdff"), SubResource("Resource_vgsyj")])
 difficulty_level = 15
 time_to_spawn = 0.8
+boss_to_spawn = ExtResource("11_hwr2m")
 
 [sub_resource type="Resource" id="Resource_j07id"]
 script = ExtResource("7_0n4ps")
 enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_nsued"), SubResource("Resource_egdff"), SubResource("Resource_vgsyj")])
 difficulty_level = 30
 time_to_spawn = 0.7
+boss_to_spawn = ExtResource("11_hwr2m")
 
 [sub_resource type="Resource" id="Resource_ys0qw"]
 script = ExtResource("7_0n4ps")
 enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_nsued"), SubResource("Resource_egdff"), SubResource("Resource_vgsyj")])
 difficulty_level = 45
 time_to_spawn = 0.6
+boss_to_spawn = ExtResource("11_hwr2m")
 
 [sub_resource type="Resource" id="Resource_m5i3h"]
 script = ExtResource("7_0n4ps")
 enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_nsued"), SubResource("Resource_egdff"), SubResource("Resource_vgsyj")])
 difficulty_level = 60
 time_to_spawn = 0.5
+boss_to_spawn = ExtResource("11_hwr2m")
 
 [sub_resource type="Resource" id="Resource_mb0em"]
 script = ExtResource("7_0n4ps")
 enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_nsued"), SubResource("Resource_egdff"), SubResource("Resource_vgsyj")])
 difficulty_level = 75
 time_to_spawn = 0.4
+boss_to_spawn = ExtResource("11_hwr2m")
 
 [sub_resource type="Resource" id="Resource_263s4"]
 script = ExtResource("7_0n4ps")
 enemy_spawn_configs = Array[ExtResource("8_rp34t")]([SubResource("Resource_nsued"), SubResource("Resource_egdff"), SubResource("Resource_vgsyj")])
 difficulty_level = 80
 time_to_spawn = 0.5
+boss_to_spawn = ExtResource("11_hwr2m")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_fqumt")

@@ -21,13 +21,13 @@ func set_max_health(value: float):
 	current_health = max_health
 
 
-func _spawn_damaged_text(amount: float):
+func _spawn_floating_text(amount: float, type: FloatingText.Type):
 	if not enable_floating_text:
 		return
 
 	var parent = get_parent()
 	if parent is Node2D:
-		FloatingTextManager.spawn_text(str(amount), parent.global_position)
+		FloatingTextManager.spawn_text(str(amount), parent.global_position, type)
 
 
 func damage(damage_amount: float):
@@ -37,11 +37,20 @@ func damage(damage_amount: float):
 	current_health = max(current_health - damage_amount, 0)
 	damaged.emit(damage_amount)
 	
-	_spawn_damaged_text(damage_amount)
+	_spawn_floating_text(damage_amount, FloatingText.Type.DAMAGE)
 	
 	# call deferred due to some stuff happening in-between frames
 	# for example removing nodes, changing physics layers, add_child()
 	Callable(check_death).call_deferred()
+	
+	
+func heal(heal_amount: float):
+	if is_dead:
+		return
+		
+	current_health = min(max_health, current_health + heal_amount)
+	
+	_spawn_floating_text(heal_amount, FloatingText.Type.HEAL)
 	
 	
 func get_health_percent():
