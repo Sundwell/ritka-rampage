@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnshicqd3b3pl"]
+
+[ext_resource type="Script" path="res://scenes/ui/anvil_timer/anvil_timer.gd" id="1_jjcke"]
+[ext_resource type="Texture2D" uid="uid://n8kh216i5y5j" path="res://scenes/ui/anvil_timer/anvil_16x16.png" id="2_d5qnq"]
+
+[node name="AnvilTimer" type="CanvasLayer"]
+script = ExtResource("1_jjcke")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="AnvilTexture" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_d5qnq")
+
+[node name="TimeToSpawnLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0:00"

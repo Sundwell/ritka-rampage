@@ -1,19 +1,23 @@
 class_name AnvilManager
 extends Node
 
+signal time_to_spawn_changed(time_to_spawn: float)
+
 @export var first_spawn_time := 30.0
 @export var spawn_time := 75.0
 @export var anvil_scene: PackedScene
+var current_time_to_spawn: float
 
 @onready var timer: Timer = $Timer
 
 
 func _ready() -> void:
-	timer.wait_time = first_spawn_time
+	current_time_to_spawn = first_spawn_time
+	time_to_spawn_changed.emit(current_time_to_spawn)
 	timer.timeout.connect(on_timer_timeout)
 	timer.start()
-	
-	
+
+
 func get_spawn_position() -> Vector2:
 	var player = Utils.get_player()
 	
@@ -46,6 +50,12 @@ func spawn_anvil():
 
 
 func on_timer_timeout():
-	spawn_anvil()
-	timer.wait_time = spawn_time
+	current_time_to_spawn = max(current_time_to_spawn - 1, 0)
+	
+	if current_time_to_spawn == 0:
+		current_time_to_spawn = spawn_time
+		spawn_anvil()
+
+	time_to_spawn_changed.emit(current_time_to_spawn)
+
 	timer.start()

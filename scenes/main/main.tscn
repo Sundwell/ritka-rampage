@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://cqd01tgnwtfhh"]
+[gd_scene load_steps=40 format=4 uid="uid://cqd01tgnwtfhh"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fqumt"]
 [ext_resource type="PackedScene" uid="uid://qj3cgjukpctc" path="res://scenes/ui/arena_time_ui.tscn" id="2_7sja6"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://opwxpmnb8voa" path="res://scenes/game_object/player/player.tscn" id="7_nxmj7"]
 [ext_resource type="PackedScene" uid="uid://bwsxcvg8tgsku" path="res://scenes/game_object/enemy/bunny/bunny.tscn" id="8_0au5e"]
 [ext_resource type="PackedScene" uid="uid://dn4ekvcuqpp12" path="res://scenes/manager/difficulty_manager.tscn" id="8_fj7m4"]
+[ext_resource type="PackedScene" uid="uid://cnshicqd3b3pl" path="res://scenes/ui/anvil_timer/anvil_timer.tscn" id="8_mcwaw"]
 [ext_resource type="Script" path="res://resources/difficulty/enemy_spawn_config.gd" id="8_rp34t"]
 [ext_resource type="PackedScene" uid="uid://bmkeplc4w76hm" path="res://scenes/manager/upgrades/mutation_upgrade_manager.tscn" id="9_0v1sx"]
 [ext_resource type="PackedScene" uid="uid://p4ofdanvpv5m" path="res://scenes/game_object/enemy/porcupine/porcupine.tscn" id="10_gmbgn"]
@@ -132,6 +133,9 @@ arena_time_manager = NodePath("../Managers/ArenaTimeManager")
 
 [node name="ExperienceBar" parent="." node_paths=PackedStringArray("experience_manager") instance=ExtResource("3_6rnxb")]
 experience_manager = NodePath("../Managers/ExperienceManager")
+
+[node name="AnvilTimer" parent="." node_paths=PackedStringArray("anvil_manager") instance=ExtResource("8_mcwaw")]
+anvil_manager = NodePath("../Managers/AnvilManager")
 
 [node name="Managers" type="Node" parent="."]
 
