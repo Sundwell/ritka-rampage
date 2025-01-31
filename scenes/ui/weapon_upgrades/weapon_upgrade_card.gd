@@ -8,7 +8,7 @@ signal selected
 @onready var animator_component: CardAnimatorComponent = $CardAnimatorComponent
 @onready var title_panel_container: PanelContainer = %TitlePanelContainer
 @onready var quantity_label: Label = %QuantityLabel
-@onready var hint_label: Label = %HintLabel
+@onready var hint_label: RichTextLabel = %HintLabel
 @onready var select_sound: AudioStreamPlayer = $SelectSound
 @onready var hover_sound: AudioStreamPlayer = $HoverSound
 
@@ -49,7 +49,7 @@ func set_weapon_upgrade(upgrade: WeaponUpgrade, current_upgrades: Dictionary):
 	if not upgrade.hint:
 		hint_label.queue_free()
 	else:
-		hint_label.text = upgrade.hint
+		hint_label.text = '[shake]%s[/shake]' % upgrade.hint
 	
 	set_card_variation(upgrade.type)
 	

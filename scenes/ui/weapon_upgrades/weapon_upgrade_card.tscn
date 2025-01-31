@@ -70,13 +70,16 @@ layout_mode = 2
 text = "Some description"
 autowrap_mode = 3
 
-[node name="HintLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="HintLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
+clip_contents = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-theme_type_variation = &"OrangeHintLabel"
-text = "Hint text"
-autowrap_mode = 3
+theme_override_colors/default_color = Color(0.894118, 0.360784, 0.372549, 1)
+theme_override_font_sizes/normal_font_size = 5
+bbcode_enabled = true
+text = "[shake]Hint text[/shake]"
+fit_content = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
