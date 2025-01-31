@@ -75,6 +75,7 @@ unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+mouse_filter = 2
 theme_override_colors/default_color = Color(0.894118, 0.360784, 0.372549, 1)
 theme_override_font_sizes/normal_font_size = 5
 bbcode_enabled = true

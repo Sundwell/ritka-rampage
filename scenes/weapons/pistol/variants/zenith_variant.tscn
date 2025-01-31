@@ -80,5 +80,5 @@ position = Vector2(4, 0)
 
 [node name="ShootSound" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("3_6ttsp")
-volume_db = -16.0
+volume_db = -4.0
 bus = &"SFX"
