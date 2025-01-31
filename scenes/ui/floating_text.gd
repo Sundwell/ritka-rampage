@@ -12,9 +12,9 @@ enum Type {
 }
 
 var text_color_by_type = {
-	Type.DAMAGE: "#ff5454",
-	Type.HEAL: "#83ff3d",
-	Type.ORANGE_PICK_UP: "#ff9f3d",
+	Type.DAMAGE: "ff5454",
+	Type.HEAL: "83ff3d",
+	Type.ORANGE_PICK_UP: "ff9f3d"
 }
 
 @onready var label = $Label
