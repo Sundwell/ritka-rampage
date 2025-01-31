@@ -152,7 +152,6 @@ experience_manager = NodePath("../ExperienceManager")
 [node name="WeaponUpgradeManager" parent="Managers" instance=ExtResource("20_n7c20")]
 
 [node name="AnvilManager" parent="Managers" instance=ExtResource("20_f3wcp")]
-spawn_time = 75.0
 
 [node name="GameCamera" parent="." instance=ExtResource("2_ipo2b")]
 position = Vector2(-57, -16)

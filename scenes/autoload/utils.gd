@@ -19,7 +19,7 @@ func get_upgrade_quantity(upgrades: Dictionary, upgrade_key: Variant, default :=
 
 func get_nearest_node_in_group(group: String, position: Vector2, excluded_nodes: Array = []) -> Node2D:
 	var available_nodes = get_tree().get_nodes_in_group(group).filter(
-			func (node: Node2D): 
+			func(node: Node2D):
 				return not excluded_nodes.has(node)
 	)
 	
@@ -27,7 +27,7 @@ func get_nearest_node_in_group(group: String, position: Vector2, excluded_nodes:
 		return null
 	
 	available_nodes.sort_custom(
-			func(a: Node2D, b: Node2D): 
+			func(a: Node2D, b: Node2D):
 				return a.global_position.distance_to(position) < b.global_position.distance_to(position)
 	)
 	
@@ -35,4 +35,4 @@ func get_nearest_node_in_group(group: String, position: Vector2, excluded_nodes:
 	
 	
 func get_children_of_type(parent: Node, type) -> Array[Node]:
-	return parent.get_children().filter(func (child): return is_instance_of(child, type))
+	return parent.get_children().filter(func(child): return is_instance_of(child, type))

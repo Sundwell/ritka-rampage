@@ -3,6 +3,7 @@ extends Node
 signal orange_energy_collected(amount: float)
 signal mutation_upgrade_selected(upgrade: MutationUpgrade, current_upgrades: Dictionary)
 signal anvil_collected
+signal anvil_spawned
 signal weapon_upgrade_selected(upgrade: WeaponUpgrade, current_upgrades: Dictionary)
 signal weapon_changed(new_weapon: Weapon)
 signal game_paused(is_paused: bool)
@@ -45,3 +46,7 @@ func emit_enemy_died():
 	
 func emit_no_enemies_left():
 	no_enemies_left.emit()
+
+	
+func emit_anvil_spawned():
+	anvil_spawned.emit()

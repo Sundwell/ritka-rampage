@@ -2,7 +2,7 @@ class_name AnvilManager
 extends Node
 
 @export var first_spawn_time := 30.0
-@export var spawn_time := 90.0
+@export var spawn_time := 75.0
 @export var anvil_scene: PackedScene
 
 @onready var timer: Timer = $Timer
@@ -49,4 +49,3 @@ func on_timer_timeout():
 	spawn_anvil()
 	timer.wait_time = spawn_time
 	timer.start()
-	

@@ -106,6 +106,9 @@ y_sort_enabled = true
 [node name="Anvil" parent="Entities" instance=ExtResource("12_28td7")]
 position = Vector2(25, -111)
 
+[node name="Anvil2" parent="Entities" instance=ExtResource("12_28td7")]
+position = Vector2(244, 5)
+
 [node name="Bunny" parent="Entities" instance=ExtResource("13_0b838")]
 position = Vector2(-138, -7)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://opwxpmnb8voa"]
+[gd_scene load_steps=26 format=3 uid="uid://opwxpmnb8voa"]
 
 [ext_resource type="Texture2D" uid="uid://yr54tlu3thkq" path="res://scenes/game_object/player/ritka.png" id="1_aes1j"]
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_snu1q"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://cpm34au6tecby" path="res://scenes/game_object/player/sfx/run_sound.wav" id="6_xrv24"]
 [ext_resource type="PackedScene" uid="uid://cf5byk2x3b7ae" path="res://scenes/components/health_bar_component.tscn" id="8_cdija"]
 [ext_resource type="AudioStream" uid="uid://cldn156oxgpwi" path="res://assets/audio/sfx/take_damage.wav" id="9_7o8dv"]
+[ext_resource type="PackedScene" uid="uid://cpwsf0ptkbc0m" path="res://scenes/components/navigation_arrow/navigation_arrow.tscn" id="12_xucbj"]
 
 [sub_resource type="Animation" id="Animation_xh0by"]
 length = 0.001
@@ -163,6 +164,21 @@ _data = {
 "walk": SubResource("Animation_p8w2y")
 }
 
+[sub_resource type="Animation" id="Animation_jo5s5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerHud/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.984314, 0.352941, 0.207843, 0.054902)]
+}
+
 [sub_resource type="Animation" id="Animation_fybrk"]
 resource_name = "hurt"
 length = 0.2
@@ -178,21 +194,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(0.984314, 0.352941, 0.207843, 0), Color(0.984314, 0.352941, 0.207843, 0.0901961), Color(0.984314, 0.352941, 0.207843, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_jo5s5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerHud/ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.984314, 0.352941, 0.207843, 0.054902)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fgfrt"]
@@ -315,3 +316,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="NavigationArrowRotationPivot" type="Marker2D" parent="."]
+position = Vector2(-1, -5)
+
+[node name="NavigationArrow" parent="NavigationArrowRotationPivot" node_paths=PackedStringArray("rotation_pivot") instance=ExtResource("12_xucbj")]
+position = Vector2(19, 5)
+rotation_pivot = NodePath("..")

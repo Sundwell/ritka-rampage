@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpwsf0ptkbc0m"]
+
+[ext_resource type="Script" path="res://scenes/components/navigation_arrow/navigation_arrow.gd" id="1_30pro"]
+[ext_resource type="Texture2D" uid="uid://kjhqgrpiipn0" path="res://scenes/components/navigation_arrow/navigation_arrow.png" id="1_mt0cr"]
+
+[node name="NavigationArrow" type="Node2D"]
+rotation = 1.41268
+script = ExtResource("1_30pro")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 74.7503
+texture = ExtResource("1_mt0cr")
+offset = Vector2(0, -6)
