@@ -33,5 +33,5 @@ func on_died():
 	die()
 	
 	
-func on_collided():
+func on_collided(other: Node2D):
 	die()

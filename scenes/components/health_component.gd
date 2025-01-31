@@ -42,6 +42,11 @@ func damage(damage_amount: float):
 	# call deferred due to some stuff happening in-between frames
 	# for example removing nodes, changing physics layers, add_child()
 	Callable(check_death).call_deferred()
+
+
+func kill():
+	current_health = 0
+	Callable(check_death).call_deferred()
 	
 	
 func heal(heal_amount: float):

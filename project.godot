@@ -48,6 +48,7 @@ entities_layer=""
 player=""
 enemy=""
 anvil=""
+decoration=""
 
 [gui]
 

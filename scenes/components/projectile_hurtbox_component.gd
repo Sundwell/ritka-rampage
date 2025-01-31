@@ -1,7 +1,7 @@
 class_name ProjectileHurtboxComponent
 extends Area2D
 
-signal collided
+signal collided(other: Node2D)
 
 
 func _ready() -> void:
@@ -10,8 +10,8 @@ func _ready() -> void:
 	
 	
 func on_area_entered(other_area: Area2D):
-	collided.emit()
+	collided.emit(other_area)
 	
 	
-func on_body_entered(other_body):
-	collided.emit()
+func on_body_entered(other_body: Node2D):
+	collided.emit(other_body)

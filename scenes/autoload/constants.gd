@@ -6,6 +6,7 @@ const GROUPS = {
 	"FOREGROUND_LAYER": "foreground_layer",
 	"ENEMY": "enemy",
 	"ANVIL": "anvil",
+	"DECORATION": "decoration",
 }
 
 enum Weapon {

@@ -156,9 +156,12 @@ func _can_create_explosion() -> bool:
 	return exploded_count == 0
 
 
-func _on_collided():
-	health_component.damage(1)
-	
+func _on_collided(other: Node2D):
+	if other.is_in_group(Constants.GROUPS.DECORATION):
+		health_component.kill()
+	else:
+		health_component.damage(1)
+
 	hitbox_component.clear_statuses.call_deferred()
 	
 	var explosive_impact_count: int = upgrades_count[PistolUpgrade.Id.EXPLOSIVE_IMPACT]
